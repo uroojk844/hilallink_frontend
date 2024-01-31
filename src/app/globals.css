@@ -14,5 +14,6 @@
 body {
     background-image: url("/bg.png");
     background-size: cover;
+    background-attachment: fixed;
     min-height: 100vh;
 }
