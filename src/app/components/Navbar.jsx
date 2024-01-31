@@ -4,7 +4,7 @@ import { BsBell, BsChat, BsChatDots, BsFilm, BsSearch } from "react-icons/bs";
 const NavBar = () => {
   return (
     <section className="bg-white">
-      <nav className="container mx-auto flex items-center justify-between max-lg:px-4 h-12">
+      <nav className="container mx-auto flex items-center justify-between px-4 h-12">
         <img src="/logo.png" alt="logo" className="w-8" />
         <div className="flex items-center justify-between max-w-md text-xl w-full">
           <GoHome size={24} />
