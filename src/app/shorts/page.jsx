@@ -7,7 +7,7 @@ import { InView } from "react-intersection-observer";
 const ShortsPage = () => {
   return (
     <section className="absolute bg-black/80 w-full h-dvh inset-0 grid place-items-center">
-      <div className="absolute top-1/2 -translate-y-1/2 left-4">
+      <div className="max-sm:hidden absolute top-1/2 -translate-y-1/2 left-4">
         <CircularIcon>
           <FaChevronDown />
         </CircularIcon>
@@ -19,7 +19,7 @@ const ShortsPage = () => {
         })}
       </div>
 
-      <div className="absolute top-1/2 -translate-y-1/2 right-4">
+      <div className="max-sm:hidden absolute top-1/2 -translate-y-1/2 right-4">
         <CircularIcon>
           <FaChevronUp />
         </CircularIcon>

@@ -8,18 +8,25 @@ import CircularIcon from "./CirclularIcon";
 import { InView } from "react-intersection-observer";
 
 const Short = () => {
-  const toggleMode = (inView) => {
-    console.log(inView);
+  const toggleMode = (inView, entry) => {
+    console.log(entry);
+    if (inView) {
+      entry.target.play();
+      entry.target.loop = true;
+    } else {
+      entry.target.pause();
+      entry.target.loop = false;
+    }
   };
   return (
     <div className="h-full flex justify-start relative">
       <div className="relative">
         <InView
           as="video"
-          onChange={(inView, entry) => toggleMode(inView)}
+          autoPlay={true}
+          onChange={(inView, entry) => toggleMode(inView, entry)}
           src="/short.mp4"
-          className=" max-w-md w-full h-full object-cover snap-end"
-          loop
+          className=" max-w-md w-full h-full object-cover snap-end outline-red-500"
         ></InView>
 
         {/* bottom content */}
