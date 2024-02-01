@@ -43,7 +43,7 @@ const PostCard = ({ index }) => {
             <div className="h-[400px] max-sm:h-[260px] overflow-scroll">
               {
                 comments.map((item, index) => {
-                  return <CommentCard index={index} data={item} />
+                  return <CommentCard index={index} data={item} key={index} />
                 })
               }
 
