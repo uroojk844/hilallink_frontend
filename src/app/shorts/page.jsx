@@ -1,7 +1,7 @@
 "use client";
 import CircularIcon from "@/components/CirclularIcon";
 import Short from "@/components/Short";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const ShortsPage = () => {
@@ -41,10 +41,12 @@ const ShortsPage = () => {
     }
   };
 
-  window.onkeyup = (e) => {
-    e.key == "ArrowDown" && scrollUp();
-    e.key == "ArrowUp" && scrollDown();
-  };
+  useEffect(() => {
+    window.onkeyup = (e) => {
+      e.key == "ArrowDown" && scrollUp();
+      e.key == "ArrowUp" && scrollDown();
+    };
+  }, []);
 
   return (
     <section className="absolute bg-black/80 w-full h-dvh inset-0 grid place-items-center">
