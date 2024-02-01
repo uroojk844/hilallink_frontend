@@ -1,5 +1,5 @@
 import { GoHome } from "react-icons/go";
-import { BsBell, BsChat, BsChatDots, BsFilm, BsSearch } from "react-icons/bs";
+import { BsBell, BsChatDots, BsFilm, BsSearch } from "react-icons/bs";
 
 const NavBar = () => {
   return (

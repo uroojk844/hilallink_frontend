@@ -1,5 +1,5 @@
-const ShortsPage = () => {
-  return <section>Chats</section>;
+const Chats = () => {
+  return <section>Enjoy</section>;
 };
 
-export default ShortsPage;
+export default Chats;

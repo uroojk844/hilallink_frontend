@@ -85,6 +85,10 @@ body {
   display: none;
 }
 
+.grid-row-max-auto{
+  grid-template-rows: max-content auto;
+}
+
 @layer base {
   * {
     @apply border-border;
