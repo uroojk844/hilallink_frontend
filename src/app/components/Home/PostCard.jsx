@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { BsChat, BsSend, BsThreeDotsVertical, BsX } from "react-icons/bs";
 import { GoHeart } from "react-icons/go";
 import { BsRepeat } from "react-icons/bs";
+import { BiSend } from "react-icons/bi";
 import PostActions from "./PostActions";
 import {
   Drawer,
@@ -11,6 +12,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import CommentCard from "./CommentCard";
+import { Button } from "@/components/ui/button";
 
 const PostCard = ({ index }) => {
   const [actions, setActions] = useState(false);
@@ -26,7 +28,10 @@ const PostCard = ({ index }) => {
       <Drawer>
         <DrawerContent>
           <div className="max-w-md w-full mx-auto max-sm:px-2">
-            <div className="font-bold py-2 mt-3 max-sm:text-sm">Dr. Alama hussain Madani</div>
+            <div className="font-bold mt-3 max-sm:text-sm">
+              Dr. Alama hussain Madani
+            </div>
+            <div className="py-2 text-xs text-gray-500">@DrHussainMadani</div>
             <div className="text-sm mb-2 max-sm:text-xs">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Molestiae odio aliquid quas itaque ipsam perferendis culpa ducimus
@@ -34,19 +39,19 @@ const PostCard = ({ index }) => {
               rerum doloribus magnam vero ratione tempora.
             </div>
             <div className="font-bold text-sm mb-2 mt-3">Comments</div>
-            <input
-              type="text"
-              className="w-full border p-2 mb-4 rounded-lg text-sm"
-              placeholder="Add a comment"
-            />
+            <div className="flex gap-2">
+              <input
+                type="text"
+                className="w-full border p-2 mb-4 rounded-lg text-sm"
+                placeholder="Add a comment"
+              />
+              <Button className="bg-black"><BiSend className="text-lg"/></Button>
+            </div>
 
             <div className="h-[400px] max-sm:h-[260px] overflow-scroll">
-              {
-                comments.map((item, index) => {
-                  return <CommentCard index={index} data={item} key={index} />
-                })
-              }
-
+              {comments.map((item, index) => {
+                return <CommentCard index={index} data={item} key={index} />;
+              })}
             </div>
           </div>
         </DrawerContent>
@@ -111,9 +116,11 @@ const PostCard = ({ index }) => {
             </div>
           </section>
           <section className="px-3 py-4 text-xs">
-            <span className="font-[600]">@AlamaMadni</span> lorem ipsum dolor
-            ist amet this dolor amet ispum...{" "}
-            <span className="font-medium">more</span>
+            <DrawerTrigger>
+              <span className="font-[600]">@AlamaMadni</span> lorem ipsum dolor
+              ist amet this dolor amet ispum...{" "}
+              <span className="font-medium">more</span>
+            </DrawerTrigger>
           </section>
         </div>
       </Drawer>
