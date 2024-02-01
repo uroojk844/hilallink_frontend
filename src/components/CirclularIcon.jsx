@@ -1,8 +1,11 @@
-const CircularIcon = ({ children }) => {
+const CircularIcon = ({ children, disabled }) => {
   return (
-    <div className="grid place-items-center w-12 aspect-square rounded-full cursor-pointer bg-gray-400 text-white hover:bg-gray-500 active:scale-95 transition-transform">
+    <button
+      disabled={disabled}
+      className="grid place-items-center w-12 aspect-square rounded-full cursor-pointer disabled:cursor-not-allowed bg-gray-400 disabled:bg-gray-400/50 text-white hover:bg-gray-500 active:scale-95 transition-transform"
+    >
       {children}
-    </div>
+    </button>
   );
 };
 

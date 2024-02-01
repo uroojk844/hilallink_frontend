@@ -1,5 +1,6 @@
 import {
   FaEllipsisH,
+  FaEye,
   FaRegComment,
   FaRegHeart,
   FaShareAlt,
@@ -11,10 +12,10 @@ const Short = () => {
   const toggleMode = (inView, entry) => {
     console.log(entry);
     if (inView) {
-      entry.target.play();
+      // entry.target.play();
       entry.target.loop = true;
     } else {
-      entry.target.pause();
+      // entry.target.pause();
       entry.target.loop = false;
     }
   };
@@ -23,10 +24,9 @@ const Short = () => {
       <div className="relative">
         <InView
           as="video"
-          autoPlay={true}
           onChange={(inView, entry) => toggleMode(inView, entry)}
           src="/short.mp4"
-          className=" max-w-md w-full h-full object-cover snap-end outline-red-500"
+          className=" max-w-md w-full h-full object-cover snap-end snap-always"
         ></InView>
 
         {/* bottom content */}
@@ -50,6 +50,13 @@ const Short = () => {
 
       {/* Interactions */}
       <div className="absolute bottom-10 right-0 grid gap-4">
+        <div className="text-white text-xs text-center grid gap-1">
+          <CircularIcon>
+            <FaEye />
+          </CircularIcon>
+          245K
+        </div>
+
         <div className="text-white text-xs text-center grid gap-1">
           <CircularIcon>
             <FaRegHeart />
