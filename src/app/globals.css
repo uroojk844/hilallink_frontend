@@ -80,6 +80,11 @@ body {
     background-attachment: fixed;
     min-height: 100vh;
 }
+
+.no-scrollbar::-webkit-scrollbar{
+  display: none;
+}
+
 @layer base {
   * {
     @apply border-border;
