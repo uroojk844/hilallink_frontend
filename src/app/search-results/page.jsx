@@ -25,7 +25,7 @@ const SearchResult = () => {
           <Link href="/search">
             <BsArrowLeft />
           </Link>
-          Search resuts for "Dr. Hussain"
+          Search resuts for <q>Dr. Hussain</q>
         </section>
         <section className="flex">
           {Object.keys(menu).map((item, index) => {

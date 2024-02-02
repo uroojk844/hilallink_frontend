@@ -49,7 +49,7 @@ const ShortsPage = () => {
           formatResult={formatResult}
           placeholder="Search for people or post"
           items={items}
-          className="z-30"
+          className="z-50"
           onSelect={handleSelect}
         />
       </section>
