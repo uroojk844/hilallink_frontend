@@ -45,8 +45,9 @@ const ShortsPage = () => {
     window.onkeyup = (e) => {
       e.key == "ArrowDown" && scrollUp();
       e.key == "ArrowUp" && scrollDown();
-    };
-  })
+    }
+  }, []);
+
   return (
     <section className="absolute bg-black/80 w-full h-dvh inset-0 grid place-items-center">
       <div
