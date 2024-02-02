@@ -5,6 +5,8 @@ import Photos from "../../components/Search/Photos";
 import Clips from "../../components/Search/Clips";
 import People from "@/components/Search/People";
 import AllResults from "@/components/Search/AllResults";
+import { BsArrowLeft } from "react-icons/bs";
+import Link from "next/link";
 
 const SearchResult = () => {
   const menu = {
@@ -19,7 +21,10 @@ const SearchResult = () => {
   return (
     <section>
       <section className="sticky top-14 shadow-lg z-20 bg-white mt-2 rounded-md overflow-hidden">
-        <section className="text-lg font-bold p-3">
+        <section className="text-lg font-bold p-3 flex items-center gap-4">
+          <Link href="/search">
+            <BsArrowLeft />
+          </Link>
           Search resuts for "Dr. Hussain"
         </section>
         <section className="flex">
