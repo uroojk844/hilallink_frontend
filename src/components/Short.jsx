@@ -28,7 +28,7 @@ const Short = () => {
     observer.observe(vid.current);
     setControls(vid.current.paused);
 
-    vid.current.on()
+    // vid.current.on()
   }, []);
 
   const handleClick = () => {
