@@ -45,7 +45,7 @@ const ShortsPage = () => {
     window.onkeyup = (e) => {
       e.key == "ArrowDown" && scrollUp();
       e.key == "ArrowUp" && scrollDown();
-    };
+    }
   }, []);
 
   return (
