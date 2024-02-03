@@ -8,12 +8,14 @@ import { BsSearch } from "react-icons/bs";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
 import "./search.css"
 import { useRouter } from "next/navigation";
+import People from "@/components/Search/People";
 
 const ShortsPage = () => {
   const menu = {
     All: <All />,
     Photos: <Photos />,
     Clips: <Clips />,
+    People: <People/>
   };
   const items = [
     {
@@ -27,6 +29,10 @@ const ShortsPage = () => {
     {
       id: 3,
       name: "Nesar",
+    },
+    {
+      id: 4,
+      name: "Dr Hussain Madani",
     },
   ];
   const router = useRouter()

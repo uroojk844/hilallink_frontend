@@ -90,7 +90,7 @@ const PostCard = ({ index }) => {
             {actions && <PostActions />}
             <img
               src={`https://picsum.photos/400/400?${index + 1}`}
-              className="w-full aspect-square object-cover"
+              className="w-full object-cover"
               alt=""
             />
           </section>
