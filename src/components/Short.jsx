@@ -1,24 +1,32 @@
 import {
+  FaCircle,
   FaEllipsisH,
   FaEye,
   FaPlay,
+  FaRegCircle,
   FaRegComment,
   FaRegHeart,
   FaShareAlt,
+  FaSpinner,
 } from "react-icons/fa";
 import CircularIcon from "./CirclularIcon";
 import { useEffect, useRef, useState } from "react";
 
-const Short = () => {
+const Short = ({ url }) => {
   const vid = useRef();
-  const [controls, setControls] = useState(false);
+  const [controls, setControls] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
-        entries[0].isIntersecting
-          ? entries[0].target.play()
-          : entries[0].target.pause();
+        if (entries[0].isIntersecting) {
+          entries[0].target.play();
+          setControls(false);
+        } else {
+          entries[0].target.pause();
+          setControls(true);
+        }
       },
       {
         threshold: 1,
@@ -26,9 +34,25 @@ const Short = () => {
     );
 
     observer.observe(vid.current);
-    setControls(vid.current.paused);
 
-    // vid.current.on()
+    vid.current.addEventListener("ended", () => {
+      setControls(true);
+    });
+    vid.current.addEventListener("emptied", () => {
+      setControls(true);
+    });
+    vid.current.addEventListener("playing", () => {
+      setControls(false);
+    });
+    vid.current.addEventListener("progress", () => {
+      setLoading(true);
+    });
+    vid.current.addEventListener("loadeddata", () => {
+      setLoading(false);
+    });
+    vid.current.addEventListener("canplaythrough", () => {
+      setLoading(false);
+    });
   }, []);
 
   const handleClick = () => {
@@ -42,15 +66,15 @@ const Short = () => {
         <div className="relative h-full">
           {controls && (
             <div className="grid absolute inset-0 place-items-center">
-              <CircularIcon>
-                <FaPlay />
+              <CircularIcon className="bg-white text-zinc-950 w-14">
+                {loading && !controls ? <FaSpinner /> : <FaPlay />}
               </CircularIcon>
             </div>
           )}
           <video
             ref={vid}
             onClick={handleClick}
-            src="/video2.mp4"
+            src={url}
             className="video max-w-md w-full h-full object-cover snap-end snap-always"
           ></video>
         </div>
@@ -75,7 +99,7 @@ const Short = () => {
       </div>
 
       {/* Interactions */}
-      <div className="absolute bottom-10 right-0 grid gap-4">
+      <div className=" max-sm:right-4 max-sm:bottom-24 absolute bottom-10 right-0 grid gap-4">
         <div className="text-white text-xs text-center grid gap-1">
           <CircularIcon>
             <FaEye size={18} />

@@ -11,6 +11,7 @@ const HomePage = () => {
           className="rounded-full"
           width={32}
           height={32}
+          alt="user"
         />
         <div className="bg-gray-300 w-[76%] text-xs py-2 px-4 cursor-pointer text-gray-700 rounded-full">
           Write here what you want to say
