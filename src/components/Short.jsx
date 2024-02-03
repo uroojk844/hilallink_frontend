@@ -79,6 +79,8 @@ const Short = ({ url }) => {
           ></video>
         </div>
 
+        
+
         {/* bottom content */}
         <div className="absolute bottom-0 w-full text-white p-4 gradient">
           <div className="flex items-center gap-2 mb-2">
@@ -121,11 +123,10 @@ const Short = ({ url }) => {
           65k
         </div>
 
-        <div className="text-white text-xs text-center grid gap-1">
+        <div className="mb-2">
           <CircularIcon>
             <FaShareAlt size={18} />
           </CircularIcon>
-          5k
         </div>
 
         <CircularIcon>
