@@ -3,7 +3,7 @@ import Clips from "@/components/Saved/Clips";
 import Photos from "@/components/Saved/Photos";
 import { useState } from "react";
 
-const page = () => {
+const Saved = () => {
   const menu = {
     Photos: <Photos />,
     Clips: <Clips />,
@@ -35,4 +35,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Saved;
