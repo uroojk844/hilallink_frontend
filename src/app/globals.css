@@ -94,6 +94,21 @@ body {
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
 }
+
+@media (width < 600px){
+  .navbar{
+    top: unset;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    transform: translateX(0);
+    background-color: white; 
+    width: 100%;
+    justify-content: space-between;
+    padding:  16px 24px;
+  }  
+}
+
 @layer base {
   * {
     @apply border-border;
