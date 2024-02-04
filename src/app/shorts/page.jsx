@@ -6,8 +6,9 @@ import { useContext, useEffect } from "react";
 const ShortsPage = () => {
   const videos = useContext(VideoStore);
   const { id } = videos[0];
+  const router = useRouter();
   useEffect(() => {
-    useRouter().replace(`shorts/${id}`);
+    router.replace(`shorts/${id}`);
   }, []);
 };
 
