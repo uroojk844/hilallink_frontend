@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/drawer";
 import CommentCard from "./CommentCard";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const PostCard = ({ index }) => {
   const [actions, setActions] = useState(false);
@@ -45,7 +46,9 @@ const PostCard = ({ index }) => {
                 className="w-full border p-2 mb-4 rounded-lg text-sm"
                 placeholder="Add a comment"
               />
-              <Button className="bg-black"><BiSend className="text-lg"/></Button>
+              <Button className="bg-black">
+                <BiSend className="text-lg" />
+              </Button>
             </div>
 
             <div className="h-[400px] max-sm:h-[260px] overflow-scroll">
@@ -57,34 +60,36 @@ const PostCard = ({ index }) => {
         </DrawerContent>
         <div className="bg-white rounded-md overflow-hidden mt-2 shadow-md">
           <section className="relative">
-            <div className="flex justify-between items-center px-2 py-2">
-              <div className="flex items-center gap-3">
-                <img
-                  src={`https://picsum.photos/400?${index}`}
-                  className="h-8 w-8 object-contain rounded-full"
-                  alt=""
-                />{" "}
-                <div>
-                  <div className="font-medium text-xs">
-                    Dr. Alama hussain Madani
+            <Link href="/profile">
+              <div className="flex justify-between items-center px-2 py-2">
+                <div className="flex items-center gap-3">
+                  <img
+                    src={`https://picsum.photos/400?${index}`}
+                    className="h-8 w-8 object-contain rounded-full"
+                    alt=""
+                  />{" "}
+                  <div>
+                    <div className="font-medium text-xs">
+                      Dr. Alama hussain Madani
+                    </div>
+                    <div className="text-gray-500 text-[10px]">42 mins ago</div>
                   </div>
-                  <div className="text-gray-500 text-[10px]">42 mins ago</div>
+                </div>
+                <div>
+                  {actions ? (
+                    <BsX
+                      className="text-lg cursor-pointer"
+                      onClick={() => setActions(!actions)}
+                    />
+                  ) : (
+                    <BsThreeDotsVertical
+                      className="text-md cursor-pointer"
+                      onClick={() => setActions(!actions)}
+                    />
+                  )}
                 </div>
               </div>
-              <div>
-                {actions ? (
-                  <BsX
-                    className="text-lg cursor-pointer"
-                    onClick={() => setActions(!actions)}
-                  />
-                ) : (
-                  <BsThreeDotsVertical
-                    className="text-md cursor-pointer"
-                    onClick={() => setActions(!actions)}
-                  />
-                )}
-              </div>
-            </div>
+            </Link>
           </section>
           <section className="relative">
             {actions && <PostActions />}

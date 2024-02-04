@@ -23,7 +23,7 @@ const ShortsPage = () => {
   const [current, setCurrent] = useState("All");
 
   return (
-    <section>
+    <section className="small">
       {/* <section className="mt-2">
         <ReactSearchAutocomplete
           formatResult={formatResult}
@@ -33,7 +33,7 @@ const ShortsPage = () => {
           onSelect={handleSelect}
         />
       </section> */}
-      <section className="sticky top-14 shadow-lg z-20 flex bg-white mt-2 rounded-md overflow-hidden">
+      <section className="sticky top-14 shadow-lg z-20 flex bg-white rounded-md overflow-hidden">
         {Object.keys(menu).map((item, index) => {
           return (
             <div

@@ -19,7 +19,7 @@ const SearchResult = () => {
   const [current, setCurrent] = useState("All");
 
   return (
-    <section>
+    <section className="small">
       <section className="sticky top-14 shadow-lg z-20 bg-white mt-2 rounded-md overflow-hidden">
         <section className="text-lg font-bold p-3 flex items-center gap-4">
           <Link href="/search">
