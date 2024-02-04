@@ -17,48 +17,22 @@ const ShortsPage = () => {
     Clips: <Clips />,
     People: <People/>
   };
-  const items = [
-    {
-      id: 1,
-      name: "Belal",
-    },
-    {
-      id: 2,
-      name: "Urooj",
-    },
-    {
-      id: 3,
-      name: "Nesar",
-    },
-    {
-      id: 4,
-      name: "Dr Hussain Madani",
-    },
-  ];
-  const router = useRouter()
-  const formatResult = (item) => {
-    return (
-      <>
-        <span style={{ display: "block", textAlign: "left" }}>{item.name}</span>
-      </>
-    );
-  };
-  const handleSelect = () => {
-    router.push("/search-results")
-  }
+  
+  
+  
   const [current, setCurrent] = useState("All");
 
   return (
     <section>
-      <section className="mt-2">
+      {/* <section className="mt-2">
         <ReactSearchAutocomplete
           formatResult={formatResult}
           placeholder="Search for people or post"
           items={items}
-          className="z-50"
+          className="z-30"
           onSelect={handleSelect}
         />
-      </section>
+      </section> */}
       <section className="sticky top-14 shadow-lg z-20 flex bg-white mt-2 rounded-md overflow-hidden">
         {Object.keys(menu).map((item, index) => {
           return (
