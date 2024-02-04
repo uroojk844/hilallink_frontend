@@ -5,7 +5,8 @@ import { useContext } from "react";
 
 const ShortsPage = () => {
   const videos = useContext(VideoStore);
-  useRouter().replace("shorts/" + videos[0]);
+  const { id } = videos[0];
+  useRouter().replace(`shorts/${id}`);
 };
 
 export default ShortsPage;

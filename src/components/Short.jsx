@@ -61,7 +61,10 @@ const Short = ({ url }) => {
   };
 
   return (
-    <div className="video-container h-full flex justify-start relative">
+    <div
+      tabIndex={-1}
+      className="video-container h-full flex justify-start relative"
+    >
       <div className="relative">
         <div className="relative h-full">
           {controls && (
@@ -75,11 +78,9 @@ const Short = ({ url }) => {
             ref={vid}
             onClick={handleClick}
             src={url}
-            className="video max-w-md w-full h-full object-cover snap-end snap-always"
+            className="no-scrollbar video max-w-md w-full h-full object-cover snap-end snap-always"
           ></video>
         </div>
-
-        
 
         {/* bottom content */}
         <div className="absolute bottom-0 w-full text-white p-4 gradient">
