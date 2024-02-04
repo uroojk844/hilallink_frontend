@@ -2,16 +2,12 @@ import { GoHome } from "react-icons/go";
 import { BsBell, BsChatDots, BsFilm, BsSearch } from "react-icons/bs";
 import Link from "next/link";
 import { useRef, useState } from "react";
-import ProfileMenu from "./ProfileMenu";
-import SwicthProfile from "./SwicthProfile";
+import SwicthProfile from "./Navbar/SwicthProfile";
+import ProfileButton from "./Notifications/ProfileButton";
 
 const NavBar = () => {
-  const [menu, setMenu] = useState(false);
   const [switchAccount, setSwitchAccount] = useState(false);
 
-  function toggleMenu() {
-    setMenu(!menu);
-  }
   return (
     <>
       <section className="bg-white sticky top-0 z-40">
@@ -34,18 +30,10 @@ const NavBar = () => {
               <BsSearch />
             </Link>
           </div>
-          <img
-            src="http://picsum.photos/32.webp"
-            alt="logo"
-            className="w-8 aspect-square rounded-full cursor-pointer"
-            onClick={toggleMenu}
-          />
+          <ProfileButton setSwitchAc={setSwitchAccount} />
         </nav>
       </section>
-      <ProfileMenu menu={menu} switchAc={setSwitchAccount} />
-      {
-        switchAccount && <SwicthProfile switchAc={setSwitchAccount} />
-      }
+      {switchAccount && <SwicthProfile switchAc={setSwitchAccount} />}
     </>
   );
 };
