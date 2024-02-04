@@ -2,12 +2,12 @@ import {
   FaCircle,
   FaEllipsisH,
   FaEye,
+  FaHourglassHalf,
   FaPlay,
   FaRegCircle,
   FaRegComment,
   FaRegHeart,
   FaShareAlt,
-  FaSpinner,
 } from "react-icons/fa";
 import CircularIcon from "./CirclularIcon";
 import { useEffect, useRef, useState } from "react";
@@ -15,7 +15,6 @@ import { useEffect, useRef, useState } from "react";
 const Short = ({ url }) => {
   const vid = useRef();
   const [controls, setControls] = useState(true);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -44,15 +43,6 @@ const Short = ({ url }) => {
     vid.current.addEventListener("playing", () => {
       setControls(false);
     });
-    vid.current.addEventListener("progress", () => {
-      setLoading(true);
-    });
-    vid.current.addEventListener("loadeddata", () => {
-      setLoading(false);
-    });
-    vid.current.addEventListener("canplaythrough", () => {
-      setLoading(false);
-    });
   }, []);
 
   const handleClick = () => {
@@ -63,17 +53,18 @@ const Short = ({ url }) => {
   return (
     <div
       tabIndex={-1}
-      className="video-container h-full flex justify-start relative"
+      className="outline-none video-container h-full flex justify-start relative"
     >
       <div className="relative">
         <div className="relative h-full">
           {controls && (
             <div className="grid absolute inset-0 place-items-center">
               <CircularIcon className="bg-white text-zinc-950 w-14">
-                {loading && !controls ? <FaSpinner /> : <FaPlay />}
+                <FaPlay />
               </CircularIcon>
             </div>
           )}
+
           <video
             ref={vid}
             onClick={handleClick}
