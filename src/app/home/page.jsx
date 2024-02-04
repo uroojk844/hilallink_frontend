@@ -4,7 +4,7 @@ import { BsFilm, BsImage } from "react-icons/bs";
 
 const HomePage = () => {
   return (
-    <div className="max-sm:px-2">
+    <div className="max-sm:px-2 small">
       <section className="flex bg-white mt-2 rounded-lg items-center justify-between py-3 px-2">
         <Image
           src={"https://picsum.photos/400"}

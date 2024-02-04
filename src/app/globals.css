@@ -108,7 +108,14 @@ body {
     padding:  16px 24px;
   }  
 }
-
+.small{
+  width: min(500px,98%);
+  margin: 8px auto;
+}
+.medium{
+  width: min(700px,98%);
+  margin: 8px auto;
+}
 @layer base {
   * {
     @apply border-border;

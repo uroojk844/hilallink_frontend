@@ -10,7 +10,7 @@ const Saved = () => {
   };
   const [current, setCurrent] = useState("Photos");
   return (
-    <>
+    <section className="small">
       <section className="bg-white rounded-md overflow-hidden mt-2">
         <div className="text-lg font-bold px-2 pt-3">Saved posts</div>
         <div className="flex">
@@ -31,7 +31,7 @@ const Saved = () => {
         </div>
       </section>
       <section>{menu[current]}</section>
-    </>
+    </section>
   );
 };
 
