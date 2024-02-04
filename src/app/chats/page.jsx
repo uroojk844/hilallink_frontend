@@ -5,9 +5,9 @@ const Chats = () => {
     <section className="bg-white rounded-md small">
       <div className="text-lg font-bold p-3 flex items-center gap-3"><BsArrowLeft className="cursor-pointer"/> Messages</div>
       <section>
-        {"abcdefg".split("").map((item) => {
+        {"abcdefg".split("").map((item,index) => {
           return (
-            <div className="hover:bg-gray-200 cursor-pointer flex items-center gap-3 p-3 border-t ">
+            <div key={index} className="hover:bg-gray-200 cursor-pointer flex items-center gap-3 p-3 border-t ">
               <img
                 className="h-12 w-12 rounded-full object-contain"
                 src="https://freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png"

@@ -91,7 +91,7 @@ const Profile = () => {
         <section className="flex border-t bg-gray-100">
           {menu.map((item, index) => {
             return (
-              <div onClick={()=>setCurrent(item)} className={`cursor-pointer hover:bg-gray-200 text-sm py-3 px-4 ${item==current && 'border-b-4 border-primary'}`}>
+              <div key={index} onClick={()=>setCurrent(item)} className={`cursor-pointer hover:bg-gray-200 text-sm py-3 px-4 ${item==current && 'border-b-4 border-primary'}`}>
                 {item}
               </div>
             );
