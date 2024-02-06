@@ -2,41 +2,38 @@
 import CircularIcon from "@/components/CirclularIcon";
 import Short from "@/components/Short";
 import VideoStore from "@/store/videoStore";
+import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { useContext, useEffect, useRef, useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaArrowLeft, FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 const ShortsPage = () => {
-  const shortsContainer = useRef(null);
+  const shortsContainer = useRef();
   const router = useRouter();
   const videos = useContext(VideoStore);
   const { id } = useParams();
-  const top = useRef(videos.findIndex((v) => v.id === id));
+  const [top, setTop] = useState(videos.findIndex((v) => v.id === id));
   const path = "https://res.cloudinary.com/dvz1oehqm/video/upload/";
 
   useEffect(() => {
-    document.querySelectorAll("#shortsContainer > div")[top.current].focus();
-  }, []);
-
-  const moveScroll = () => {
-    const { id } = videos[top.current];
+    document.querySelectorAll("#shortsContainer > div")[top].focus();
+    const { id } = videos[top];
     router.replace(`/shorts/${id}`);
-  };
+  }, [top]);
 
   const scrollUp = () => {
-    if (top.current == videos.length - 1) return;
-    top.current += 1;
-    moveScroll();
+    if (top == videos.length - 1) return;
+    setTop((old) => old + 1);
   };
 
   const scrollDown = () => {
-    if (top.current == 0) return;
-    top.current -= 1;
-    moveScroll();
+    if (top == 0) return;
+    setTop((old) => old - 1);
   };
 
   useEffect(() => {
     window.onkeyup = (e) => {
+      console.log(e.key);
       e.key == "ArrowDown" && scrollUp();
       e.key == "ArrowUp" && scrollDown();
     };
@@ -44,11 +41,17 @@ const ShortsPage = () => {
 
   return (
     <section className="absolute bg-black/80 w-full h-dvh inset-0 grid place-items-center">
+      <Link href="/" className="absolute top-10 left-10">
+        <CircularIcon>
+          <FaArrowLeft />
+        </CircularIcon>
+      </Link>
+
       <div
         onClick={scrollUp}
-        className="max-sm:hidden absolute top-1/2 -translate-y-1/2 left-4"
+        className="max-sm:hidden absolute top-1/2 -translate-y-1/2 left-10"
       >
-        <CircularIcon disabled={top.current == videos.length - 1}>
+        <CircularIcon disabled={top == videos.length - 1}>
           <FaChevronDown />
         </CircularIcon>
       </div>
@@ -58,11 +61,13 @@ const ShortsPage = () => {
         id="shortsContainer"
         className="h-full overflow-y-auto w-full max-w-lg snap-y snap-mandatory snap-always no-scrollbar"
       >
-        {videos.map((video) => {
+        {videos.map((video, index) => {
           return (
             <Short
               url={`${path}${video.id}/video/${video.name}`}
               key={video.id}
+              index={index}
+              count={setTop}
             />
           );
         })}
@@ -70,9 +75,9 @@ const ShortsPage = () => {
 
       <div
         onClick={scrollDown}
-        className="max-sm:hidden absolute top-1/2 -translate-y-1/2 right-4"
+        className="max-sm:hidden absolute top-1/2 -translate-y-1/2 right-10"
       >
-        <CircularIcon disabled={top.current == 0}>
+        <CircularIcon disabled={top == 0}>
           <FaChevronUp />
         </CircularIcon>
       </div>

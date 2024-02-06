@@ -11,8 +11,9 @@ import {
 } from "react-icons/fa";
 import CircularIcon from "./CirclularIcon";
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
-const Short = ({ url }) => {
+const Short = ({ url, index, count }) => {
   const vid = useRef();
   const [controls, setControls] = useState(true);
 
@@ -22,6 +23,7 @@ const Short = ({ url }) => {
         if (entries[0].isIntersecting) {
           entries[0].target.play();
           setControls(false);
+          count(index);
         } else {
           entries[0].target.pause();
           setControls(true);
@@ -45,10 +47,27 @@ const Short = ({ url }) => {
     });
   }, []);
 
-  const handleClick = () => {
+  function handleClick() {
     controls ? vid.current.play() : vid.current.pause();
     setControls((current) => !current);
-  };
+  }
+
+  const clipURL = usePathname();
+
+  async function shareClip() {
+    const shareData = {
+      title: "HilalClips",
+      text: "Some clips from hilal link",
+      url: `http://hilallink-frontend.vercel.app/${clipURL}`,
+    };
+
+    try {
+      await navigator.share(shareData);
+      console.log("Shared");
+    } catch (err) {
+      console.log("not Shared");
+    }
+  }
 
   return (
     <div
@@ -96,28 +115,28 @@ const Short = ({ url }) => {
       <div className=" max-sm:right-4 max-sm:bottom-24 absolute bottom-10 right-0 grid gap-4">
         <div className="text-white text-xs text-center grid gap-1">
           <CircularIcon>
-            <FaEye size={18} />
+            <FaEye className="text-lg" />
           </CircularIcon>
           245K
         </div>
 
         <div className="text-white text-xs text-center grid gap-1">
           <CircularIcon>
-            <FaRegHeart size={18} />
+            <FaRegHeart className="text-lg" />
           </CircularIcon>
           245K
         </div>
 
         <div className="text-white text-xs text-center grid gap-1">
           <CircularIcon>
-            <FaRegComment size={18} />
+            <FaRegComment className="text-lg" />
           </CircularIcon>
           65k
         </div>
 
-        <div className="mb-2">
+        <div onClick={shareClip} className="mb-2">
           <CircularIcon>
-            <FaShareAlt size={18} />
+            <FaShareAlt className="text-lg" />
           </CircularIcon>
         </div>
 

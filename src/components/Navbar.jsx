@@ -34,11 +34,11 @@ const NavBar = () => {
             </Link>
           </div>
           <div className="flex items-center gap-8">
-            <Link href="/notifications">
-              <BsBell className="text-xl" />
-            </Link>
             <Link href="/search">
               <BsSearch className="text-xl" />
+            </Link>
+            <Link href="/notifications">
+              <BsBell className="text-xl" />
             </Link>
 
             <ProfileButton setSwitchAc={setSwitchAccount} />
