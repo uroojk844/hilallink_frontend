@@ -1,5 +1,11 @@
 import { GoHome } from "react-icons/go";
-import { BsBell, BsChatDots, BsFilm, BsSearch } from "react-icons/bs";
+import {
+  BsBell,
+  BsChatDots,
+  BsCompass,
+  BsFilm,
+  BsSearch,
+} from "react-icons/bs";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import SwicthProfile from "./Navbar/SwicthProfile";
@@ -23,14 +29,20 @@ const NavBar = () => {
             <Link href="/chats">
               <BsChatDots />
             </Link>
-            <Link href="/notifications">
-              <BsBell />
-            </Link>
             <Link href="/search">
-              <BsSearch />
+              <BsCompass />
             </Link>
           </div>
-          <ProfileButton setSwitchAc={setSwitchAccount} />
+          <div className="flex items-center gap-8">
+            <Link href="/notifications">
+              <BsBell className="text-xl" />
+            </Link>
+            <Link href="/search">
+              <BsSearch className="text-xl" />
+            </Link>
+
+            <ProfileButton setSwitchAc={setSwitchAccount} />
+          </div>
         </nav>
       </section>
       {switchAccount && <SwicthProfile switchAc={setSwitchAccount} />}

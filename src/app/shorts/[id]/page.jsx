@@ -20,7 +20,7 @@ const ShortsPage = () => {
 
   const moveScroll = () => {
     const { id } = videos[top.current];
-    router.push(`/shorts/${id}`);
+    router.replace(`/shorts/${id}`);
   };
 
   const scrollUp = () => {
