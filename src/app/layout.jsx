@@ -9,12 +9,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const path = usePathname();
-
   return (
     <html lang="en">
       <body className={`grid grid-row-max-auto ${inter.className}`}>
         {!path.match("/shorts/*") && <NavBar />}
-        <NextTopLoader color="#067435" height={5} />
+        <NextTopLoader color="dodgerblue" height={5} />
         <main className="max-sm:mb-16">{children}</main>
       </body>
     </html>

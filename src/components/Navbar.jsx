@@ -9,7 +9,8 @@ import {
 import Link from "next/link";
 import { useRef, useState } from "react";
 import SwicthProfile from "./Navbar/SwicthProfile";
-import ProfileButton from "./Notifications/ProfileButton";
+import ProfileButton from "./Navbar/ProfileButton";
+import NotificationsButton from "./Navbar/NotificationsButton";
 
 const NavBar = () => {
   const [switchAccount, setSwitchAccount] = useState(false);
@@ -37,10 +38,7 @@ const NavBar = () => {
             <Link href="/search">
               <BsSearch className="text-xl" />
             </Link>
-            <Link href="/notifications">
-              <BsBell className="text-xl" />
-            </Link>
-
+            <NotificationsButton />{" "}
             <ProfileButton setSwitchAc={setSwitchAccount} />
           </div>
         </nav>
