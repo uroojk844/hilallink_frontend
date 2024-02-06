@@ -9,7 +9,6 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const path = usePathname();
-
   return (
     <html lang="en">
       <body className={`grid grid-row-max-auto ${inter.className}`}>
