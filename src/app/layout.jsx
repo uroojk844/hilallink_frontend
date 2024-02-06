@@ -17,8 +17,9 @@ export default function RootLayout({ children }) {
       </Head>
       <body className={`grid grid-row-max-auto ${inter.className}`}>
         {!path.match("/shorts/*") && <NavBar />}
-        <main className="max-sm:mb-16 max-w-lg mx-auto w-full">{children}</main>
+        <main className="max-sm:mb-16">{children}</main>
       </body>
     </html>
   );
 }
+// max-w-lg mx-auto w-full
