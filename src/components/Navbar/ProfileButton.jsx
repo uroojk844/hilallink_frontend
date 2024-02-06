@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import ProfileMenu from "../Navbar/ProfileMenu";
+import ProfileMenu from "./ProfileMenu";
 
 const ProfileButton = ({ setSwitchAc }) => {
   const menuRef = useRef();
