@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "../components/Navbar";
 import { usePathname } from "next/navigation";
-import Head from "next/head";
+import NextTopLoader from "nextjs-toploader";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,11 +12,9 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <Head>
-        <title>HilalLink</title>
-      </Head>
       <body className={`grid grid-row-max-auto ${inter.className}`}>
         {!path.match("/shorts/*") && <NavBar />}
+        <NextTopLoader color="#067435" height={5} />
         <main className="max-sm:mb-16">{children}</main>
       </body>
     </html>
