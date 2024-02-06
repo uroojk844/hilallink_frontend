@@ -28,6 +28,7 @@ const Login = () => {
           />
           <BsEye className="text-lg" />
         </div>
+        <div>Forgot password</div>
         <button className="bg-black text-white py-3 rounded-full">Login</button>
         <div className="text-center font-bold">Or</div>
         <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3 py-3 justify-center">

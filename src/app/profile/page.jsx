@@ -15,8 +15,8 @@ import {
 
 const Profile = () => {
   const [actions, setActions] = useState(false);
-  const menu = ["Home", "Photos", "Clips"];
-  const [current, setCurrent] = useState("Home");
+  const menu = ["All Posts", "Photos", "Clips"];
+  const [current, setCurrent] = useState("All Posts");
   return (
     <div className="medium">
       <div className="bg-white rounded-md overflow-hidden">
@@ -29,7 +29,7 @@ const Profile = () => {
           <div className="relative">
             <img
               src="https://picsum.photos/400"
-              className="h-36 w-36 absolute -bottom-2 left-2 rounded-full border-4 border-white"
+              className="h-36 w-36 absolute -bottom-2 left-2 rounded-full border-4 border-white  max-sm:h-28 max-sm:w-28 max-sm:left-0"
               alt=""
             />
           </div>
@@ -41,7 +41,7 @@ const Profile = () => {
               101K <span className="text-gray-500">Followers</span>
             </div>
           </div>
-          <div className="flex justify-end gap-2">
+          <div className="flex justify-end gap-2 max-sm:hidden">
             <div className="relative">
               <button
                 onClick={() => setActions(!actions)}
