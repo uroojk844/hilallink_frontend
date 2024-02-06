@@ -1,14 +1,22 @@
 import Link from "next/link";
-import React, { useRef, useState,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { BsArrowRight, BsBell } from "react-icons/bs";
 import { PiUserCirclePlusLight } from "react-icons/pi";
 import NotificationCard from "../Notifications/NotificationCard";
-import "animate.css"
+import "animate.css";
+import { useRouter } from "next/navigation";
 
 const NotificationsButton = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const notficationRef = useRef();
   const buttonRef = useRef();
+    const router = useRouter();
+    
+  function seeRequests() {
+    setShowNotifications(false);
+    router.push("/follow-requests");
+  }
+
   useEffect(() => {
     document.addEventListener("click", (e) => {
       if (
@@ -38,18 +46,18 @@ const NotificationsButton = () => {
           className="fixed p-4 right-2 z-40 rounded-md top-14 bg-white w-[min(100%,520px)]"
         >
           <div className="text-xl font-bold">Notifications</div>
-          <Link href={"/follow-requests"}>
-            <section className="flex items-center gap-2 mt-4 mb-2 relative cursor-pointer">
-              <PiUserCirclePlusLight className="text-[48px]" />
-              <div>
-                <div className="text-sm mb-1 font-bold">Follow Requests</div>
-                <div className="text-xs text-gray-500">
-                  uroojk844, belalnaim9 + 5 others
-                </div>
+
+          <section onClick={()=>seeRequests()} className="flex items-center gap-2 mt-4 mb-2 relative cursor-pointer">
+            <PiUserCirclePlusLight className="text-[48px]" />
+            <div>
+              <div className="text-sm mb-1 font-bold">Follow Requests</div>
+              <div className="text-xs text-gray-500">
+                uroojk844, belalnaim9 + 5 others
               </div>
-              <BsArrowRight className="absolute right-0" />
-            </section>
-          </Link>
+            </div>
+            <BsArrowRight className="absolute right-0" />
+          </section>
+
           <section className="gap-y-4 grid mt-4">
             <div className="font-bold">Today</div>
             {"abg".split("").map((item, index) => {
