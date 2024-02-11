@@ -1,11 +1,10 @@
 import Image from "next/image";
 import PostCard from "../../components/Home/PostCard";
-import { BsFilm, BsImage } from "react-icons/bs";
 
 const HomePage = () => {
   return (
-    <div className="max-sm:px-2 small">
-      <section className="flex bg-white mt-2 rounded-lg items-center gap-2 py-3 px-2">
+    <div className="small">
+      <section className="flex bg-white sm:mt-2 max-sm:border-b sm:rounded-lg items-center gap-2 py-3 px-2">
         <Image
           src={"https://picsum.photos/400"}
           className="rounded-full"

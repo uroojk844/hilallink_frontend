@@ -4,10 +4,7 @@ import { useState } from "react";
 import All from "../../components/Search/All";
 import Photos from "../../components/Search/Photos";
 import Clips from "../../components/Search/Clips";
-import { BsSearch } from "react-icons/bs";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import "./search.css"
-import { useRouter } from "next/navigation";
+import "./search.css";
 import People from "@/components/Search/People";
 
 const ShortsPage = () => {
@@ -15,11 +12,9 @@ const ShortsPage = () => {
     All: <All />,
     Photos: <Photos />,
     Clips: <Clips />,
-    People: <People/>
+    People: <People />,
   };
-  
-  
-  
+
   const [current, setCurrent] = useState("All");
 
   return (
@@ -33,7 +28,7 @@ const ShortsPage = () => {
           onSelect={handleSelect}
         />
       </section> */}
-      <section className="sticky top-14 shadow-lg z-20 flex bg-white rounded-md overflow-hidden">
+      <section className="sticky top-14 shadow-lg z-20 flex bg-white sm:rounded-md overflow-hidden">
         {Object.keys(menu).map((item, index) => {
           return (
             <div
@@ -49,7 +44,7 @@ const ShortsPage = () => {
         })}
       </section>
 
-      <section>{menu[current]}</section>
+      <section className="max-sm:mt-3.5">{menu[current]}</section>
     </section>
   );
 };

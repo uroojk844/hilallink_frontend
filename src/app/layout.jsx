@@ -9,12 +9,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
   const path = usePathname();
+  ["/chats", "/shorts"].includes(path);
   return (
     <html lang="en">
       <body className={`grid grid-row-max-auto ${inter.className}`}>
-        {!path.match("/shorts/*") && <NavBar />}
+        {!path.match(/((chats|shorts)\/.+)/g) && <NavBar />}
         <NextTopLoader color="dodgerblue" height={5} />
-        <main className="max-sm:mb-16">{children}</main>
+        <main className="">{children}</main>
       </body>
     </html>
   );

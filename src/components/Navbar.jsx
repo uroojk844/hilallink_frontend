@@ -17,7 +17,7 @@ const NavBar = () => {
 
   return (
     <>
-      <section className="bg-white sticky top-0 z-40">
+      <section className="bg-white sticky top-0 z-40 max-sm:border-b">
         <nav className="relative mx-auto flex items-center justify-between px-4 h-12">
           <div className="font-bold">HilalLink</div>
           <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-between max-w-md text-xl w-full navbar">

@@ -33,7 +33,6 @@ const ShortsPage = () => {
 
   useEffect(() => {
     window.onkeyup = (e) => {
-      console.log(e.key);
       e.key == "ArrowDown" && scrollUp();
       e.key == "ArrowUp" && scrollDown();
     };
@@ -41,9 +40,12 @@ const ShortsPage = () => {
 
   return (
     <section className="absolute bg-black/80 w-full h-dvh inset-0 grid place-items-center">
-      <Link href="/" className="absolute top-10 left-10">
+      <Link
+        href="/"
+        className="absolute top-10 left-10  max-sm:top-4 max-sm:left-4 z-10"
+      >
         <CircularIcon>
-          <FaArrowLeft />
+          <FaArrowLeft className="max-sm:text-2xl" />
         </CircularIcon>
       </Link>
 

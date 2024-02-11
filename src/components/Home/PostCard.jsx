@@ -6,24 +6,20 @@ import { GoHeart } from "react-icons/go";
 import { BsRepeat } from "react-icons/bs";
 import { BiSend } from "react-icons/bi";
 import PostActions from "./PostActions";
-import {
-  Drawer,
-  DrawerContent,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import CommentCard from "./CommentCard";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 const PostCard = ({ index }) => {
   const [actions, setActions] = useState(false);
-  const [comments, setComments] = useState([])
-  
+  const [comments, setComments] = useState([]);
+
   useEffect(() => {
     fetch("https://dummyjson.com/comments?limit=10")
       .then((res) => res.json())
       .then((data) => setComments(data.comments));
-  },[])
+  }, []);
   return (
     <>
       <Drawer>
@@ -58,7 +54,7 @@ const PostCard = ({ index }) => {
             </div>
           </div>
         </DrawerContent>
-        <div className="bg-white rounded-md overflow-hidden mt-2 shadow-md">
+        <div className="bg-white sm:rounded-md overflow-hidden sm:mt-2 max-sm:border-b shadow-md">
           <section className="relative">
             <Link href="/profile">
               <div className="flex justify-between items-center px-2 py-2">

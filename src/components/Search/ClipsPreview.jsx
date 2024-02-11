@@ -1,9 +1,8 @@
 import { BsArrowRight } from "react-icons/bs";
 
-
 const Clips = () => {
   return (
-    <section className="py-3 px-2 bg-white rounded-md mt-2">
+    <section className="py-3 px-2 bg-white sm:rounded-md mt-2">
       <div className="text-lg font-bold mb-3">Clips</div>
       <div className="grid grid-cols-3 gap-2">
         <div className="rounded-lg h-[280px] bg-black overflow-hidden">
@@ -30,6 +29,6 @@ const Clips = () => {
       </div>
     </section>
   );
-}
+};
 
-export default Clips
+export default Clips;

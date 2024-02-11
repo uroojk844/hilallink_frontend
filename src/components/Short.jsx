@@ -12,6 +12,14 @@ import {
 import CircularIcon from "./CirclularIcon";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+} from "./ui/drawer";
+import CommentCard from "./Home/CommentCard";
 
 const Short = ({ url, index, count }) => {
   const vid = useRef();
@@ -69,13 +77,23 @@ const Short = ({ url, index, count }) => {
     }
   }
 
+  const [showComment, setShowComment] = useState(false);
+
+  const [comments, setComments] = useState([]);
+
+  useEffect(() => {
+    fetch("https://dummyjson.com/comments?limit=10")
+      .then((res) => res.json())
+      .then((data) => setComments(data.comments));
+  }, []);
+
   return (
     <div
       tabIndex={-1}
       className="outline-none video-container h-full flex justify-start relative"
     >
       <div className="relative">
-        <div className="relative h-full">
+        <Drawer open={showComment} className="relative h-full">
           {controls && (
             <div className="grid absolute inset-0 place-items-center">
               <CircularIcon className="bg-white text-zinc-950 w-14">
@@ -90,7 +108,36 @@ const Short = ({ url, index, count }) => {
             src={url}
             className="no-scrollbar video max-w-md w-full h-full object-cover snap-end snap-always"
           ></video>
-        </div>
+
+          <DrawerContent
+            onEscapeKeyDown={() => setShowComment(false)}
+            onInteractOutside={() => setShowComment(false)}
+            className="max-w-md sm:ml-[calc((100%-510px)/2)] max-sm:w-full"
+          >
+            <DrawerHeader>
+              <DrawerTitle className="mb-2">Comments</DrawerTitle>
+              <DrawerDescription>
+                <form className="flex gap-2 mb-4">
+                  <input
+                    type="text"
+                    placeholder="share your thoughts.."
+                    className="flex-1 border border-black rounded py-2.5 px-3 outline-none"
+                    required
+                  />
+                  <button className="bg-black text-white px-3 py-2.5 rounded">
+                    Comment
+                  </button>
+                </form>
+
+                <div className="max-h-[calc(100vh-200px)] overflow-y-auto">
+                  {comments.map((data, index) => (
+                    <CommentCard data={data} key={index} index={index} />
+                  ))}
+                </div>
+              </DrawerDescription>
+            </DrawerHeader>
+          </DrawerContent>
+        </Drawer>
 
         {/* bottom content */}
         <div className="absolute bottom-0 w-full text-white p-4 gradient">
@@ -117,7 +164,7 @@ const Short = ({ url, index, count }) => {
           <CircularIcon>
             <FaEye className="text-lg" />
           </CircularIcon>
-          245K
+          234K
         </div>
 
         <div className="text-white text-xs text-center grid gap-1">
@@ -127,7 +174,10 @@ const Short = ({ url, index, count }) => {
           245K
         </div>
 
-        <div className="text-white text-xs text-center grid gap-1">
+        <div
+          onClick={() => setShowComment(true)}
+          className="text-white text-xs text-center grid gap-1"
+        >
           <CircularIcon>
             <FaRegComment className="text-lg" />
           </CircularIcon>

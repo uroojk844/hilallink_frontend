@@ -8,9 +8,10 @@ const nextConfig = {
         port: "",
       },
     ],
-    },
-    compiler: {
-        removeConsole:false
-    }
+  },
+  compiler: {
+    removeConsole: false,
+    styledComponents: true,
+  },
 };
 export default nextConfig;

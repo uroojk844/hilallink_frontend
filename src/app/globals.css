@@ -66,7 +66,7 @@
   }
 }
  :root {
-    --primary: #009000;
+    --primary: rgb(59 130 246);
 }
 
 .bg-primary {
@@ -90,14 +90,47 @@ body {
   display: none;
 }
 
+.scrollbar-primary::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollbar-primary::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+}
+
 .grid-row-max-auto{
   grid-template-rows: max-content auto;
 }
+
 .glass {
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
+}
+
+.small{
+  width: min(500px,100%);
+  margin: 8px auto;
+}
+
+.medium{
+  width: min(700px,98%);
+  margin: 8px auto;
+}
+
+.chat-grid {
+  display: grid;
+    grid-template-rows: max-content calc(100dvh - 134px) max-content
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 @media (width < 600px){
@@ -111,21 +144,17 @@ body {
     width: 100%;
     justify-content: space-between;
     padding:  16px 24px;
-  }  
-}
-.small{
-  width: min(500px,98%);
-  margin: 8px auto;
-}
-.medium{
-  width: min(700px,98%);
-  margin: 8px auto;
-}
-@layer base {
-  * {
-    @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
+
+  body:has(.navbar) {
+    margin-bottom:3.5rem;
   }
+  
+  .small {
+    margin:unset;
+  }
+}
+
+[popover] {
+inset: unset;
 }

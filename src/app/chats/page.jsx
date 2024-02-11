@@ -1,26 +1,23 @@
+"use client";
+import ChatCard from "@/components/chats/ChatCard";
+import UserData from "@/store/chatStore";
+import Link from "next/link";
 import { BsArrowLeft } from "react-icons/bs";
 
 const Chats = () => {
+  const profile = UserData();
+
   return (
-    <section className="bg-white rounded-md small">
-      <div className="text-lg font-bold p-3 flex items-center gap-3"><BsArrowLeft className="cursor-pointer"/> Messages</div>
+    <section className="bg-white min-h-screen sm:rounded-md small">
+      <Link
+        href="/"
+        className="text-lg font-bold p-3 flex items-center gap-3 border-b"
+      >
+        <BsArrowLeft className="cursor-pointer" /> Messages
+      </Link>
       <section>
-        {"abcdefg".split("").map((item,index) => {
-          return (
-            <div key={index} className="hover:bg-gray-200 cursor-pointer flex items-center gap-3 p-3 border-t ">
-              <img
-                className="h-12 w-12 rounded-full object-contain"
-                src="https://freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png"
-                alt=""
-              />
-              <div>
-                <div className="text-sm">Mohd Belal Naim</div>
-                <div className="text-xs mt-1 text-gray-500">
-                  This is a message
-                </div>
-              </div>
-            </div>
-          );
+        {profile["profile"]?.friends.map((friend) => {
+          return <ChatCard user={friend} key={friend.id} />;
         })}
       </section>
     </section>
