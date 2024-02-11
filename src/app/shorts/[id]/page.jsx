@@ -42,7 +42,7 @@ const ShortsPage = () => {
     <section className="absolute bg-black/80 w-full h-dvh inset-0 grid place-items-center">
       <Link
         href="/"
-        className="absolute top-10 left-10  max-sm:top-4 max-sm:left-4 z-10"
+        className="absolute top-6 left-6 max-sm:top-4 max-sm:left-4 z-10"
       >
         <CircularIcon>
           <FaArrowLeft className="max-sm:text-2xl" />
@@ -51,7 +51,7 @@ const ShortsPage = () => {
 
       <div
         onClick={scrollUp}
-        className="max-sm:hidden absolute top-1/2 -translate-y-1/2 left-10"
+        className="max-sm:hidden absolute top-1/2 -translate-y-1/2 left-6"
       >
         <CircularIcon disabled={top == videos.length - 1}>
           <FaChevronDown />
@@ -77,7 +77,7 @@ const ShortsPage = () => {
 
       <div
         onClick={scrollDown}
-        className="max-sm:hidden absolute top-1/2 -translate-y-1/2 right-10"
+        className="max-sm:hidden absolute top-1/2 -translate-y-1/2 right-6"
       >
         <CircularIcon disabled={top == 0}>
           <FaChevronUp />

@@ -8,6 +8,8 @@ import {
   FaRegComment,
   FaRegHeart,
   FaShareAlt,
+  FaVolumeMute,
+  FaVolumeUp,
 } from "react-icons/fa";
 import CircularIcon from "./CirclularIcon";
 import { useEffect, useRef, useState } from "react";
@@ -71,10 +73,7 @@ const Short = ({ url, index, count }) => {
 
     try {
       await navigator.share(shareData);
-      console.log("Shared");
-    } catch (err) {
-      console.log("not Shared");
-    }
+    } catch (err) {}
   }
 
   const [showComment, setShowComment] = useState(false);
@@ -87,6 +86,12 @@ const Short = ({ url, index, count }) => {
       .then((data) => setComments(data.comments));
   }, []);
 
+  const [mute, setMute] = useState(false);
+  const handleMute = () => {
+    vid.current.muted = !vid.current.muted;
+    setMute((cur) => !cur);
+  };
+
   return (
     <div
       tabIndex={-1}
@@ -95,18 +100,22 @@ const Short = ({ url, index, count }) => {
       <div className="relative">
         <Drawer open={showComment} className="relative h-full">
           {controls && (
-            <div className="grid absolute inset-0 place-items-center">
-              <CircularIcon className="bg-white text-zinc-950 w-14">
-                <FaPlay />
-              </CircularIcon>
-            </div>
+            <CircularIcon className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white text-zinc-950 w-14">
+              <FaPlay />
+            </CircularIcon>
           )}
+
+          <div onClick={handleMute}>
+            <CircularIcon className="absolute top-4 right-4 z-20 bg-black/40 text-white w-9">
+              {mute ? <FaVolumeMute /> : <FaVolumeUp />}
+            </CircularIcon>
+          </div>
 
           <video
             ref={vid}
             onClick={handleClick}
             src={url}
-            className="no-scrollbar video max-w-md w-full h-full object-cover snap-end snap-always"
+            className="no-scrollbar video max-w-md w-full h-full object-cover snap-end snap-always -z-10"
           ></video>
 
           <DrawerContent
