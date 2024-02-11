@@ -114,12 +114,12 @@ body {
 
 .small{
   width: min(500px,100%);
-  margin: 8px auto;
+  margin: 0px auto;
 }
 
 .medium{
-  width: min(700px,98%);
-  margin: 8px auto;
+  width: min(700px,100%);
+  margin: 0px auto;
 }
 
 .chat-grid {
