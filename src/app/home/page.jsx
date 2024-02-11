@@ -11,8 +11,12 @@ const HomePage = () => {
 
   return (
     <>
+      <NavBar />
       <div className="small">
-        <section onClick={()=>setCreate(true)} className="max-sm:hidden flex bg-white mt-2 rounded-lg items-center gap-2 py-3 px-2">
+        <section
+          onClick={() => setCreate(true)}
+          className="max-sm:hidden flex bg-white mt-2 rounded-lg items-center gap-2 py-3 px-2"
+        >
           <Image
             src={"https://picsum.photos/400"}
             className="rounded-full"
