@@ -45,7 +45,7 @@ const ProfileMenu = ({ handleMenu, switchAc, menuRef }) => {
           </div>
         </section>
         <section className="shadow-md rounded-sm mt-2">
-          <div onClick={()=>handleEdit()} className="flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer">
+          <div onClick={()=>handleClick('edit-profile')} className="flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer">
             <BsShieldFillCheck className="text-lg" />{" "}
             <span className="text-sm">Profile settings</span>
           </div>
