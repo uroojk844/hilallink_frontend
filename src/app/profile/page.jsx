@@ -16,10 +16,10 @@ import {
 const Profile = () => {
   const [actions, setActions] = useState(false);
   const menu = ["All", "Photos", "Clips"];
-  const [current, setCurrent] = useState("All Posts");
+  const [current, setCurrent] = useState("All");
   return (
     <div className="medium">
-      <div className="bg-white rounded-md overflow-hidden">
+      <div className="bg-white sm:rounded-md overflow-hidden">
         <img
           src="https://picsum.photos/1200"
           className="h-[160px] object-cover w-full"
