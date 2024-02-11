@@ -83,7 +83,7 @@ body::-webkit-scrollbar{
 }
 
 body {
-    background-image: url("/bg.png");
+  background-color: #efefef;
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
@@ -158,6 +158,8 @@ body {
   }
 }
 
-[popover] {
-inset: unset;
+@media (width > 600px){
+  body {
+    background-image: url("/bg.png");
+  }
 }

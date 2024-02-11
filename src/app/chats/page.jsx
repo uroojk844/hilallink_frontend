@@ -2,7 +2,7 @@
 import ChatCard from "@/components/chats/ChatCard";
 import UserData from "@/store/chatStore";
 import Link from "next/link";
-import { BsArrowLeft } from "react-icons/bs";
+import { FaArrowLeft } from "react-icons/fa";
 
 const Chats = () => {
   const profile = UserData();
@@ -13,7 +13,7 @@ const Chats = () => {
         href="/"
         className="text-lg font-bold p-3 flex items-center gap-3 border-b"
       >
-        <BsArrowLeft className="cursor-pointer" /> Messages
+        <FaArrowLeft className="cursor-pointer" /> Messages
       </Link>
       <section>
         {profile["profile"]?.friends.map((friend) => {

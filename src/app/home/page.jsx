@@ -4,16 +4,19 @@ import PostCard from "../../components/Home/PostCard";
 import { BsXCircle, BsXCircleFill } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import CreatePost from "@/components/Home/CreatePost";
-
+import NavBar from "@/components/Navbar";
 
 const HomePage = () => {
- 
-  const[create,setCreate] = useState(false)
+  const [create, setCreate] = useState(false);
 
   return (
     <>
+      <NavBar />
       <div className="max-sm:px-2 small">
-        <section onClick={()=>setCreate(true)} className="max-sm:hidden flex bg-white mt-2 rounded-lg items-center gap-2 py-3 px-2">
+        <section
+          onClick={() => setCreate(true)}
+          className="max-sm:hidden flex bg-white mt-2 rounded-lg items-center gap-2 py-3 px-2"
+        >
           <Image
             src={"https://picsum.photos/400"}
             className="rounded-full"
@@ -30,12 +33,8 @@ const HomePage = () => {
             return <PostCard key={index} index={index} />;
           })}
         </section>
-        {
-          create && <CreatePost controller={setCreate} />
-        }
+        {create && <CreatePost controller={setCreate} />}
       </div>
-
-     
     </>
   );
 };

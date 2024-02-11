@@ -6,6 +6,7 @@ import Photos from "../../components/Search/Photos";
 import Clips from "../../components/Search/Clips";
 import "./search.css";
 import People from "@/components/Search/People";
+import NavBarBack from "@/components/NavBarBack";
 
 const ShortsPage = () => {
   const menu = {
@@ -28,7 +29,8 @@ const ShortsPage = () => {
           onSelect={handleSelect}
         />
       </section> */}
-      <section className="sticky top-14 shadow-lg z-20 flex bg-white sm:rounded-md overflow-hidden">
+      <NavBarBack>Search</NavBarBack>
+      <section className="sticky top-12 shadow-lg z-20 flex bg-white sm:rounded-md overflow-hidden">
         {Object.keys(menu).map((item, index) => {
           return (
             <div
@@ -44,7 +46,7 @@ const ShortsPage = () => {
         })}
       </section>
 
-      <section className="max-sm:mt-3.5">{menu[current]}</section>
+      <section className="sm:mt-2">{menu[current]}</section>
     </section>
   );
 };
