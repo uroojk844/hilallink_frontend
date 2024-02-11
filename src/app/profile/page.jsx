@@ -15,7 +15,7 @@ import {
 
 const Profile = () => {
   const [actions, setActions] = useState(false);
-  const menu = ["All Posts", "Photos", "Clips"];
+  const menu = ["All", "Photos", "Clips"];
   const [current, setCurrent] = useState("All Posts");
   return (
     <div className="medium">
@@ -25,7 +25,7 @@ const Profile = () => {
           className="h-[160px] object-cover w-full"
           alt=""
         />
-        <section className="grid grid-cols-3 bg-white py-3 px-3">
+        <section className="grid grid-cols-3 max-sm:grid-cols-2 bg-white py-3 px-3">
           <div className="relative">
             <img
               src="https://picsum.photos/400"
@@ -33,11 +33,11 @@ const Profile = () => {
               alt=""
             />
           </div>
-          <div className="flex text-sm justify-between items-center relative -left-8">
-            <div>
+          <div className="flex text-sm justify-between items-center relative -left-8 max-sm:gap-4">
+            <div className="text-center">
               222 <span className="text-gray-500">Following</span>
             </div>
-            <div>
+            <div className="text-center">
               101K <span className="text-gray-500">Followers</span>
             </div>
           </div>
@@ -66,13 +66,13 @@ const Profile = () => {
         <section className="p-5 bg-gray-100">
           <div className="text-lg font-bold">Dr. Alama Hussain Madani</div>
           <div className="text-gray-500 text-sm">@DrMadani</div>
-          <div className="text-sm mt-8">
+          <div className="text-sm mt-4 max-sm:text-xs max-sm:mt-3">
             Official account of Dr. Alama Hussain Madani. Nurturing hearts and
             minds in the light of Quranic wisdom since 1980. Embracing
             knowledge, faith, and community. 📖🌟 #MadarsaHanfiya
           </div>
 
-          <div className="flex mt-8 gap-5 text-xs">
+          <div className="grid grid-cols-4 max-sm:grid-cols-2 mt-4 gap-5 text-xs max-sm:mt-4">
             <div className="flex items-center gap-1 text-gray-500">
               <BsGridFill />
               Religious institution
@@ -88,16 +88,33 @@ const Profile = () => {
             </div>
           </div>
         </section>
+        <section className="bg-gray-100 max-sm:flex gap-4 px-4 pb-4 hidden ">
+          <div className="bg-white p-2 rounded-full">
+            <BsEnvelope className="text-lg"/>
+          </div>
+          <div className="bg-white p-2 rounded-full">
+            <BsThreeDotsVertical className="text-lg"/>
+          </div>
+          <div className="bg-white p-2 rounded-full">
+            <BsBell className="text-lg"/>
+          </div>
+          <button className="bg-black text-white w-full text-sm rounded-full">Follow</button>
+          
+        </section>
         <section className="flex border-t bg-gray-100">
           {menu.map((item, index) => {
             return (
-              <div key={index} onClick={()=>setCurrent(item)} className={`cursor-pointer hover:bg-gray-200 text-sm py-3 px-4 ${item==current && 'border-b-4 border-primary'}`}>
+              <div
+                key={index}
+                onClick={() => setCurrent(item)}
+                className={`cursor-pointer hover:bg-gray-200 text-sm py-3 px-4 ${
+                  item == current && "border-b-4 border-primary"
+                } max-sm:text-xs`}
+              >
                 {item}
               </div>
             );
           })}
-
-          
         </section>
       </div>
 

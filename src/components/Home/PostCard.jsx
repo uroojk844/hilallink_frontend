@@ -56,8 +56,8 @@ const PostCard = ({ index }) => {
         </DrawerContent>
         <div className="bg-white sm:rounded-md overflow-hidden sm:mt-2 max-sm:border-b shadow-md">
           <section className="relative">
-            <Link href="/profile">
-              <div className="flex justify-between items-center px-2 py-2">
+            <div className="flex justify-between items-center px-2 py-2">
+              <Link href="/profile">
                 <div className="flex items-center gap-3">
                   <img
                     src={`https://picsum.photos/400?${index}`}
@@ -71,21 +71,21 @@ const PostCard = ({ index }) => {
                     <div className="text-gray-500 text-[10px]">42 mins ago</div>
                   </div>
                 </div>
-                <div>
-                  {actions ? (
-                    <BsX
-                      className="text-lg cursor-pointer"
-                      onClick={() => setActions(!actions)}
-                    />
-                  ) : (
-                    <BsThreeDotsVertical
-                      className="text-md cursor-pointer"
-                      onClick={() => setActions(!actions)}
-                    />
-                  )}
-                </div>
+              </Link>
+              <div>
+                {actions ? (
+                  <BsX
+                    className="text-lg cursor-pointer"
+                    onClick={() => setActions(!actions)}
+                  />
+                ) : (
+                  <BsThreeDotsVertical
+                    className="text-md cursor-pointer"
+                    onClick={() => setActions(!actions)}
+                  />
+                )}
               </div>
-            </Link>
+            </div>
           </section>
           <section className="relative">
             {actions && <PostActions />}
@@ -117,7 +117,7 @@ const PostCard = ({ index }) => {
             </div>
           </section>
           <section className="px-3 py-4 text-xs">
-            <DrawerTrigger>
+            <DrawerTrigger className="text-left">
               <span className="font-[600]">@AlamaMadni</span> lorem ipsum dolor
               ist amet this dolor amet ispum...{" "}
               <span className="font-medium">more</span>
