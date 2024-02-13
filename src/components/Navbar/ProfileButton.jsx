@@ -5,7 +5,7 @@ const ProfileButton = ({ setSwitchAc }) => {
   const menuRef = useRef();
   const imageRef = useRef();
   const [menu, setMenu] = useState(false);
-``
+  ``;
   useEffect(() => {
     document.addEventListener("click", (e) => {
       if (
@@ -22,7 +22,7 @@ const ProfileButton = ({ setSwitchAc }) => {
     };
   }, []);
   return (
-    <div className="relative">
+    <div className="relative z-40">
       <img
         ref={imageRef}
         src="https://freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png"

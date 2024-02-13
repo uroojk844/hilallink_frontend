@@ -1,12 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import All from "../../components/Search/All";
-import Photos from "../../components/Search/Photos";
-import Clips from "../../components/Search/Clips";
+import All from "@/components/Search/All";
+import Photos from "@/components/Search/Photos";
+import Clips from "@/components/Search/Clips";
 import "./search.css";
 import People from "@/components/Search/People";
-import NavBarBack from "@/components/NavBarBack";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
 
 const ShortsPage = () => {
   const menu = {
@@ -20,17 +20,15 @@ const ShortsPage = () => {
 
   return (
     <section className="small">
-      {/* <section className="mt-2">
-        <ReactSearchAutocomplete
-          formatResult={formatResult}
-          placeholder="Search for people or post"
-          items={items}
-          className="z-30"
-          onSelect={handleSelect}
-        />
-      </section> */}
-      <NavBarBack>Search</NavBarBack>
-      <section className="sticky top-12 shadow-lg z-20 flex bg-white sm:rounded-md overflow-hidden">
+      <ReactSearchAutocomplete
+        formatResult={() => {}}
+        placeholder="Search for people or post"
+        items={[]}
+        className="lg:hidden search z-30 sm:mb-2"
+        onSelect={() => {}}
+      />
+
+      <section className="z-20 flex bg-white sm:rounded-md overflow-hidden">
         {Object.keys(menu).map((item, index) => {
           return (
             <div

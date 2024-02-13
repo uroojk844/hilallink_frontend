@@ -114,12 +114,12 @@ body {
 
 .small{
   width: min(500px,100%);
-  margin: 0px auto;
+  margin: 8px auto;
 }
 
 .medium{
   width: min(700px,100%);
-  margin: 0px auto;
+  margin: 8px auto;
 }
 
 .chat-grid {
@@ -136,7 +136,7 @@ body {
   }
 }
 
-@media (width < 600px){
+@media (width < 992px){
   .navbar{
     top: unset;
     bottom: 0;
@@ -146,15 +146,17 @@ body {
     background-color: white; 
     width: 100%;
     justify-content: space-between;
-    padding:  16px 24px;
+    padding:16px 24px;
   }
 
   body:has(.navbar) {
     margin-bottom:3.5rem;
   }
-  
+}
+
+@media (width < 600px){
   .small {
-    margin:unset;
+    margin:0px auto;
   }
 }
 
@@ -162,4 +164,9 @@ body {
   body {
     background-image: url("/bg.png");
   }
+}
+
+/* search page input element */
+.search .wrapper:hover {
+  box-shadow: none !important;
 }

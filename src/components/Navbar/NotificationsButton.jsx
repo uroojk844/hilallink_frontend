@@ -10,8 +10,8 @@ const NotificationsButton = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const notficationRef = useRef();
   const buttonRef = useRef();
-    const router = useRouter();
-    
+  const router = useRouter();
+
   function seeRequests() {
     setShowNotifications(false);
     router.push("/follow-requests");
@@ -43,11 +43,14 @@ const NotificationsButton = () => {
       {showNotifications && (
         <div
           ref={notficationRef}
-          className="fixed p-4 right-2 z-40 rounded-md top-14 bg-white w-[min(100%,520px)]"
+          className="fixed p-4 right-2 max-sm:right-0 z-40 sm:rounded-md top-14 max-sm:top-12 bg-white w-[min(100%,520px)] max-h-[calc(100dvh-3rem)] overflow-y-auto"
         >
           <div className="text-xl font-bold">Notifications</div>
 
-          <section onClick={()=>seeRequests()} className="flex items-center gap-2 mt-4 mb-2 relative cursor-pointer">
+          <section
+            onClick={() => seeRequests()}
+            className="flex items-center gap-2 mt-4 mb-2 relative cursor-pointer"
+          >
             <PiUserCirclePlusLight className="text-[48px]" />
             <div>
               <div className="text-sm mb-1 font-bold">Follow Requests</div>
