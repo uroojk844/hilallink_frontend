@@ -7,13 +7,18 @@ import {
   BsSearch,
 } from "react-icons/bs";
 import Link from "next/link";
-import { useRef, useState } from "react";
-import SwicthProfile from "./Navbar/SwicthProfile";
+import { useState } from "react";
 import ProfileButton from "./Navbar/ProfileButton";
 import NotificationsButton from "./Navbar/NotificationsButton";
+import { useSelector } from "react-redux";
+import dynamic from "next/dynamic";
+const EditProfile = dynamic(()=>import('./Navbar/EditProfile'))
+const SwicthProfile = dynamic(()=>import('./Navbar/SwicthProfile'))
 
 const NavBar = () => {
-  const [switchAccount, setSwitchAccount] = useState(false);
+  const editProfile = useSelector(state => state.togglesSlice.editProfile)
+  const switchAccount = useSelector(state => state.togglesSlice.switchProfile)
+  
 
   return (
     <>
@@ -39,11 +44,13 @@ const NavBar = () => {
               <BsSearch className="text-xl" />
             </Link>
             <NotificationsButton />{" "}
-            <ProfileButton setSwitchAc={setSwitchAccount} />
+            <ProfileButton />
           </div>
         </nav>
       </section>
-      {switchAccount && <SwicthProfile switchAc={setSwitchAccount} />}
+
+      {switchAccount && <SwicthProfile/>}
+      {editProfile && <EditProfile/>}
     </>
   );
 };
