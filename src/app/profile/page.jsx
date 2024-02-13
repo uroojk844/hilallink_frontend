@@ -2,7 +2,7 @@
 import PostCard from "@/components/Home/PostCard";
 import NavBarBack from "@/components/NavBarBack";
 import ProfileActions from "@/components/Profile/ProfileActions";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   BsBell,
   BsBoxArrowUpRight,
@@ -18,6 +18,27 @@ const Profile = () => {
   const [actions, setActions] = useState(false);
   const menu = ["All", "Photos", "Clips"];
   const [current, setCurrent] = useState("All");
+
+  const menuRef = useRef();
+  const buttonRef = useRef();
+
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      if (
+        buttonRef.current &&
+        !buttonRef.current.contains(e.target) &&
+        menuRef.current &&
+        !menuRef.current.contains(e.target)
+      ) {
+        setActions(false)
+      }
+    });
+
+    return () => {
+      document.addEventListener("click", (e) => {});
+    };
+  }, []);
+
   return (
     <>
       <NavBarBack>Profile</NavBarBack>
@@ -47,12 +68,13 @@ const Profile = () => {
             <div className="flex justify-end gap-2 max-sm:hidden">
               <div className="relative">
                 <button
+                  ref={buttonRef}
                   onClick={() => setActions(!actions)}
                   className="bg-gray-100 flex self-start items-center text-sm gap-2 p-1.5 rounded-full"
                 >
                   <BsThreeDotsVertical className="text-lg" />
                 </button>
-                {actions && <ProfileActions />}
+                {actions && <ProfileActions refProp={menuRef} />}
               </div>
               <button className="bg-gray-100 flex self-start items-center text-sm gap-2 p-1.5 rounded-full">
                 <BsEnvelope className="text-lg" />
