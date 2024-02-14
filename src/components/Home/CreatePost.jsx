@@ -1,5 +1,5 @@
 import React from "react";
-import { BsAt, BsFilm, BsImage, BsPersonAdd, BsPersonCheck, BsXCircle, BsXCircleFill } from "react-icons/bs";
+import { BsAt, BsFilm, BsImage, BsNewspaper, BsPersonAdd, BsPersonCheck, BsXCircle, BsXCircleFill } from "react-icons/bs";
 import { useState } from "react";
 import {
   Select,
@@ -8,11 +8,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { LuFileEdit } from "react-icons/lu";
 
 import AddPhoto from "../CreatePost/AddPhoto";
 import AddTextPost from "../CreatePost/AddTextPost";
 import GradientIcon from "../CreatePost/GradientIcon";
 import AddClip from "../CreatePost/AddClip";
+import { useRouter } from "next/navigation";
 
 export const CreatePost = ({ controller }) => {
 
@@ -21,7 +23,8 @@ export const CreatePost = ({ controller }) => {
     "photo": <AddPhoto />,
     "clips": <AddClip/>
   }
-  const[current,setCurrent] = useState("text")
+  const [current, setCurrent] = useState("text")
+  const router = useRouter()
   return (
     <section className="inset-0 glass fixed z-50 grid place-items-center">
       <div className="w-[min(500px,95%)] bg-white rounded-md overflow-hidden">
@@ -66,6 +69,10 @@ export const CreatePost = ({ controller }) => {
             />
             <BsFilm
               onClick={() => setCurrent("clips")}
+              className="cursor-pointer text-2xl"
+            />
+            <LuFileEdit
+              onClick={() => router.push("/create-article")}
               className="cursor-pointer text-2xl"
             />
             <div onClick={()=>setCurrent("text")}>
