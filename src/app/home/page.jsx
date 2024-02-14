@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import PostCard from "../../components/Home/PostCard";
-import { BsXCircle, BsXCircleFill } from "react-icons/bs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CreatePost from "@/components/Home/CreatePost";
 import NavBar from "@/components/Navbar";
 

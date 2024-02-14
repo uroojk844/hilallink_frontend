@@ -1,7 +1,4 @@
-import {
-  BsBookmark,
-  BsSend,
-} from "react-icons/bs";
+import { BsBookmark, BsLink, BsSend } from "react-icons/bs";
 import { VscWarning } from "react-icons/vsc";
 import { MdBlock } from "react-icons/md";
 
@@ -12,14 +9,14 @@ const PostActions = () => {
         <BsBookmark /> Save post
       </div>
       <div className="hover:bg-gray-200 cursor-pointer flex gap-2 items-center p-2 text-sm">
-        <BsSend /> Share post
+        <BsLink /> Copy link
       </div>
       <div className="hover:bg-gray-200 cursor-pointer flex gap-2 items-center p-2 text-sm">
         <VscWarning /> Report
       </div>
       <div className="hover:bg-gray-200 cursor-pointer flex gap-2 items-center p-2 text-sm">
         <MdBlock />
-        Block @DrMadani
+        Block
       </div>
     </div>
   );

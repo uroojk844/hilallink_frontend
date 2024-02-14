@@ -136,6 +136,30 @@ body {
   }
 }
 
+nav .search{
+  position: relative;
+}
+
+nav .search span {
+  color: #888;
+  font-size: 26px;
+  position: absolute;
+  left: 16px;
+  top: -4px;
+  rotate: -90deg;
+}
+
+nav:has(input:not(:placeholder-shown)) span{
+  display: none;
+}
+
+nav .dYrfwz {
+  min-height: auto;
+  padding: 6px 0;
+  border-radius: 24px;
+  font-size: 14px;
+}
+
 @media (width < 992px){
   .navbar{
     top: unset;
@@ -155,7 +179,7 @@ body {
 }
 
 @media (width < 600px){
-  .small {
+  .small, .medium {
     margin:0px auto;
   }
 }

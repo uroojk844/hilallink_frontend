@@ -1,6 +1,6 @@
-import Link from "next/link";
+
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+
 import {
   BsBookmarkCheckFill,
   BsGearFill,
@@ -8,9 +8,11 @@ import {
   BsQuestionCircleFill,
   BsShieldFillCheck,
 } from "react-icons/bs";
-
+import { useDispatch } from "react-redux";
+import { showEdit, showSwitch } from "@/redux/togglesSlice" 
 
 const ProfileMenu = ({ handleMenu, switchAc, menuRef }) => {
+  const dispatch = useDispatch()
   const router = useRouter();
   function handleClick(path) {
     handleMenu(false);
@@ -38,14 +40,14 @@ const ProfileMenu = ({ handleMenu, switchAc, menuRef }) => {
             </div>
           </div>
           <div
-            onClick={() => switchAc(true)}
+            onClick={() => dispatch(showSwitch())}
             className="cursor-pointer text-center text-sm bg-gray-200 py-2 rounded-md mt-3"
           >
             Switch account
           </div>
         </section>
         <section className="shadow-md rounded-sm mt-2">
-          <div onClick={()=>handleClick('edit-profile')} className="flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer">
+          <div onClick={()=>dispatch(showEdit())}  className="flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer">
             <BsShieldFillCheck className="text-lg" />{" "}
             <span className="text-sm">Profile settings</span>
           </div>
@@ -72,7 +74,7 @@ const ProfileMenu = ({ handleMenu, switchAc, menuRef }) => {
           </div>
         </section>
       </section>
-
+      
     </>
   );
 };

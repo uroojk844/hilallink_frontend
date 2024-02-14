@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Photos from "../../components/Search/Photos";
 import Clips from "../../components/Search/Clips";
 import People from "@/components/Search/People";
@@ -12,15 +12,24 @@ const SearchResult = () => {
   const menu = {
     All: <AllResults />,
     Clips: <Clips />,
-    People: <People/>,
+    People: <People />,
     Photos: <Photos />,
   };
 
   const [current, setCurrent] = useState("All");
 
+  const filterBar = useRef();
+
+  const [lastPos, setLastPos] = useState(0);
+  useEffect(() => {
+    window.onscrollend = (
+      
+    ) => {};
+  }, []);
+
   return (
     <section className="small">
-      <section className="sticky top-14 shadow-lg z-20 bg-white mt-2 rounded-md overflow-hidden">
+      <section className="shadow-lg z-20 bg-white mt-2 rounded-md overflow-hidden">
         <section className="text-lg font-bold p-3 flex items-center gap-4">
           <Link href="/search">
             <BsArrowLeft />
@@ -32,6 +41,8 @@ const SearchResult = () => {
             return (
               <div
                 key={index}
+                ref={filterBar}
+                onScroll={showFilters}
                 className={`cursor-pointer py-3 px-4 font-medium text-sm ${
                   item == current && "border-b-4 border-primary"
                 }`}

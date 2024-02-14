@@ -5,16 +5,24 @@ import {
   BsChatDots,
   BsCompass,
   BsFilm,
+  BsPlusCircle,
+  BsPlusCircleFill,
   BsSearch,
 } from "react-icons/bs";
 import Link from "next/link";
-import { useState } from "react";
-import SwicthProfile from "./Navbar/SwicthProfile";
-import ProfileButton from "./Navbar/ProfileButton";
+const ProfileButton = dynamic(() => import("./Navbar/ProfileButton"));
 import NotificationsButton from "./Navbar/NotificationsButton";
+import { useSelector } from "react-redux";
+import dynamic from "next/dynamic";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
+const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
+const SwicthProfile = dynamic(() => import("./Navbar/SwicthProfile"));
 
 const NavBar = () => {
-  const [switchAccount, setSwitchAccount] = useState(false);
+  const editProfile = useSelector((state) => state.togglesSlice.editProfile);
+  const switchAccount = useSelector(
+    (state) => state.togglesSlice.switchProfile
+  );
 
   return (
     <>
@@ -28,23 +36,45 @@ const NavBar = () => {
             <Link href="/shorts">
               <BsFilm />
             </Link>
-            <Link href="/chats">
+            <Link href="" className="sm:hidden">
+              <BsPlusCircle size={30} />
+            </Link>
+            <Link href="/chats" className="max-sm:hidden">
               <BsChatDots />
             </Link>
-            <Link href="/search">
+            <Link href="/search" className="sm:hidden">
+              <BsSearch />
+            </Link>
+            <Link href="/search" className="max-sm:hidden">
               <BsCompass />
             </Link>
+            <div className="sm:hidden">
+              <ProfileButton />
+            </div>
           </div>
-          <div className="flex items-center gap-8">
-            <Link href="/search" className="max-lg:hidden">
-              <BsSearch className="text-xl" />
+          <div className="flex items-center gap-4">
+            <div className="w-56 pt-2.5">
+              <ReactSearchAutocomplete
+                formatResult={() => {}}
+                placeholder="Search"
+                items={[]}
+                className="max-sm:hidden search z-30"
+                onSelect={() => {}}
+              />
+            </div>
+            <NotificationsButton />
+            <div className="max-sm:hidden">
+              <ProfileButton />
+            </div>
+            <Link href="/chats" className="sm:hidden">
+              <BsChatDots size={20} />
             </Link>
-            <NotificationsButton />{" "}
-            <ProfileButton setSwitchAc={setSwitchAccount} />
           </div>
         </nav>
       </section>
-      {switchAccount && <SwicthProfile switchAc={setSwitchAccount} />}
+
+      {switchAccount && <SwicthProfile />}
+      {editProfile && <EditProfile />}
     </>
   );
 };

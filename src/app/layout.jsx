@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "../components/Navbar";
 import { usePathname } from "next/navigation";
 import NextTopLoader from "nextjs-toploader";
+import { Provider } from "react-redux";
+import { store } from "@/redux/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +14,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`grid grid-row-max-auto ${inter.className}`}>
         <NextTopLoader showSpinner={false} color="dodgerblue" height={5} />
-        <main className="">{children}</main>
+        <main className="">
+          <Provider store={store}>{children}</Provider>
+        </main>
       </body>
     </html>
   );

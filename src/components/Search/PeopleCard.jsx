@@ -1,5 +1,4 @@
-
-const PeopleCard = ({index}) => {
+const PeopleCard = ({ index }) => {
   return (
     <div className="bg-white p-4 border-b">
       <div className="flex gap-2 items-center">
@@ -12,6 +11,9 @@ const PeopleCard = ({index}) => {
           <div className="font-medium">Mohd Belal Naim</div>
           <div className="text-sm text-gray-500">@BelalNaim9</div>
         </div>
+        <button className="ml-auto py-1 px-5 bg-black text-white rounded-full">
+          Follow
+        </button>
       </div>
       <div className="text-sm mt-2">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum
@@ -19,6 +21,6 @@ const PeopleCard = ({index}) => {
       </div>
     </div>
   );
-}
+};
 
-export default PeopleCard
+export default PeopleCard;
