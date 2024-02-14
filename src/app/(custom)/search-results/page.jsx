@@ -1,8 +1,8 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Photos from "../../components/Search/Photos";
-import Clips from "../../components/Search/Clips";
+import Photos from "@/components/Search/Photos";
+import Clips from "@/components/Search/Clips";
 import People from "@/components/Search/People";
 import AllResults from "@/components/Search/AllResults";
 import { BsArrowLeft } from "react-icons/bs";
