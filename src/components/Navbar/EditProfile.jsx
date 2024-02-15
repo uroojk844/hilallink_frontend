@@ -15,7 +15,7 @@ const EditProfile = ({ toggleEdit }) => {
   const dispatch = useDispatch()
   return (
     <section className="fixed inset-0 glass z-50 grid place-items-center">
-      <div className="animate__animated animate__bounceIn w-[min(520px,100%)] bg-white rounded-md overflow-hidden">
+      <div className="animate__animated animate__bounceIn w-[min(520px,96%)] bg-white rounded-md overflow-hidden">
         <div className="p-3 text-lg font-bold flex items-center gap-3">
           <BsX className="text-xl cursor-pointer" onClick={()=>dispatch(hideEdit())} /> Edit Profile
         </div>
@@ -40,7 +40,7 @@ const EditProfile = ({ toggleEdit }) => {
               />
             </div>
           </div>
-          <div className="mt-8">
+          <div className="mt-8 h-[280px] overflow-scroll">
             <div className="mb-4">
               <div className="text-xs text-gray-500">Full Name</div>
               <input
@@ -70,6 +70,13 @@ const EditProfile = ({ toggleEdit }) => {
               <input
                 type="text"
                 value="Lucknow, India"
+                className="text-sm border-b w-full border-black py-2"
+              />
+            </div>
+            <div className="mb-4">
+              <div className="text-xs text-gray-500">Birth Date</div>
+              <input
+                type="date"
                 className="text-sm border-b w-full border-black py-2"
               />
             </div>
