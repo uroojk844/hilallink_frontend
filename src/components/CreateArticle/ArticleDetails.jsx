@@ -1,16 +1,9 @@
 "use client";
 import { useState } from "react";
 import Styles from "./article.module.css";
-import {
-  MDXEditor,
-  UndoRedo,
-  BoldItalicUnderlineToggles,
-  toolbarPlugin,
-  headingsPlugin,
-  BlockTypeSelect,
-} from "@mdxeditor/editor";
 import "@mdxeditor/editor/style.css";
 import { BsXCircleFill } from "react-icons/bs";
+import { ForwardRefEditor } from "./FowardRefEditor";
 
 const ArticleDetails = ({controller}) => {
   const [image, setImage] = useState("");
@@ -73,21 +66,7 @@ const ArticleDetails = ({controller}) => {
         className="text-3xl font-bold mt-5 w-full outline-none"
       />
       <div className={`${Styles.head} mt-4  h-72`}>
-        <MDXEditor
-          markdown="Write your story here"
-          plugins={[
-            toolbarPlugin({
-              toolbarContents: () => (
-                <>
-                  <UndoRedo />
-                  <BoldItalicUnderlineToggles />
-                  <BlockTypeSelect />
-                </>
-              ),
-            }),
-            headingsPlugin(),
-          ]}
-        />
+        <ForwardRefEditor/>
       </div>
       <div className="border-t absolute bottom-0 w-[97%] py-3 flex justify-end">
         <button onClick={()=>controller(true)} className="bg-black text-white px-4 py-1 rounded-full">

@@ -1,3 +1,4 @@
+"use client"
 import { BsArrowLeft } from "react-icons/bs";
 const ArticlePreview = ({controller}) => {
   return (

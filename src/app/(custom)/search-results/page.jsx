@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState,useEffect } from "react";
 import Photos from "@/components/Search/Photos";
 import Clips from "@/components/Search/Clips";
 import People from "@/components/Search/People";
@@ -42,7 +42,7 @@ const SearchResult = () => {
               <div
                 key={index}
                 ref={filterBar}
-                onScroll={showFilters}
+                // onScroll={showFilters}
                 className={`cursor-pointer py-3 px-4 font-medium text-sm ${
                   item == current && "border-b-4 border-primary"
                 }`}
