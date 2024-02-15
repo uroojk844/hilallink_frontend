@@ -1,5 +1,5 @@
 import React from "react";
-import { BsAt, BsFilm, BsImage, BsNewspaper, BsPersonAdd, BsPersonCheck, BsXCircle, BsXCircleFill } from "react-icons/bs";
+import { BsAt, BsFilm, BsImage, BsPersonAdd, BsPersonCheck, BsXCircle, BsXCircleFill } from "react-icons/bs";
 import { useState } from "react";
 import {
   Select,
