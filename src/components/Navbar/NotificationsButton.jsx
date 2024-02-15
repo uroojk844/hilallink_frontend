@@ -43,7 +43,7 @@ const NotificationsButton = () => {
       {showNotifications && (
         <div
           ref={notficationRef}
-          className="fixed p-4 right-2 max-sm:right-0 z-40 sm:rounded-md top-14 max-sm:top-12 bg-white w-[min(100%,520px)] max-h-[calc(100dvh-3rem)] overflow-y-auto"
+          className="fixed p-4 right-2 max-sm:right-0 z-40 sm:rounded-md top-14 max-sm:top-12 bg-white w-[min(100%,420px)] max-h-[calc(100dvh-3rem)] overflow-y-auto max-sm:min-h-[100dvh]"
         >
           <div className="text-xl font-bold">Notifications</div>
 
