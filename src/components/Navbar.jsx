@@ -6,10 +6,11 @@ import {
   BsCompass,
   BsFilm,
   BsPlusCircle,
-  BsPlusCircleFill,
   BsSearch,
 } from "react-icons/bs";
 import Link from "next/link";
+import { LiaMosqueSolid } from "react-icons/lia";
+
 const ProfileButton = dynamic(() => import("./Navbar/ProfileButton"));
 import NotificationsButton from "./Navbar/NotificationsButton";
 import { useSelector } from "react-redux";
@@ -39,6 +40,9 @@ const NavBar = () => {
             <Link href="" className="sm:hidden">
               <BsPlusCircle size={30} />
             </Link>
+            {/* <Link href="/ibadat" className="max-sm:hidden">
+              <LiaMosqueSolid size={28} />
+            </Link> */}
             <Link href="/chats" className="max-sm:hidden">
               <BsChatDots />
             </Link>
