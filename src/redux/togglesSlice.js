@@ -3,6 +3,7 @@ const { createSlice } = require("@reduxjs/toolkit");
 const initialState = {
   editProfile: false,
   switchProfile: false,
+  auth: false
 };
 
 const editProfileSlice = createSlice({
@@ -21,6 +22,12 @@ const editProfileSlice = createSlice({
     hideSwitch: (state) => {
       state.switchProfile = false;
     },
+    showAuth: (state) => {
+      state.auth = true
+    },
+    hideAuth: (state) => {
+      state.auth = false
+    }
    
   },
 });
@@ -29,7 +36,9 @@ export const {
   showEdit,
   hideEdit,
   showSwitch,
-  hideSwitch
+  hideSwitch,
+  showAuth,
+  hideAuth
 } = editProfileSlice.actions;
 
 export default editProfileSlice.reducer;
