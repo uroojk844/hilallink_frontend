@@ -1,7 +1,6 @@
 "use client";
 import { GoHome } from "react-icons/go";
 import {
-  BsBell,
   BsChatDots,
   BsCompass,
   BsFilm,
@@ -9,21 +8,26 @@ import {
   BsSearch,
 } from "react-icons/bs";
 import Link from "next/link";
-import { LiaMosqueSolid } from "react-icons/lia";
 
 const ProfileButton = dynamic(() => import("./Navbar/ProfileButton"));
 import NotificationsButton from "./Navbar/NotificationsButton";
 import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { useState } from "react";
 const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
 const SwicthProfile = dynamic(() => import("./Navbar/SwicthProfile"));
+const Login = dynamic(() => import("@/components/Auth/Login"));
+const Signup = dynamic(() => import("@/components/Auth/Signup"));
 
 const NavBar = () => {
   const editProfile = useSelector((state) => state.togglesSlice.editProfile);
   const switchAccount = useSelector(
     (state) => state.togglesSlice.switchProfile
   );
+  const auth = useSelector((state) => state.togglesSlice.auth);
+
+  const [login, setLogin] = useState(true);
 
   return (
     <>
@@ -79,6 +83,15 @@ const NavBar = () => {
 
       {switchAccount && <SwicthProfile />}
       {editProfile && <EditProfile />}
+      {auth && (
+        <div className="inset-0 fixed glass z-50 grid place-items-center">
+          {login ? (
+            <Login controller={setLogin} />
+          ) : (
+            <Signup controller={setLogin} />
+          )}
+        </div>
+      )}
     </>
   );
 };

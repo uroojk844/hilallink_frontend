@@ -4,12 +4,14 @@ import { useRouter } from "next/navigation";
 import {
   BsBookmarkCheckFill,
   BsGearFill,
+  BsPerson,
+  BsPersonFill,
   BsPower,
   BsQuestionCircleFill,
   BsShieldFillCheck,
 } from "react-icons/bs";
 import { useDispatch } from "react-redux";
-import { showEdit, showSwitch } from "@/redux/togglesSlice" 
+import { showAuth, showEdit, showSwitch } from "@/redux/togglesSlice" 
 
 const ProfileMenu = ({ handleMenu, switchAc, menuRef }) => {
   const dispatch = useDispatch()
@@ -68,9 +70,13 @@ const ProfileMenu = ({ handleMenu, switchAc, menuRef }) => {
             <span className="text-sm">Saved Posts</span>
           </div>
 
-          <div className="flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer">
+          {/* <div className="flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer">
             <BsPower className="text-lg" />{" "}
             <span className="text-sm">Logout</span>
+          </div> */}
+          <div onClick={()=>dispatch(showAuth())} className="flex items-center gap-2 p-3 hover:bg-gray-100 cursor-pointer">
+            <BsPersonFill className="text-lg" />{" "}
+            <span className="text-sm">Login</span>
           </div>
         </section>
       </section>
