@@ -15,7 +15,7 @@ export async function addUser(data) {
   const { email } = data;
   const q = query(userRef, where("email", "==", email));
   const user = await getDocs(q);
-  if (!user.size) return;
+  if (user.size) return;
   addDoc(userRef, data);
 }
 
