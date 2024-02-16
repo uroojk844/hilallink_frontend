@@ -2,21 +2,23 @@ import { database } from "@/utils/firebase";
 import {
   addDoc,
   collection,
-  getDoc,
+  doc,
+  getDocs,
+  query,
   updateDoc,
   where,
 } from "firebase/firestore";
 
 const userRef = collection(database, "users");
 
-export function addUser(data) {
+export async function addUser(data) {
   const { email } = data;
-  getDoc(doc(userRef, where("email", "==", email))).then((doc) =>
-    console.log(doc)
-  );
-  // addDoc(userRef, data);
+  const q = query(userRef, where("email", "==", email));
+  const user = await getDocs(q);
+  if (!user.size) return;
+  addDoc(userRef, data);
 }
 
-function updateUser(data) {
-  updateDoc(userRef, data);
+export function updateUser(id, data) {
+  updateDoc(doc(userRef, id), data);
 }

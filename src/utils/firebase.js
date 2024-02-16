@@ -10,7 +10,7 @@ const firebaseConfig = {
   projectId: "hilallink-9dfb4",
   storageBucket: "hilallink-9dfb4.appspot.com",
   messagingSenderId: "66036106918",
-  appId: "1:66036106918:web:3ad2ed733081b1d3375667"
+  appId: "1:66036106918:web:3ad2ed733081b1d3375667",
 };
 
 // Initialize Firebase
