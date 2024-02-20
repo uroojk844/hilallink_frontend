@@ -32,7 +32,7 @@ const ProfileButton = () => {
     <div className="relative z-40">
       <img
         ref={imageRef}
-        src={data.profilePhoto || "https://freepngimg.com/thumb/google/66726-customer-account-google-service-button-search-logo.png"}
+        src={data.profilePhoto || "/avtar.jpg"}
         alt="logo"
         className="w-8 aspect-square rounded-full cursor-pointer"
         onClick={() => (user ? setMenu(!menu) : dispatch(showAuth()))}
