@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
 import { useState } from "react";
 import NotVerified from "./NotVerified";
+import { fetchUsers } from "@/redux/userSlice";
 
 const Login = ({ controller }) => {
   const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const Login = ({ controller }) => {
   const [notVerified, setNotVerified] = useState(false);
 
   const login = (data) => {
+
     setLoading(true);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -23,14 +25,17 @@ const Login = ({ controller }) => {
         setLoading(false);
         if (credentials.user?.emailVerified) {
           dispatch(hideAuth());
+          console.log(credentials.user)
           toast.success("Logged in successfully!")
-          localStorage.setItem("user",credentials.user.uid)
+          localStorage.setItem("user", credentials.user.uid)
+          dispatch(fetchUsers())
         } else {
           setNotVerified(true);
         }
       })
       .catch((err) => {
         toast.error("Invalid email or password!");
+        console.log(err)
         setLoading(false);
       });
   };
@@ -59,7 +64,7 @@ const Login = ({ controller }) => {
                 className="w-full border border-gray-300 rounded-md py-2 px-4"
                 {...register("password")}
               />
-              <div className="flex justify-end text-xs">
+              <div onClick={()=>controller("forgot")} className="flex justify-end text-xs cursor-pointer">
                 Forgot your password
               </div>
               {loading ? (
@@ -80,7 +85,7 @@ const Login = ({ controller }) => {
           <GoogleLoginButton />
           <div
             className="text-center mt-5 text-sm cursor-pointer"
-            onClick={() => controller(false)}
+            onClick={() => controller("signup")}
           >
             Create a new account
           </div>

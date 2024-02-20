@@ -4,17 +4,52 @@ import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
 import { hideAuth } from "@/redux/togglesSlice";
+import { addUser } from "@/utils/db_func";
+import { generateFromEmail } from "unique-username-generator";
+import { fetchUsers } from "@/redux/userSlice";
 
 const GoogleLoginButton = () => {
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
   const dispatch = useDispatch();
-  function googelLogin() {
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1;
+  let dd = today.getDate();
+
+  if (dd < 10) dd = "0" + dd;
+  if (mm < 10) mm = "0" + mm;
+
+  const formattedToday = dd + "/" + mm + "/" + yyyy;
+  async function googelLogin() {
     signInWithPopup(auth, provider)
       .then((credentials) => {
-        dispatch(hideAuth());
-        localStorage.setItem("user",credentials.user.uid);
-        toast.success("Logged in successfully!");
+        const user = credentials.user;
+        console.log(user);
+        const data = {
+          name:user.displayName,
+          uid: user.uid,
+          email: user.email,
+          username: generateFromEmail(user.email, 4),
+          dob: "",
+          phone: user.phoneNumber,
+          gender: "",
+          category: "",
+          dateJoined: formattedToday,
+          website: "",
+          location: "",
+          bio: "",
+          profilePhoto: user.photoURL,
+          coverPhoto: "",
+          premium: false,
+          accountType: "Public",
+        };
+        localStorage.setItem("user", user.uid);
+        addUser(data).then((added) => {
+          toast.success("Logged in successfully!");
+          dispatch(hideAuth());
+          dispatch(fetchUsers());
+        });
       })
       .catch((err) => {
         console.log(err);
