@@ -25,17 +25,17 @@ const Login = ({ controller }) => {
         setLoading(false);
         if (credentials.user?.emailVerified) {
           dispatch(hideAuth());
-          console.log(credentials.user)
-          toast.success("Logged in successfully!")
-          localStorage.setItem("user", credentials.user.uid)
-          dispatch(fetchUsers())
+          console.log(credentials.user);
+          toast.success("Logged in successfully!");
+          localStorage.setItem("user", credentials.user.uid);
         } else {
           setNotVerified(true);
         }
       })
+      .then((loggedIn) => dispatch(fetchUsers()))
       .catch((err) => {
         toast.error("Invalid email or password!");
-        console.log(err)
+        console.log(err);
         setLoading(false);
       });
   };
