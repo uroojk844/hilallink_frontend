@@ -1,16 +1,18 @@
+import { hideAuth } from "@/redux/togglesSlice";
 import { BsArrowLeft } from "react-icons/bs";
+import { useDispatch } from "react-redux";
 
-const NotVerified = ({ controller }) => {
+const OTPSent = () => {
+  const dispatch = useDispatch()
   return (
     <div className="grid place-items-center">
-      <img src="/sent.svg" alt="" className="w-52" />
+      <img src="/forgot.png" alt="" className="w-52" />
       <div className="text-center font-medium text-sm">
-        Your email is not verfied, Please check your inbox and verify your email
-        to continue using HilalLink
+        We have sent you an email with the link to reset your password
       </div>
       <div className="flex gap-2">
         <button
-          onClick={() => controller(false)}
+          onClick={() => dispatch(hideAuth())}
           className="flex items-center gap-2 bg-black text-white w-max px-5 py-2 rounded-full text-xs mt-5"
         >
           <BsArrowLeft />
@@ -19,6 +21,6 @@ const NotVerified = ({ controller }) => {
       </div>
     </div>
   );
-};
+}
 
-export default NotVerified;
+export default OTPSent

@@ -7,12 +7,13 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   sendEmailVerification,
-  sendSignInLinkToEmail,
 } from "firebase/auth";
 import toast from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import VerificationSent from "./VerificationSent";
+import { generateFromEmail } from "unique-username-generator";
+import { addUser } from "@/utils/db_func";
 
 const Signup = ({ controller }) => {
   const dispatch = useDispatch();
@@ -24,10 +25,15 @@ const Signup = ({ controller }) => {
     url: "http://localhost:3000/",
     handleCodeInApp: true,
   };
-  // function sendVerificationLink(email) {
-  //   const auth = getAuth();
-  //   sendEmailVerification()
-  // }
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  let mm = today.getMonth() + 1;
+  let dd = today.getDate();
+
+  if (dd < 10) dd = "0" + dd;
+  if (mm < 10) mm = "0" + mm;
+
+  const formattedToday = dd + "/" + mm + "/" + yyyy;
 
   const signup = (data) => {
     setLoading(true);
@@ -36,6 +42,23 @@ const Signup = ({ controller }) => {
       .then((credential) => {
         setSent(true);
         const user = credential.user;
+        data.uid = user.uid;
+        data.username = generateFromEmail(data.email, 4);
+        data.dob = "";
+        data.phone = user.phoneNumber;
+        data.gender = "";
+        data.category = "";
+        data.dateJoined = formattedToday;
+        data.website = "";
+        data.location = "";
+        data.bio = "";
+        data.profilePhoto = user.photoURL;
+        data.coverPhoto = "";
+        data.premium = false;
+        data.accountType = "Public";
+
+        addUser(data);
+
         sendEmailVerification(user).then(() => {
           console.log("sent");
           setSent(true);
@@ -43,9 +66,11 @@ const Signup = ({ controller }) => {
         });
       })
       .catch((err) => {
-        toast.error("Something went wrong!");
-        console.log(err);
+        if (err.code == "auth/email-already-in-use") {
+          toast.error("This email is already in use");
+        }
         setLoading(false);
+        console.log(err.code);
       });
   };
   return (
@@ -65,7 +90,7 @@ const Signup = ({ controller }) => {
                 type="text"
                 placeholder="Full name"
                 className="w-full border border-gray-300 rounded-md py-2 px-4"
-                {...register("fullname")}
+                {...register("name")}
               />
               <input
                 type="email"
@@ -105,7 +130,7 @@ const Signup = ({ controller }) => {
           <GoogleLoginButton />
           <div
             className="text-center mt-5 text-sm cursor-pointer"
-            onClick={() => controller(true)}
+            onClick={() => controller("login")}
           >
             I have an account
           </div>
