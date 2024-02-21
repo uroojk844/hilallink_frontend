@@ -57,7 +57,7 @@ const PostCard = ({ index }) => {
         <div className="bg-white sm:rounded-md overflow-hidden sm:mt-2 max-sm:border-b shadow-md">
           <section className="relative">
             <div className="flex justify-between items-center px-2 py-2">
-              <Link href="/profile">
+              <Link href="/profile/123">
                 <div className="flex items-center gap-3">
                   <img
                     src={`https://picsum.photos/400?${index}`}

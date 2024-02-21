@@ -96,7 +96,7 @@ const Profile = () => {
               {userData.bio}
             </div>
 
-            <div className="grid grid-cols-4 max-sm:grid-cols-2 mt-4 gap-5 text-xs max-sm:mt-4">
+            <div className="flex whitespace-nowrap mt-4 gap-5 text-xs max-sm:mt-4">
               {userData.category && (
                 <div className="flex items-center gap-1 text-gray-500">
                   <BsGridFill />
