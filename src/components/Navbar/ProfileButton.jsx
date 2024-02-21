@@ -12,7 +12,7 @@ const ProfileButton = () => {
     var user = localStorage.getItem("user");
   }
   const data = useSelector(state => state.userSlice.user)
-
+  const status = useSelector(state=> state.userSlice.loading)
   useEffect(() => {
     document.addEventListener("click", (e) => {
       if (
