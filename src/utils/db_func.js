@@ -17,6 +17,7 @@ export async function addUser(data) {
   const user = await getDocs(q);
   if (user.size) return;
   addDoc(userRef, data);
+  addDoc(userRef, data);
 }
 
 export function updateUser(id, data) {

@@ -4,7 +4,6 @@ import PostCard from "../../components/Home/PostCard";
 import { useEffect, useState } from "react";
 import CreatePost from "@/components/Home/CreatePost";
 import NavBar from "@/components/Navbar";
-import { updateDoc } from "firebase/firestore";
 import { addUser } from "@/utils/db_func";
 
 const HomePage = () => {
