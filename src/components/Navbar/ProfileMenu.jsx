@@ -43,7 +43,7 @@ const ProfileMenu = ({ handleMenu, switchAc, menuRef }) => {
     <>
       <section
         ref={menuRef}
-        className="fixed top-14 rounded-md right-2 p-2 bg-white w-[min(320px,calc(100%-16px))]"
+        className="fixed max-sm:top-0 max-sm:w-full top-14 rounded-md right-2 p-2 bg-white w-[min(320px,calc(100%-16px))]"
       >
         <section>
           <section className="shadow-md p-3 hover:bg-gray-100">

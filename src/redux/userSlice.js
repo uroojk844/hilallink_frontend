@@ -1,6 +1,5 @@
 import { database } from "@/utils/firebase";
-import axios from "axios";
-import { collection, getDocs, limit, query, where } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
@@ -11,11 +10,9 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-  const user = localStorage.getItem("user");
-  const ref = collection(database, "users");
-  let q = query(ref, where("uid", "==", user), limit(1));
-  let data = await getDocs(q);
-  return data.docs[0]?.data();
+    const docref = doc(database, "user", localStorage.getItem('user'))
+    const docsnap = await getDoc(docref)
+    return docsnap.data()
 });
 
 const userSlice = createSlice({
@@ -37,7 +34,7 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchUsers.rejected, (state, action) => {
       state.loading = false;
-      state.user = [];
+      state.user = {}
       state.error = action.error.message;
     });
   },
