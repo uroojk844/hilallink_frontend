@@ -20,7 +20,7 @@ export async function addUser(data) {
     console.log("User data exists");
     return;
   }
-  setDoc(doc(database,"user",data.uid),data);
+  setDoc(doc(database,"users",data.uid),data);
   console.log("User added");
 }
 
