@@ -7,22 +7,26 @@ import { useForm } from "react-hook-form";
 import { doc, updateDoc } from "firebase/firestore";
 import { database } from "@/utils/firebase";
 import { fetchUsers } from "@/redux/userSlice";
-import { useEffect } from "react";
-
+import { useEffect, useState } from "react";
+import { ThreeDots } from "react-loader-spinner";
 const EditProfile = () => {
   const userData = useSelector((state) => state.userSlice.user);
-  const { register, handleSubmit,setValue } = useForm();
-  const dispatch = useDispatch(); 
+  const { register, handleSubmit, setValue } = useForm();
+  const dispatch = useDispatch();
+
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
-    setValue("name",userData.name)
-    setValue("username",userData.username)
-    setValue("bio",userData.bio)
-    setValue("location",userData.location)
-    setValue("category",userData.category)
-    setValue("website",userData.website)
-  },[])
+    setValue("name", userData.name);
+    setValue("username", userData.username);
+    setValue("bio", userData.bio);
+    setValue("location", userData.location);
+    setValue("category", userData.category);
+    setValue("website", userData.website);
+  }, []);
 
   const updateUser = (d) => {
+    setLoading(true)
     const userRef = doc(database, "users", localStorage.getItem("user"));
     updateDoc(userRef, {
       name: d.name,
@@ -32,8 +36,9 @@ const EditProfile = () => {
       location: d.location,
       dob: d.dob,
       gender: d.gender,
-      website: d.website
+      website: d.website,
     }).then(() => {
+      setLoading(false)
       dispatch(hideEdit());
       dispatch(fetchUsers());
     });
@@ -146,12 +151,21 @@ const EditProfile = () => {
           </button>
         </div>
         <div className="border-t p-2 flex justify-end">
-          <button
-            onClick={handleSubmit(updateUser)}
-            className="bg-black rounded-full text-white py-1 px-4"
-          >
-            Update
-          </button>
+          {loading ? (
+            <button
+              disabled
+              className="bg-black rounded-full text-white py-1 px-4"
+            >
+              <ThreeDots color="white" height={14} width={18} />
+            </button>
+          ) : (
+            <button
+              onClick={handleSubmit(updateUser)}
+              className="bg-black rounded-full text-white py-1 px-4"
+            >
+              Update
+            </button>
+          )}
         </div>
       </div>
     </section>
