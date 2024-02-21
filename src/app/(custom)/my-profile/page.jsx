@@ -96,7 +96,7 @@ const Profile = () => {
               {userData.bio}
             </div>
 
-            <div className="flex whitespace-nowrap mt-4 gap-5 text-xs max-sm:mt-4">
+            <div className="flex whitespace-nowrap justify-between mt-4 gap-5 text-xs max-sm:mt-4">
               {userData.category && (
                 <div className="flex items-center gap-1 text-gray-500">
                   <BsGridFill />
@@ -113,9 +113,9 @@ const Profile = () => {
                 <BsClockHistory /> Joined {userData.dateJoined}
               </div>
               {userData.website && (
-                <div className="flex items-center gap-1 text-gray-500">
+                <a href={userData.website} target="_blank" className="flex items-center gap-1 text-gray-500 truncate">
                   <BsBoxArrowUpRight /> {userData.website}
-                </div>
+                </a>
               )}
             </div>
           </section>
