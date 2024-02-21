@@ -16,6 +16,12 @@ const EditProfile = () => {
   const dispatch = useDispatch();
 
   const [loading, setLoading] = useState(false);
+  const [profileImage, setProfileImage] = useState(userData.profilePhoto);
+  const handleProfileImage = (e) => {
+    const image = e.target.files[0]
+    const uri = URL.createObjectURL(image)
+    setProfileImage(uri)
+  };
 
   useEffect(() => {
     setValue("name", userData.name);
@@ -27,8 +33,10 @@ const EditProfile = () => {
   }, []);
 
   const updateUser = (d) => {
-    setLoading(true)
+
+    setLoading(true);
     const userRef = doc(database, "users", localStorage.getItem("user"));
+    
     updateDoc(userRef, {
       name: d.name,
       username: d.username,
@@ -47,37 +55,42 @@ const EditProfile = () => {
   };
 
   return (
-    <section className="fixed inset-0 glass z-50 grid place-items-center">
-      <div className="animate__animated animate__bounceIn w-[min(520px,96%)] bg-white rounded-md overflow-hidden">
-        <div className="p-3 text-lg font-bold flex items-center gap-3">
-          <BsX
-            className="text-xl cursor-pointer"
-            onClick={() => dispatch(hideEdit())}
-          />{" "}
-          Edit Profile
-        </div>
-        <div className="relative">
-          <BsCamera className="absolute cursor-pointer z-40 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-white text-3xl" />
-          <img
-            src={userData.coverPhoto || "/bg.png"}
-            className="w-full h-[140px] object-cover brightness-50 "
-            alt=""
-          />
-        </div>
-        <div className="p-3 pt-4 relative">
-          <div className="absolute -top-20 left-4">
-            <div className="relative">
-              <div className="absolute grid place-items-center h-full w-full rounded-full">
-                <BsCamera className="text-white z-40 text-2xl cursor-pointer" />
-              </div>
-              <img
-                src={userData.profilePhoto || "https://picsum.photos/400?1"}
-                className="brightness-50 h-28 w-28 rounded-full border-4 border-white"
-                alt=""
-              />
-            </div>
+    <form>
+      <section className="fixed inset-0 glass z-50 grid place-items-center">
+        <div className="animate__animated animate__bounceIn w-[min(520px,96%)] bg-white rounded-md overflow-hidden">
+          <div className="p-3 text-lg font-bold flex items-center gap-3">
+            <BsX
+              className="text-xl cursor-pointer"
+              onClick={() => dispatch(hideEdit())}
+            />{" "}
+            Edit Profile
           </div>
-          <form>
+          <div className="relative">
+            <BsCamera className="absolute cursor-pointer z-40 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-white text-3xl" />
+            <img
+              src={userData.coverPhoto || "/bg.png"}
+              className="w-full h-[140px] object-cover brightness-50 "
+              alt=""
+            />
+          </div>
+          <div className="p-3 pt-4 relative">
+            <label htmlFor="profilePhoto">
+              <div className="absolute -top-20 left-4">
+                <div className="relative">
+                  <div className="absolute grid place-items-center h-full w-full rounded-full">
+                    <BsCamera className="text-white z-40 text-2xl cursor-pointer" />
+                  </div>
+                  <img
+                    src={profileImage || "https://picsum.photos/400?1"}
+                    className="brightness-50 h-28 w-28 rounded-full border-4 border-white"
+                    alt=""
+                  />
+                </div>
+              </div>
+            </label>
+            {/* input for profile photo */}
+            <input type="file" onChange={(e)=>handleProfileImage(e)} id="profilePhoto" hidden />
+
             <div className="mt-8 h-[280px] overflow-scroll">
               <div className="mb-4">
                 <div className="text-xs text-gray-500">Full Name</div>
@@ -109,13 +122,14 @@ const EditProfile = () => {
                   {...register("category")}
                   className="text-sm border-b w-full border-black py-2"
                 >
-                  {
-                    categories.map((item, index) => {
-                      return <option key={index} value={item}>{item}</option>
-                    })
-                  }
+                  {categories.map((item, index) => {
+                    return (
+                      <option key={index} value={item}>
+                        {item}
+                      </option>
+                    );
+                  })}
                 </select>
-                
               </div>
               <div className="mb-4">
                 <div className="text-xs text-gray-500">Website</div>
@@ -143,11 +157,13 @@ const EditProfile = () => {
               </div>
               <div className="mb-4">
                 <div className="text-xs text-gray-500">Account Privacy</div>
-                <select {...register("privacy")} className="text-sm border-b w-full border-black py-2">
+                <select
+                  {...register("privacy")}
+                  className="text-sm border-b w-full border-black py-2"
+                >
                   <option value="Public">Public</option>
                   <option value="Private">Private</option>
                 </select>
-    
               </div>
               <div className="text-xs text-gray-500">Gender</div>
               <div className="mb-4">
@@ -161,30 +177,31 @@ const EditProfile = () => {
                 </select>
               </div>
             </div>
-          </form>
-          <button className="w-max border-2 border-black px-4 py-1 text-sm rounded-full flex items-center gap-1">
-            <BsShieldCheck /> Privacy settings
-          </button>
-        </div>
-        <div className="border-t p-2 flex justify-end">
-          {loading ? (
-            <button
-              disabled
-              className="bg-black rounded-full text-white py-1 px-4"
-            >
-              <ThreeDots color="white" height={14} width={18} />
+
+            <button className="w-max border-2 border-black px-4 py-1 text-sm rounded-full flex items-center gap-1">
+              <BsShieldCheck /> Privacy settings
             </button>
-          ) : (
-            <button
-              onClick={handleSubmit(updateUser)}
-              className="bg-black rounded-full text-white py-1 px-4"
-            >
-              Update
-            </button>
-          )}
+          </div>
+          <div className="border-t p-2 flex justify-end">
+            {loading ? (
+              <button
+                disabled
+                className="bg-black rounded-full text-white py-1 px-4"
+              >
+                <ThreeDots color="white" height={14} width={18} />
+              </button>
+            ) : (
+              <button
+                onClick={handleSubmit(updateUser)}
+                className="bg-black rounded-full text-white py-1 px-4"
+              >
+                Update
+              </button>
+            )}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </form>
   );
 };
 
