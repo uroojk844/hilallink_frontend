@@ -23,7 +23,7 @@ const EditProfile = () => {
   },[])
 
   const updateUser = (d) => {
-    const userRef = doc(database, "user", localStorage.getItem("user"));
+    const userRef = doc(database, "users", localStorage.getItem("user"));
     updateDoc(userRef, {
       name: d.name,
       username: d.username,
