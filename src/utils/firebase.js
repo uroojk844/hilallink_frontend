@@ -2,6 +2,7 @@
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -11,6 +12,7 @@ const firebaseConfig = {
   storageBucket: "hilallink-9dfb4.appspot.com",
   messagingSenderId: "66036106918",
   appId: "1:66036106918:web:3ad2ed733081b1d3375667",
+  storageBucket:"gs://hilallink-9dfb4.appspot.com"
 };
 
 // Initialize Firebase
@@ -18,5 +20,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 const database = getFirestore(app);
+const storage = getStorage(app);
 
-export { auth, provider, database };
+export { auth, provider, database, storage };
