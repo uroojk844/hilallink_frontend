@@ -9,6 +9,7 @@ import { database } from "@/utils/firebase";
 import { fetchUsers } from "@/redux/userSlice";
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import categories from "@/utils/userCategories";
 const EditProfile = () => {
   const userData = useSelector((state) => state.userSlice.user);
   const { register, handleSubmit, setValue } = useForm();
@@ -37,8 +38,9 @@ const EditProfile = () => {
       dob: d.dob,
       gender: d.gender,
       website: d.website,
+      accountType: d.privacy,
     }).then(() => {
-      setLoading(false)
+      setLoading(false);
       dispatch(hideEdit());
       dispatch(fetchUsers());
     });
@@ -103,11 +105,17 @@ const EditProfile = () => {
               </div>
               <div className="mb-4">
                 <div className="text-xs text-gray-500">Category</div>
-                <input
-                  type="text"
-                  className="text-sm border-b w-full border-black py-2"
+                <select
                   {...register("category")}
-                />
+                  className="text-sm border-b w-full border-black py-2"
+                >
+                  {
+                    categories.map((item, index) => {
+                      return <option key={index} value={item}>{item}</option>
+                    })
+                  }
+                </select>
+                
               </div>
               <div className="mb-4">
                 <div className="text-xs text-gray-500">Website</div>
@@ -132,6 +140,14 @@ const EditProfile = () => {
                   className="text-sm border-b w-full border-black py-2"
                   {...register("dob")}
                 />
+              </div>
+              <div className="mb-4">
+                <div className="text-xs text-gray-500">Account Privacy</div>
+                <select {...register("privacy")} className="text-sm border-b w-full border-black py-2">
+                  <option value="Public">Public</option>
+                  <option value="Private">Private</option>
+                </select>
+    
               </div>
               <div className="text-xs text-gray-500">Gender</div>
               <div className="mb-4">

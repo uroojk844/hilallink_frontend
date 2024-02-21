@@ -1,6 +1,10 @@
 "use client";
 import PostCard from "@/components/Home/PostCard";
 import ProfileActions from "@/components/Profile/ProfileActions";
+import { database } from "@/utils/firebase";
+import { doc, getDoc } from "firebase/firestore";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import {
   BsBell,
@@ -12,16 +16,27 @@ import {
   BsPersonPlusFill,
   BsThreeDotsVertical,
 } from "react-icons/bs";
+import { FaUserLock } from "react-icons/fa";
 
 const Profile = () => {
   const [actions, setActions] = useState(false);
   const menu = ["All", "Photos", "Clips"];
   const [current, setCurrent] = useState("All");
+  const [userData, setUserData] = useState({});
 
   const menuRef = useRef();
   const buttonRef = useRef();
+  const { id } = useParams();
+
+  async function getUserData() {
+    const userRef = doc(database, "users", id);
+    const userData = await getDoc(userRef);
+    setUserData(userData.data());
+  }
 
   useEffect(() => {
+    getUserData();
+
     document.addEventListener("click", (e) => {
       if (
         buttonRef.current &&
@@ -43,14 +58,14 @@ const Profile = () => {
       <div className="medium">
         <div className="bg-white sm:rounded-md overflow-hidden">
           <img
-            src="https://picsum.photos/1200"
+            src={userData?.coverPhoto || "/bg.png"}
             className="h-[160px] object-cover w-full"
             alt=""
           />
           <section className="grid grid-cols-3 max-sm:grid-cols-2 bg-white py-3 px-3">
             <div className="relative">
               <img
-                src="https://picsum.photos/400"
+                src={userData?.profilePhoto || "/avtar.jpg"}
                 className="h-36 w-36 absolute -bottom-2 left-2 rounded-full border-4 border-white  max-sm:h-28 max-sm:w-28 max-sm:left-0"
                 alt=""
               />
@@ -87,28 +102,36 @@ const Profile = () => {
             </div>
           </section>
           <section className="p-5 bg-gray-100">
-            <div className="text-lg font-bold">Dr. Alama Hussain Madani</div>
-            <div className="text-gray-500 text-sm">@DrMadani</div>
+            <div className="text-lg font-bold">{userData?.name}</div>
+            <div className="text-gray-500 text-sm">@{userData?.username}</div>
             <div className="text-sm mt-4 max-sm:text-xs max-sm:mt-3">
-              Official account of Dr. Alama Hussain Madani. Nurturing hearts and
-              minds in the light of Quranic wisdom since 1980. Embracing
-              knowledge, faith, and community. 📖🌟 #MadarsaHanfiya
+              {userData?.bio}
             </div>
 
-            <div className="grid grid-cols-4 max-sm:grid-cols-2 mt-4 gap-5 text-xs max-sm:mt-4">
+            <div className="flex justify-between whitespace-nowrap max-sm:grid-cols-2 mt-4 gap-5 text-xs max-sm:mt-4">
+              {userData?.category && (
+                <div className="flex items-center gap-1 text-gray-500">
+                  <BsGridFill />
+                  {userData?.category}
+                </div>
+              )}
+              {userData?.location && (
+                <div className="flex items-center gap-1 text-gray-500">
+                  <BsGeoAltFill /> {userData?.location}
+                </div>
+              )}
               <div className="flex items-center gap-1 text-gray-500">
-                <BsGridFill />
-                Religious institution
+                <BsClockHistory /> {userData?.dateJoined}
               </div>
-              <div className="flex items-center gap-1 text-gray-500">
-                <BsGeoAltFill /> Lucknow, India
-              </div>
-              <div className="flex items-center gap-1 text-gray-500">
-                <BsClockHistory /> Joined 11-2-2023
-              </div>
-              <div className="flex items-center gap-1 text-gray-500">
-                <BsBoxArrowUpRight /> www.mhzq.in
-              </div>
+              {userData?.website && (
+                <a
+                  target="_blank"
+                  href={userData?.website}
+                  className="truncate flex items-center gap-1 text-gray-500"
+                >
+                  <BsBoxArrowUpRight /> {userData?.website}
+                </a>
+              )}
             </div>
           </section>
           <section className="bg-gray-100 max-sm:flex gap-4 px-4 pb-4 hidden ">
@@ -125,28 +148,36 @@ const Profile = () => {
               Follow
             </button>
           </section>
-          <section className="flex border-t bg-gray-100">
-            {menu.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  onClick={() => setCurrent(item)}
-                  className={`cursor-pointer hover:bg-gray-200 text-sm py-3 px-4 ${
-                    item == current && "border-b-4 border-primary"
-                  } max-sm:text-xs`}
-                >
-                  {item}
-                </div>
-              );
+          {userData?.accountType == "Public" && (
+            <section className="flex border-t bg-gray-100">
+              {menu.map((item, index) => {
+                return (
+                  <div
+                    key={index}
+                    onClick={() => setCurrent(item)}
+                    className={`cursor-pointer hover:bg-gray-200 text-sm py-3 px-4 ${
+                      item == current && "border-b-4 border-primary"
+                    } max-sm:text-xs`}
+                  >
+                    {item}
+                  </div>
+                );
+              })}
+            </section>
+          )}
+        </div>
+        {userData?.accountType == "Public" ? (
+          <div>
+            {"abcd".split("").map((item, index) => {
+              return <PostCard index={index} key={index} />;
             })}
-          </section>
-        </div>
-
-        <div>
-          {"abcd".split("").map((item, index) => {
-            return <PostCard index={index} key={index} />;
-          })}
-        </div>
+          </div>
+        ) : (
+          <div className="bg-gray-100 sm:rounded-md sm:mt-2 grid gap-4 place-items-center text-gray-400 text-center py-12">
+            <FaUserLock size={48} />
+            This account is private. <br /> Follow to see their photos and videos.
+          </div>
+        )}
       </div>
     </>
   );
