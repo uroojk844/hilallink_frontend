@@ -1,17 +1,12 @@
 "use client";
 import Image from "next/image";
 import PostCard from "../../components/Home/PostCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CreatePost from "@/components/Home/CreatePost";
 import NavBar from "@/components/Navbar";
-import { addUser } from "@/utils/db_func";
 
 const HomePage = () => {
   const [create, setCreate] = useState(false);
-  useEffect(() => {
-    addUser({ email: "uroojk844" });
-  }, []);
-
   return (
     <>
       <NavBar />

@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
       <body className={`grid grid-row-max-auto ${inter.className}`}>
         <NextTopLoader showSpinner={false} color="dodgerblue" height={5} />
         <main className="">
-          <Provider store={store}>{children}</Provider>
+          <Provider store={store} >{children}</Provider>
         </main>
       </body>
     </html>

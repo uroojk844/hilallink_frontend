@@ -11,10 +11,12 @@ import Link from "next/link";
 
 const ProfileButton = dynamic(() => import("./Navbar/ProfileButton"));
 import NotificationsButton from "./Navbar/NotificationsButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import ForgotPassword from "./Auth/ForgotPassword";
+import { fetchUsers } from "@/redux/userSlice";
 const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
 const SwicthProfile = dynamic(() => import("./Navbar/SwicthProfile"));
 const Login = dynamic(() => import("@/components/Auth/Login"));
@@ -26,8 +28,20 @@ const NavBar = () => {
     (state) => state.togglesSlice.switchProfile
   );
   const auth = useSelector((state) => state.togglesSlice.auth);
+  const [current, setCurrent] = useState("login");
+  const dispatch = useDispatch()
 
-  const [login, setLogin] = useState(true);
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      dispatch(fetchUsers())
+    }
+  },[])
+
+  const menu = {
+    login: <Login controller={setCurrent} />,
+    signup: <Signup controller={setCurrent} />,
+    forgot: <ForgotPassword controller={setCurrent} />,
+  };
 
   return (
     <>
@@ -85,11 +99,7 @@ const NavBar = () => {
       {editProfile && <EditProfile />}
       {auth && (
         <div className="inset-0 fixed glass z-50 grid place-items-center">
-          {login ? (
-            <Login controller={setLogin} />
-          ) : (
-            <Signup controller={setLogin} />
-          )}
+          {menu[current]}
         </div>
       )}
     </>
