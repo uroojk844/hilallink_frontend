@@ -44,8 +44,8 @@ const GoogleLoginButton = () => {
           premium: false,
           accountType: "Public",
         };
-        localStorage.setItem("user", user.uid);
         addUser(data).then((added) => {
+          localStorage.setItem("user", user.uid);
           toast.success("Logged in successfully!");
           dispatch(hideAuth());
           dispatch(fetchUsers());

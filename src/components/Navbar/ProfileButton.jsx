@@ -12,7 +12,7 @@ const ProfileButton = () => {
     var user = localStorage.getItem("user");
   }
   const data = useSelector(state => state.userSlice.user)
-  console.log(data)
+
   useEffect(() => {
     document.addEventListener("click", (e) => {
       if (
@@ -29,10 +29,10 @@ const ProfileButton = () => {
     };
   }, []);
   return (
-    <div className="relative z-40">
+    <div className="sm:relative z-40">
       <img
         ref={imageRef}
-        src={data.profilePhoto || "/avtar.jpg"}
+        src={data?.profilePhoto || "/avtar.jpg"}
         alt="logo"
         className="w-8 aspect-square rounded-full cursor-pointer"
         onClick={() => (user ? setMenu(!menu) : dispatch(showAuth()))}

@@ -1,6 +1,5 @@
 "use client";
 import PostCard from "@/components/Home/PostCard";
-import NavBarBack from "@/components/NavBarBack";
 import ProfileActions from "@/components/Profile/ProfileActions";
 import { showEdit } from "@/redux/togglesSlice";
 import { useEffect, useRef, useState } from "react";
@@ -20,8 +19,8 @@ const Profile = () => {
   const [actions, setActions] = useState(false);
   const menu = ["All", "Photos", "Clips"];
   const [current, setCurrent] = useState("All");
-  const dispatch = useDispatch()
-    
+  const dispatch = useDispatch();
+
   const menuRef = useRef();
   const buttonRef = useRef();
 
@@ -49,7 +48,7 @@ const Profile = () => {
       <div className="medium">
         <div className="bg-white sm:rounded-md overflow-hidden">
           <img
-            src="https://picsum.photos/1200"
+            src={userData.coverPhoto || "/bg.png"}
             className="h-[160px] object-cover w-full"
             alt=""
           />
@@ -81,7 +80,10 @@ const Profile = () => {
                 {actions && <ProfileActions refProp={menuRef} />}
               </div>
 
-              <button onClick={()=>dispatch(showEdit())} className="bg-black text-white flex self-start items-center text-sm py-1.5 gap-2 px-3 rounded-full">
+              <button
+                onClick={() => dispatch(showEdit())}
+                className="bg-black text-white flex self-start items-center text-sm py-1.5 gap-2 px-3 rounded-full"
+              >
                 <BsPen />
                 Edit Profile
               </button>
@@ -91,25 +93,30 @@ const Profile = () => {
             <div className="text-lg font-bold">{userData.name}</div>
             <div className="text-gray-500 text-sm">@{userData.username}</div>
             <div className="text-sm mt-4 max-sm:text-xs max-sm:mt-3">
-              Official account of Dr. Alama Hussain Madani. Nurturing hearts and
-              minds in the light of Quranic wisdom since 1980. Embracing
-              knowledge, faith, and community. 📖🌟 #MadarsaHanfiya
+              {userData.bio}
             </div>
 
             <div className="grid grid-cols-4 max-sm:grid-cols-2 mt-4 gap-5 text-xs max-sm:mt-4">
+              {userData.category && (
+                <div className="flex items-center gap-1 text-gray-500">
+                  <BsGridFill />
+                  {userData.category}
+                </div>
+              )}
+
+              {userData.location && (
+                <div className="flex items-center gap-1 text-gray-500">
+                  <BsGeoAltFill /> {userData.location}
+                </div>
+              )}
               <div className="flex items-center gap-1 text-gray-500">
-                <BsGridFill />
-                Religious institution
+                <BsClockHistory /> Joined {userData.dateJoined}
               </div>
-              <div className="flex items-center gap-1 text-gray-500">
-                <BsGeoAltFill /> Lucknow, India
-              </div>
-              <div className="flex items-center gap-1 text-gray-500">
-                <BsClockHistory /> Joined 11-2-2023
-              </div>
-              <div className="flex items-center gap-1 text-gray-500">
-                <BsBoxArrowUpRight /> www.mhzq.in
-              </div>
+              {userData.website && (
+                <div className="flex items-center gap-1 text-gray-500">
+                  <BsBoxArrowUpRight /> {userData.website}
+                </div>
+              )}
             </div>
           </section>
           <section className="bg-gray-100 max-sm:flex gap-4 px-4 pb-4 hidden ">

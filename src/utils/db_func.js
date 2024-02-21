@@ -5,6 +5,7 @@ import {
   doc,
   getDocs,
   query,
+  setDoc,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -19,7 +20,7 @@ export async function addUser(data) {
     console.log("User data exists");
     return;
   }
-  addDoc(userRef, data);
+  setDoc(doc(database,"user",data.uid),data);
   console.log("User added");
 }
 
