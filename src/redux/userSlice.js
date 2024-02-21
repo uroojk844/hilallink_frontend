@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-    const docref = doc(database, "user", localStorage.getItem('user'))
+    const docref = doc(database, "users", localStorage.getItem('user'))
     const docsnap = await getDoc(docref)
     return docsnap.data()
 });
