@@ -7,6 +7,10 @@ import Clips from "@/components/Search/Clips";
 import "./search.css";
 import People from "@/components/Search/People";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { database } from "@/utils/firebase";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const ShortsPage = () => {
   const menu = {
@@ -18,14 +22,39 @@ const ShortsPage = () => {
 
   const [current, setCurrent] = useState("All");
 
+  const [items, setItems] = useState([]);
+
+  const searchUsers = async (k, r) => {
+    const q = query(
+      collection(database, "users"),
+      where("name", ">=", k),
+      where("name", "<=", k + "\uf8ff")
+    );
+    const users = await getDocs(q);
+    setItems(users.docs?.map((user) => user.data()));
+  };
+
+  const router = useRouter();
+
   return (
     <section className="small">
       <ReactSearchAutocomplete
-        formatResult={() => {}}
+        formatResult={(item) => {
+          return (
+            <div>
+              <div className="font-[600]">{item?.name}</div>
+              <div className="text-xs">{item?.username}</div>
+            </div>
+          );
+        }}
         placeholder="Search for people or post"
-        items={[]}
-        className="lg:hidden search z-30 sm:mb-2"
-        onSelect={() => {}}
+        items={items}
+        className="search z-30 sm:mb-2"
+        onSelect={(item) => {
+          router.push("/profile/" + item.uid);
+        }}
+        onSearch={searchUsers}
+        inputDebounce={100}
       />
 
       <section className="z-20 flex bg-white sm:rounded-md overflow-hidden">

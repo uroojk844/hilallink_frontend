@@ -75,7 +75,7 @@ const NavBar = () => {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <div className="w-56 pt-2.5">
+            {/* <div className="w-56 pt-2.5">
               <ReactSearchAutocomplete
                 formatResult={() => {}}
                 placeholder="Search"
@@ -83,7 +83,7 @@ const NavBar = () => {
                 className="max-sm:hidden search z-30"
                 onSelect={() => {}}
               />
-            </div>
+            </div> */}
             <NotificationsButton />
             <div className="max-sm:hidden">
               <ProfileButton />

@@ -12,16 +12,16 @@ const ForgotPassword = ({ controller }) => {
 
   function sendEmail() {
     if (email == "") return toast.error("Please enter an email address");
-    setLoading(true)
+    setLoading(true);
     const auth = getAuth();
     sendPasswordResetEmail(auth, email)
       .then(() => {
         setSent(true);
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
-        setLoading(false)
+        setLoading(false);
         toast.error("Something went wrong, Please try again later");
       });
   }
@@ -29,7 +29,7 @@ const ForgotPassword = ({ controller }) => {
   return (
     <div className="w-[min(360px,96%)] relative bg-white px-4 py-10 rounded-md">
       {sent ? (
-        <OTPSent/>
+        <OTPSent />
       ) : (
         <>
           <div className="text-xl font-bold">Reset your password</div>
@@ -65,7 +65,7 @@ const ForgotPassword = ({ controller }) => {
           >
             <BsArrowLeft /> Go back
           </div>
-        </> 
+        </>
       )}
     </div>
   );
