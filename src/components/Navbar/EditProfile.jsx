@@ -18,9 +18,9 @@ const EditProfile = () => {
   const [loading, setLoading] = useState(false);
   const [profileImage, setProfileImage] = useState(userData.profilePhoto);
   const handleProfileImage = (e) => {
-    const image = e.target.files[0]
-    const uri = URL.createObjectURL(image)
-    setProfileImage(uri)
+    const image = e.target.files[0];
+    const uri = URL.createObjectURL(image);
+    setProfileImage(uri);
   };
 
   useEffect(() => {
@@ -33,10 +33,9 @@ const EditProfile = () => {
   }, []);
 
   const updateUser = (d) => {
-
     setLoading(true);
     const userRef = doc(database, "users", localStorage.getItem("user"));
-    
+
     updateDoc(userRef, {
       name: d.name,
       username: d.username,
@@ -89,7 +88,12 @@ const EditProfile = () => {
               </div>
             </label>
             {/* input for profile photo */}
-            <input type="file" onChange={(e)=>handleProfileImage(e)} id="profilePhoto" hidden />
+            <input
+              type="file"
+              onChange={(e) => handleProfileImage(e)}
+              id="profilePhoto"
+              hidden
+            />
 
             <div className="mt-8 h-[280px] overflow-scroll">
               <div className="mb-4">
@@ -119,6 +123,7 @@ const EditProfile = () => {
               <div className="mb-4">
                 <div className="text-xs text-gray-500">Category</div>
                 <select
+                  defaultValue={userData.category}
                   {...register("category")}
                   className="text-sm border-b w-full border-black py-2"
                 >
@@ -158,6 +163,7 @@ const EditProfile = () => {
               <div className="mb-4">
                 <div className="text-xs text-gray-500">Account Privacy</div>
                 <select
+                  defaultValue={userData.accountType}
                   {...register("privacy")}
                   className="text-sm border-b w-full border-black py-2"
                 >
@@ -188,7 +194,7 @@ const EditProfile = () => {
                 disabled
                 className="bg-black rounded-full text-white py-1 px-4"
               >
-                <ThreeDots color="white" height={14} width={18} />
+                <ThreeDots color="white" width={24} height={24} />
               </button>
             ) : (
               <button
@@ -198,6 +204,7 @@ const EditProfile = () => {
                 Update
               </button>
             )}
+        
           </div>
         </div>
       </section>
