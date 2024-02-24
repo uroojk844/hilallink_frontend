@@ -6,7 +6,7 @@ const BlockedAccounts = () => {
       <div className="font-bold border-b text-lg p-3">Blocked accounts</div>
       {"abcdefghijklmnopq".split("").map((item, index) => {
         return (
-          <div className="p-3 flex items-center justify-between">
+          <div key={index} className="p-3 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <img src="/avtar.jpg" className="h-10 w-10 rounded-full" alt="" />
               <div>
