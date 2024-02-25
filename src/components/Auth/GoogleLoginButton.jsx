@@ -25,31 +25,39 @@ const GoogleLoginButton = () => {
     signInWithPopup(auth, provider)
       .then((credentials) => {
         const user = credentials.user;
-        console.log(user);
-        const data = {
-          name:user.displayName,
-          uid: user.uid,
-          email: user.email,
-          username: generateFromEmail(user.email, 4),
-          dob: "",
-          phone: user.phoneNumber,
-          gender: "",
-          category: "",
-          dateJoined: formattedToday,
-          website: "",
-          location: "",
-          bio: "",
-          profilePhoto: user.photoURL,
-          coverPhoto: "",
-          premium: false,
-          accountType: "Public",
-        };
-        addUser(data).then((added) => {
-          localStorage.setItem("user", user.uid);
-          toast.success("Logged in successfully!");
-          dispatch(hideAuth());
-          dispatch(fetchUsers());
-        });
+        // const data = {
+        //   name: user.displayName,
+        //   email: user.email,
+        //   username: generateFromEmail(user.email),
+        //   uid: user.uid,
+        // }
+        // fetch("/api/")
+
+        // console.log(user);
+        // const data = {
+        //   name:user.displayName,
+        //   uid: user.uid,
+        //   email: user.email,
+        //   username: generateFromEmail(user.email, 4),
+        //   dob: "",
+        //   phone: user.phoneNumber,
+        //   gender: "",
+        //   category: "",
+        //   dateJoined: formattedToday,
+        //   website: "",
+        //   location: "",
+        //   bio: "",
+        //   profilePhoto: user.photoURL,
+        //   coverPhoto: "",
+        //   premium: false,
+        //   accountType: "Public",
+        // };
+        // addUser(data).then((added) => {
+        //   localStorage.setItem("user", user.uid);
+        //   toast.success("Logged in successfully!");
+        //   dispatch(hideAuth());
+        //   dispatch(fetchUsers());
+        // });
       })
       .catch((err) => {
         console.log(err);
