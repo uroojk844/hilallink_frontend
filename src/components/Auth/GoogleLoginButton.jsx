@@ -25,12 +25,12 @@ const GoogleLoginButton = () => {
     signInWithPopup(auth, provider)
       .then((credentials) => {
         const user = credentials.user;
-        const data = {
-          name: user.displayName,
-          email: user.email,
-          username: generateFromEmail(user.email),
-          uid: user.uid,
-        }
+        // const data = {
+        //   name: user.displayName,
+        //   email: user.email,
+        //   username: generateFromEmail(user.email),
+        //   uid: user.uid,
+        // }
         // fetch("/api/")
 
         // console.log(user);
