@@ -3,7 +3,6 @@ import { userModel } from "@/mongo/models/user_model";
 import { NextResponse } from "next/server";
 
 connectDB();
-
 // add user
 export async function POST(req) {
   const data = await req.json();
