@@ -1,5 +1,6 @@
 import { connectDB } from "@/mongo/database";
 import { userModel } from "@/mongo/models/user_model";
+import { NextResponse } from "next/server";
 connectDB();
 
 // get user by id
