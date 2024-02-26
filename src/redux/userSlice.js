@@ -1,6 +1,3 @@
-import { database } from "@/utils/firebase";
-import { doc, getDoc } from "firebase/firestore";
-
 const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 const initialState = {
@@ -10,9 +7,15 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-    const docref = doc(database, "users", localStorage.getItem('user'))
-    const docsnap = await getDoc(docref)
-    return docsnap.data()
+  const response = await fetch("/api/my", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ uid: "mZbJkF7NfbNM30UPP1qFQQ4cFav1" }),
+  });
+  const data = await response.json();
+  return data
 });
 
 const userSlice = createSlice({
@@ -34,11 +37,11 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchUsers.rejected, (state, action) => {
       state.loading = false;
-      state.user = {}
+      state.user = {};
       state.error = action.error.message;
     });
   },
 });
 
 export default userSlice.reducer;
-export const {removeUser} = userSlice.actions
+export const { removeUser } = userSlice.actions;

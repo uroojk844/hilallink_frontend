@@ -4,9 +4,11 @@ import PostCard from "../../components/Home/PostCard";
 import { useEffect, useState } from "react";
 import CreatePost from "@/components/Home/CreatePost";
 import NavBar from "@/components/Navbar";
+import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const [create, setCreate] = useState(false);
+  const userData = useSelector(state=>state.userSlice.user)
   return (
     <>
       <NavBar />
@@ -16,7 +18,7 @@ const HomePage = () => {
           className="max-sm:hidden flex bg-white rounded-lg items-center gap-2 py-3 px-2"
         >
           <Image
-            src={"https://picsum.photos/400"}
+            src={userData?.profile_url||"https://picsum.photos/400"}
             className="rounded-full"
             width={32}
             height={32}

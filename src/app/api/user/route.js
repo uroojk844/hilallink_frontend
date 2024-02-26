@@ -6,19 +6,19 @@ connectDB();
 // add user
 export async function POST(req) {
   const data = await req.json();
-
   return userModel
     .findOne({ email: data.email })
     .then((found) => {
-      if (found != null) return NextResponse.json({error:"User already exists"});
+      if (found != null)
+        return NextResponse.json({ error: "User already exists" });
       else {
         const user = new userModel(data);
         return user
           .save()
           .then((saved) => {
-            return NextResponse.json(saved);
+            return NextResponse.json("User added");
           })
-          .catch((err) => NextResponse.json("Already exist"));
+          .catch((err) => NextResponse.json(err));
       }
     })
     .catch((err) => NextResponse.json(err));
