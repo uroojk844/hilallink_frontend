@@ -41,9 +41,9 @@ const NavBar = () => {
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
-      dispatch(fetchUsers())
+      dispatch(fetchUsers());
     }
-  },[])
+  }, []);
 
   const menu = {
     login: <Login controller={setCurrent} />,
@@ -54,7 +54,7 @@ const NavBar = () => {
   const activeTab = usePathname();
 
   return (
-    <>
+    <div>
       <section className="sticky top-0 bg-white z-40 max-sm:border-b">
         <nav className="relative mx-auto flex items-center justify-between px-4 h-12">
           <div className="font-bold">HilalLink</div>
@@ -102,9 +102,6 @@ const NavBar = () => {
             >
               <FaBars size={22} />
             </Link>
-            <div className="sm:hidden">
-              <ProfileButton />
-            </div>
           </div>
           <div className="flex items-center gap-4">
             {/* <div className="w-56 pt-2.5">
@@ -126,6 +123,8 @@ const NavBar = () => {
             <Link href="/chats" className="max-sm:hidden">
               <FaBars size={22} className="text-gray-400" />
             </Link>
+
+            <SideBar />
           </div>
         </nav>
       </section>
