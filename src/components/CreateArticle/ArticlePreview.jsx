@@ -13,12 +13,7 @@ const ArticlePreview = ({controller}) => {
           <div className="text-md font-bold">Mohd Belal Naim</div>
         </section>
         <section className="p-3">
-          <input
-            type="text"
-            className="text-lg w-full"
-            placeholder="Write a caption about this article"
-          />
-          <div className="overflow-hidden rounded-md mt-3 bg-blue-100">
+          <div className="overflow-hidden rounded-md bg-blue-100">
             <img
               src="https://picsum.photos/400?1"
               className="w-full h-80 object-cover"

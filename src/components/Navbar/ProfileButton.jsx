@@ -32,7 +32,7 @@ const ProfileButton = () => {
     <div className="sm:relative z-40">
       <img
         ref={imageRef}
-        src={data?.profilePhoto || "/avtar.jpg"}
+        src={data?.profile_url || "/avtar.jpg"}
         alt="logo"
         className="w-8 aspect-square rounded-full cursor-pointer"
         onClick={() => (user ? setMenu(!menu) : dispatch(showAuth()))}

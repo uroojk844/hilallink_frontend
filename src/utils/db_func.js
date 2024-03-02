@@ -13,12 +13,16 @@ import {
 const userRef = collection(database, "users");
 
 export async function addUser(data) {
-  const { email } = data;
-  const q = query(userRef, where("email", "==", email));
-  const user = await getDocs(q);
-  if (user.size) return;
-  addDoc(userRef, data);
-  setDoc(doc(database, "users", data.uid), data);
+  fetch("/api/user", {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(data),
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
 }
 
 export function updateUser(id, data) {

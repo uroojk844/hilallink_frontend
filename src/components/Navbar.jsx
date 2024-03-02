@@ -13,7 +13,7 @@ const ProfileButton = dynamic(() => import("./Navbar/ProfileButton"));
 import NotificationsButton from "./Navbar/NotificationsButton";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
+
 import { useEffect, useState } from "react";
 import ForgotPassword from "./Auth/ForgotPassword";
 import { fetchUsers } from "@/redux/userSlice";
@@ -27,15 +27,16 @@ const NavBar = () => {
   const switchAccount = useSelector(
     (state) => state.togglesSlice.switchProfile
   );
+  const loadingUser = useSelector((state) => state.userSlice.loading);
   const auth = useSelector((state) => state.togglesSlice.auth);
   const [current, setCurrent] = useState("login");
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
-      dispatch(fetchUsers())
+      dispatch(fetchUsers());
     }
-  },[])
+  }, []);
 
   const menu = {
     login: <Login controller={setCurrent} />,
@@ -44,8 +45,8 @@ const NavBar = () => {
   };
 
   return (
-    <>
-      <section className="sticky top-0 bg-white z-40 max-sm:border-b">
+    <div className="bg-white sticky top-0 z-40">
+      <section className="container mx-auto  max-sm:border-b">
         <nav className="relative mx-auto flex items-center justify-between px-4 h-12">
           <div className="font-bold">HilalLink</div>
           <div className="z-40 absolute left-1/2 -translate-x-1/2 flex items-center justify-between lg:max-w-md text-xl w-full navbar">
@@ -71,19 +72,12 @@ const NavBar = () => {
               <BsCompass />
             </Link>
             <div className="sm:hidden">
-              <ProfileButton />
+              {
+                loadingUser ?<ProfileButton />:"Loading"
+              }
             </div>
           </div>
           <div className="flex items-center gap-4">
-            {/* <div className="w-56 pt-2.5">
-              <ReactSearchAutocomplete
-                formatResult={() => {}}
-                placeholder="Search"
-                items={[]}
-                className="max-sm:hidden search z-30"
-                onSelect={() => {}}
-              />
-            </div> */}
             <NotificationsButton />
             <div className="max-sm:hidden">
               <ProfileButton />
@@ -102,7 +96,7 @@ const NavBar = () => {
           {menu[current]}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

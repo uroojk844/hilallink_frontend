@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import toast from "react-hot-toast";
 import { ThreeDots } from "react-loader-spinner";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import VerificationSent from "./VerificationSent";
 import { generateFromEmail } from "unique-username-generator";
 import { addUser } from "@/utils/db_func";
@@ -25,40 +25,22 @@ const Signup = ({ controller }) => {
     url: "http://localhost:3000/",
     handleCodeInApp: true,
   };
-  const today = new Date();
-  const yyyy = today.getFullYear();
-  let mm = today.getMonth() + 1;
-  let dd = today.getDate();
-
-  if (dd < 10) dd = "0" + dd;
-  if (mm < 10) mm = "0" + mm;
-
-  const formattedToday = dd + "/" + mm + "/" + yyyy;
 
   const signup = (data) => {
     setLoading(true);
     const auth = getAuth();
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((credential) => {
-        setSent(true);
         const user = credential.user;
-        data.uid = user.uid;
-        data.username = generateFromEmail(data.email, 4);
-        data.dob = "";
-        data.phone = user.phoneNumber;
-        data.gender = "";
-        data.category = "";
-        data.dateJoined = formattedToday;
-        data.website = "";
-        data.location = "";
-        data.bio = "";
-        data.profilePhoto = user.photoURL;
-        data.coverPhoto = "";
-        data.premium = false;
-        data.accountType = "Public";
-
-        addUser(data);
-
+        console.log(user);
+        const userData = {
+          name: data.name,
+          email: data.email,
+          username: generateFromEmail(data.email,4),
+          uid: user.uid,
+          profile_url: user.photoURL,
+        };
+        addUser(userData);
         sendEmailVerification(user).then(() => {
           console.log("sent");
           setSent(true);
