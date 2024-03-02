@@ -1,29 +1,21 @@
 "use client";
-import { GoHome, GoHomeFill } from "react-icons/go";
+import { GoHomeFill } from "react-icons/go";
 import {
-  BsBell,
   BsBellFill,
   BsChatDots,
   BsChatDotsFill,
-  BsCompass,
-  BsFilm,
   BsPlusCircle,
   BsSearch,
 } from "react-icons/bs";
-import { LiaMosqueSolid } from "react-icons/lia";
 import Link from "next/link";
-
-const ProfileButton = dynamic(() => import("./Navbar/ProfileButton"));
-import NotificationsButton from "./Navbar/NotificationsButton";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import dynamic from "next/dynamic";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 import ForgotPassword from "./Auth/ForgotPassword";
-import { fetchUsers } from "@/redux/userSlice";
 import { FaBars, FaMosque } from "react-icons/fa";
 import { usePathname } from "next/navigation";
-import SideBar from "./SideBar";
+const SideBar = dynamic(() => import("./SideBar"));
 const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
 const SwicthProfile = dynamic(() => import("./Navbar/SwicthProfile"));
 const Login = dynamic(() => import("@/components/Auth/Login"));
@@ -34,15 +26,9 @@ const NavBar = () => {
   const switchAccount = useSelector(
     (state) => state.togglesSlice.switchProfile
   );
+
   const auth = useSelector((state) => state.togglesSlice.auth);
   const [current, setCurrent] = useState("login");
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   if (localStorage.getItem("user")) {
-  //     dispatch(fetchUsers());
-  //   }
-  // }, []);
 
   const menu = {
     login: <Login controller={setCurrent} />,
@@ -53,9 +39,9 @@ const NavBar = () => {
   const activeTab = usePathname();
 
   return (
-    <>
-      <section className="sticky top-0 bg-white z-40 max-sm:border-b">
-        <nav className="container relative mx-auto flex items-center justify-between px-4 h-12">
+    <div className="bg-white sticky top-0 z-40">
+      <section className="container mx-auto  max-sm:border-b">
+        <nav className="relative mx-auto flex items-center justify-between px-4 h-12">
           <div className="font-bold">HilalLink</div>
           <div className="text-gray-400 z-40 absolute left-1/2 -translate-x-1/2 flex items-center justify-between lg:max-w-md text-xl w-full navbar">
             <Link href="/">
@@ -123,7 +109,7 @@ const NavBar = () => {
           {menu[current]}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

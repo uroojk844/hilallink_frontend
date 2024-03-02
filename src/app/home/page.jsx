@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import PostCard from "../../components/Home/PostCard";
 import { useState } from "react";
 import CreatePost from "@/components/CreatePost";
@@ -7,7 +6,6 @@ import NavBar from "@/components/Navbar";
 
 const HomePage = () => {
   const [create, setCreate] = useState(false);
-
   return (
     <>
       <NavBar />
@@ -15,23 +13,14 @@ const HomePage = () => {
       {create && <CreatePost hidePost={hideCreate} />}
 
       <div className="small">
-        <section
-          onClick={() => setCreate(true)}
-          className="max-sm:hidden flex bg-white rounded-lg items-center gap-2 py-3 px-2"
-        >
-          <Image
-            src={"https://picsum.photos/400"}
-            className="rounded-full"
-            width={32}
-            height={32}
-            alt="user"
-          />
-          <div className="bg-gray-100 text-xs py-2.5 px-4 cursor-pointer text-gray-00 rounded-full w-full">
-            Write here what you want to say
+        <section className="flex items-center gap-4 bg-white px-4 py-2">
+          <img src="/avtar.jpg" className="h-8 w-8 rounded-full" alt="" />
+          <div className="border-b w-full text-gray-500 border-gray-300 text-sm py-3">
+            Bismillah! What&apos;s on you mind?
           </div>
         </section>
         <section>
-          {"ab".split("").map((item, index) => {
+          {"abcd".split("").map((item, index) => {
             return <PostCard key={index} index={index} />;
           })}
         </section>

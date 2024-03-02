@@ -48,7 +48,30 @@ const ProfileMenu = ({ handleMenu, switchAc, menuRef }) => {
       >
         <section>
           <section className="shadow-md p-3 hover:bg-gray-100">
+<<<<<<< HEAD
             <UserCard userData={userData} />
+=======
+            <Link href="/my-profile">
+              {" "}
+              <div className="rounded-sm">
+                <div className="flex items-center gap-2">
+                  <img
+                    src={
+                      userData?.profile_url ||
+                      "/avtar.jpg"
+                    }
+                    className="h-10 w-10 rounded-full"
+                  />
+                  <div>
+                    <div className="text-sm">{userData?.name}</div>
+                    <div className="text-xs text-gray-500">
+                      @{userData?.username}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Link>
+>>>>>>> 6a330d03c0f59da176f5d6ff07800cfe322b869f
             <div
               onClick={() => dispatch(showSwitch())}
               className="cursor-pointer text-center text-sm bg-gray-200 py-2 rounded-md mt-3"
