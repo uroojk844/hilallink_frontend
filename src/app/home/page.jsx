@@ -1,14 +1,11 @@
 "use client";
-import Image from "next/image";
 import PostCard from "../../components/Home/PostCard";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CreatePost from "@/components/Home/CreatePost";
 import NavBar from "@/components/Navbar";
-import { useSelector } from "react-redux";
 
 const HomePage = () => {
   const [create, setCreate] = useState(false);
-  const userData = useSelector((state) => state.userSlice.user);
   return (
     <>
       <NavBar />
