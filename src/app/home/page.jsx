@@ -1,15 +1,19 @@
 "use client";
 import Image from "next/image";
 import PostCard from "../../components/Home/PostCard";
-import { useEffect, useState } from "react";
-import CreatePost from "@/components/Home/CreatePost";
+import { useState } from "react";
+import CreatePost from "@/components/CreatePost";
 import NavBar from "@/components/Navbar";
 
 const HomePage = () => {
   const [create, setCreate] = useState(false);
+
   return (
     <>
       <NavBar />
+
+      {create && <CreatePost hidePost={hideCreate} />}
+
       <div className="small">
         <section
           onClick={() => setCreate(true)}

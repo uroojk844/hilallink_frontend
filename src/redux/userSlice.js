@@ -5,14 +5,17 @@ const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 const initialState = {
   loading: false,
-  user: {},
+  user: {
+    name: "Urooj Khan",
+    username: "uroojk844",
+  },
   error: "",
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-    const docref = doc(database, "users", localStorage.getItem('user'))
-    const docsnap = await getDoc(docref)
-    return docsnap.data()
+  const docref = doc(database, "users", localStorage.getItem("user"));
+  const docsnap = await getDoc(docref);
+  return docsnap.data();
 });
 
 const userSlice = createSlice({
@@ -34,11 +37,11 @@ const userSlice = createSlice({
     });
     builder.addCase(fetchUsers.rejected, (state, action) => {
       state.loading = false;
-      state.user = {}
+      state.user = {};
       state.error = action.error.message;
     });
   },
 });
 
 export default userSlice.reducer;
-export const {removeUser} = userSlice.actions
+export const { removeUser } = userSlice.actions;
