@@ -1,6 +1,7 @@
 "use client";
 import NavBarBack from "@/components/NavBarBack";
 import NavBar from "@/components/Navbar";
+import SideBar from "@/components/SideBar";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
           )}
         </>
       )}
+
       {children}
     </>
   );

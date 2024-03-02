@@ -1,14 +1,18 @@
 "use client";
 import PostCard from "../../components/Home/PostCard";
 import { useState } from "react";
-import CreatePost from "@/components/Home/CreatePost";
+import CreatePost from "@/components/CreatePost";
 import NavBar from "@/components/Navbar";
 
 const HomePage = () => {
   const [create, setCreate] = useState(false);
+
   return (
     <>
       <NavBar />
+
+      {create && <CreatePost hidePost={hideCreate} />}
+
       <div className="small">
         <section className="flex items-center gap-4 bg-white px-4 py-2">
           <img src="/avtar.jpg" className="h-8 w-8 rounded-full" alt="" />

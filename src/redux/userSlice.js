@@ -2,7 +2,10 @@ const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
 
 const initialState = {
   loading: false,
-  user: {},
+  user: {
+    name: "Urooj Khan",
+    username: "uroojk844",
+  },
   error: "",
 };
 
@@ -16,6 +19,7 @@ export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
   });
   const data = await response.json();
   return data
+
 });
 
 const userSlice = createSlice({
