@@ -1,20 +1,13 @@
 "use client";
-import { GoHome, GoHomeFill } from "react-icons/go";
+import { GoHomeFill } from "react-icons/go";
 import {
-  BsBell,
   BsBellFill,
   BsChatDots,
   BsChatDotsFill,
-  BsCompass,
-  BsFilm,
   BsPlusCircle,
   BsSearch,
 } from "react-icons/bs";
-import { LiaMosqueSolid } from "react-icons/lia";
 import Link from "next/link";
-
-const ProfileButton = dynamic(() => import("./Navbar/ProfileButton"));
-import NotificationsButton from "./Navbar/NotificationsButton";
 import { useDispatch, useSelector } from "react-redux";
 import dynamic from "next/dynamic";
 
@@ -23,7 +16,9 @@ import ForgotPassword from "./Auth/ForgotPassword";
 import { fetchUsers } from "@/redux/userSlice";
 import { FaBars, FaMosque } from "react-icons/fa";
 import { usePathname } from "next/navigation";
-import SideBar from "./SideBar";
+
+import { fetchUsers } from "@/redux/userSlice";
+const SideBar = dynamic(() => import("./SideBar"));
 const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
 const SwicthProfile = dynamic(() => import("./Navbar/SwicthProfile"));
 const Login = dynamic(() => import("@/components/Auth/Login"));
@@ -34,10 +29,10 @@ const NavBar = () => {
   const switchAccount = useSelector(
     (state) => state.togglesSlice.switchProfile
   );
-  const loadingUser = useSelector((state) => state.userSlice.loading);
+
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.togglesSlice.auth);
   const [current, setCurrent] = useState("login");
-  const dispatch = useDispatch();
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -52,6 +47,12 @@ const NavBar = () => {
   };
 
   const activeTab = usePathname();
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      dispatch(fetchUsers());
+    }
+  }, []);
 
   return (
     <div>

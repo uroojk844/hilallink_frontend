@@ -8,7 +8,7 @@ const UserCard = () => {
       <div className="rounded-sm">
         <div className="flex items-center gap-2">
           <img
-            src={userData?.profilePhoto || "/avtar.jpg"}
+            src={userData?.profile_url || "/avtar.jpg"}
             className="h-10 w-10 rounded-full"
           />
           <div>

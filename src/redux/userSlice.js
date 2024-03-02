@@ -15,9 +15,9 @@ export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify({ uid: "mZbJkF7NfbNM30UPP1qFQQ4cFav1" }),
+    body: JSON.stringify({ uid: localStorage.getItem("user") }),
   });
-  const data = await response.json();
+  const data = await response.json()
   return data
 
 });

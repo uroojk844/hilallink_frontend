@@ -1,8 +1,6 @@
 "use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavBar from "../components/Navbar";
-import { usePathname } from "next/navigation";
 import NextTopLoader from "nextjs-toploader";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
