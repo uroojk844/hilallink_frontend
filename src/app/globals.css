@@ -83,7 +83,7 @@ body::-webkit-scrollbar{
 }
 
 body {
-  background-color: #efefef;
+  background-color: #f8f8f8;
     background-size: cover;
     background-attachment: fixed;
     min-height: 100vh;
@@ -190,11 +190,11 @@ nav .wrapper:first-child{
   }
 }
 
-@media (width > 600px){
+/* @media (width > 600px){
   body {
     background-image: url("/bg.png");
   }
-}
+} */
 
 /* search page input element */
 .search .wrapper:hover {

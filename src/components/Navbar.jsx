@@ -45,8 +45,8 @@ const NavBar = () => {
   };
 
   return (
-    <>
-      <section className="sticky top-0 bg-white z-40 max-sm:border-b">
+    <div className="bg-white sticky top-0 z-40">
+      <section className="container mx-auto  max-sm:border-b">
         <nav className="relative mx-auto flex items-center justify-between px-4 h-12">
           <div className="font-bold">HilalLink</div>
           <div className="z-40 absolute left-1/2 -translate-x-1/2 flex items-center justify-between lg:max-w-md text-xl w-full navbar">
@@ -96,7 +96,7 @@ const NavBar = () => {
           {menu[current]}
         </div>
       )}
-    </>
+    </div>
   );
 };
 

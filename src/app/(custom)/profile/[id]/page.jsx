@@ -1,185 +1,121 @@
-"use client";
+"use client"
 import PostCard from "@/components/Home/PostCard";
-import ProfileActions from "@/components/Profile/ProfileActions";
-import { database } from "@/utils/firebase";
-import { doc, getDoc } from "firebase/firestore";
-import Link from "next/link";
-import { useParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import {
-  BsBell,
+  BsArrowLeft,
   BsBoxArrowUpRight,
-  BsClockHistory,
-  BsEnvelope,
-  BsGeoAltFill,
-  BsGridFill,
-  BsPersonPlusFill,
+  BsGeoAlt,
+  BsShare,
   BsThreeDotsVertical,
 } from "react-icons/bs";
-import { FaUserLock } from "react-icons/fa";
-
+import { IoGrid } from "react-icons/io5";
+import { CiWarning } from "react-icons/ci";
+import { MdBlock } from "react-icons/md";
 const Profile = () => {
-  const [actions, setActions] = useState(false);
-  const menu = ["All", "Photos", "Clips"];
-  const [current, setCurrent] = useState("All");
-  const [userData, setUserData] = useState({});
-
-  const menuRef = useRef();
-  const buttonRef = useRef();
-  const { id } = useParams();
-
-  async function getUserData() {
-    const userRef = doc(database, "users", id);
-    const userData = await getDoc(userRef);
-    setUserData(userData.data());
-  }
-
-  useEffect(() => {
-    getUserData();
-
-    document.addEventListener("click", (e) => {
-      if (
-        buttonRef.current &&
-        !buttonRef.current.contains(e.target) &&
-        menuRef.current &&
-        !menuRef.current.contains(e.target)
-      ) {
-        setActions(false);
-      }
-    });
-
-    return () => {
-      document.addEventListener("click", (e) => {});
-    };
-  }, []);
-
+  const data = [
+    {
+      title: "Following",
+      value: 348,
+    },
+    {
+      title: "Followers",
+      value: "348K",
+    },
+    {
+      title: "Posts",
+      value: 468,
+    },
+    {
+      title: "Like",
+      value: "348K",
+    },
+  ];
+  const[actions,setActions] = useState(false)
   return (
-    <>
-      <div className="medium">
-        <div className="bg-white sm:rounded-md overflow-hidden">
-          <img
-            src={userData?.coverPhoto || "/bg.png"}
-            className="h-[160px] object-cover w-full"
-            alt=""
-          />
-          <section className="grid grid-cols-3 max-sm:grid-cols-2 bg-white py-3 px-3">
-            <div className="relative">
-              <img
-                src={userData?.profilePhoto || "/avtar.jpg"}
-                className="h-36 w-36 absolute -bottom-2 left-2 rounded-full border-4 border-white  max-sm:h-28 max-sm:w-28 max-sm:left-0"
-                alt=""
-              />
-            </div>
-            <div className="flex text-sm justify-between items-center relative -left-8 max-sm:gap-4">
-              <div className="text-center">
-                222 <span className="text-gray-500">Following</span>
-              </div>
-              <div className="text-center">
-                101K <span className="text-gray-500">Followers</span>
-              </div>
-            </div>
-            <div className="flex justify-end gap-2 max-sm:hidden">
-              <div className="relative">
-                <button
-                  ref={buttonRef}
-                  onClick={() => setActions(!actions)}
-                  className="bg-gray-100 flex self-start items-center text-sm gap-2 p-1.5 rounded-full"
-                >
-                  <BsThreeDotsVertical className="text-lg" />
-                </button>
-                {actions && <ProfileActions refProp={menuRef} />}
-              </div>
-              <button className="bg-gray-100 flex self-start items-center text-sm gap-2 p-1.5 rounded-full">
-                <BsEnvelope className="text-lg" />
-              </button>
-              <button className="bg-gray-100 flex self-start items-center text-sm gap-2 p-1.5 rounded-full">
-                <BsBell className="text-lg" />
-              </button>
-              <button className="bg-black text-white flex self-start items-center text-sm py-1.5 gap-2 px-3 rounded-full">
-                <BsPersonPlusFill />
-                Follow
-              </button>
-            </div>
-          </section>
-          <section className="p-5 bg-gray-100">
-            <div className="text-lg font-bold">{userData?.name}</div>
-            <div className="text-gray-500 text-sm">@{userData?.username}</div>
-            <div className="text-sm mt-4 max-sm:text-xs max-sm:mt-3">
-              {userData?.bio}
-            </div>
-
-            <div className="flex justify-between whitespace-nowrap max-sm:grid-cols-2 mt-4 gap-5 text-xs max-sm:mt-4">
-              {userData?.category && (
-                <div className="flex items-center gap-1 text-gray-500">
-                  <BsGridFill />
-                  {userData?.category}
-                </div>
-              )}
-              {userData?.location && (
-                <div className="flex items-center gap-1 text-gray-500">
-                  <BsGeoAltFill /> {userData?.location}
-                </div>
-              )}
-              <div className="flex items-center gap-1 text-gray-500">
-                <BsClockHistory /> {userData?.dateJoined}
-              </div>
-              {userData?.website && (
-                <a
-                  target="_blank"
-                  href={userData?.website}
-                  className="truncate flex items-center gap-1 text-gray-500"
-                >
-                  <BsBoxArrowUpRight /> {userData?.website}
-                </a>
-              )}
-            </div>
-          </section>
-          <section className="bg-gray-100 max-sm:flex gap-4 px-4 pb-4 hidden ">
-            <div className="bg-white p-2 rounded-full">
-              <BsEnvelope className="text-lg" />
-            </div>
-            <div className="bg-white p-2 rounded-full">
-              <BsThreeDotsVertical className="text-lg" />
-            </div>
-            <div className="bg-white p-2 rounded-full">
-              <BsBell className="text-lg" />
-            </div>
-            <button className="bg-black text-white w-full text-sm rounded-full">
-              Follow
-            </button>
-          </section>
-          {userData?.accountType == "Public" && (
-            <section className="flex border-t bg-gray-100">
-              {menu.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    onClick={() => setCurrent(item)}
-                    className={`cursor-pointer hover:bg-gray-200 text-sm py-3 px-4 ${
-                      item == current && "border-b-4 border-primary"
-                    } max-sm:text-xs`}
-                  >
-                    {item}
-                  </div>
-                );
-              })}
-            </section>
-          )}
+    <div className="small bg-white">
+      <div className="relative">
+        <div className="absolute top-2 left-2 text-white bg-gray-100 bg-opacity-10 backdrop-brightness-50 p-1 rounded-full">
+          <BsArrowLeft />
         </div>
-        {userData?.accountType == "Public" ? (
-          <div>
-            {"abcd".split("").map((item, index) => {
-              return <PostCard index={index} key={index} />;
-            })}
-          </div>
-        ) : (
-          <div className="bg-gray-100 sm:rounded-md sm:mt-2 grid gap-4 place-items-center text-gray-400 text-center py-12">
-            <FaUserLock size={48} />
-            This account is private. <br /> Follow to see their photos and videos.
+        <div onClick={()=>setActions(!actions)} className="cursor-pointer absolute top-2 right-2 text-white bg-gray-100 bg-opacity-10 backdrop-brightness-50 p-1 rounded-full">
+          <BsThreeDotsVertical />
+        </div>
+
+        {actions && (
+          <div className="bg-white absolute rounded-sm overflow-hidden right-1 top-10">
+            <div className="flex items-center gap-2 py-1 px-1 text-sm hover:bg-gray-200 cursor-pointer ">
+              <BsShare /> Share profile
+            </div>
+            <div className="flex items-center gap-2 py-1 px-1 text-sm hover:bg-gray-200 cursor-pointer ">
+              <CiWarning className="text-lg" /> Report
+            </div>
+            <div className="flex items-center gap-2 py-1 px-1 text-sm hover:bg-gray-200 cursor-pointer ">
+              <MdBlock /> Block
+            </div>
           </div>
         )}
+
+        <img
+          src="/profile.avif"
+          className="h-[280px] w-full object-cover"
+          alt=""
+        />
       </div>
-    </>
+      <div className="grid grid-cols-4 pt-3">
+        {data.map((data, index) => {
+          return (
+            <div className="text-center" key={index}>
+              <div className="font-bold">{data.value}</div>
+              <div className="text-sm text-gray-500">{data.title}</div>
+            </div>
+          );
+        })}
+      </div>
+      <div className="px-8 py-4 flex  justify-between items-center mt-2">
+        <section className="flex gap-3 items-center">
+          <img src="/avtar.jpg" className="h-12 w-12 rounded-full" alt="" />
+          <div>
+            <div className="font-bold">Dr. Mehvish Hayat Khan</div>
+            <div className="text-xs text-gray-500">@DrMehvishHayat</div>
+          </div>
+        </section>
+        <button className="bg-black text-white text-sm py-1 px-3 rounded-full">
+          Follow
+        </button>
+      </div>
+
+      <div className="px-8 text-sm pb-4">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores quasi
+        deserunt earum ex ducimus doloremque itaque libero iure asperiores
+        possimus quia voluptatum consequuntur dignissimos similique eos, eum nam
+        esse. Dignissimos. doloremque itaque libero iure asperiores possimus
+      </div>
+
+      <div className="px-8 flex justify-between text-xs pb-5 text-gray-500">
+        <div className="flex items-center gap-2 justify-center">
+          {" "}
+          <IoGrid /> Religious Institutuon
+        </div>
+        <div className="flex items-center gap-2 justify-center">
+          {" "}
+          <BsGeoAlt /> Lucknow, India
+        </div>
+        <div className="flex items-center gap-2 justify-center">
+          {" "}
+          <BsBoxArrowUpRight /> Visit Website
+        </div>
+      </div>
+      <div className="flex border-t text-sm border-b">
+        <div className="py-3 px-4 font-medium">All Posts</div>
+        <div className="py-3 px-4 text-gray-500">Media</div>
+        <div className="py-3 px-4 text-gray-500">Replies</div>
+        <div className="py-3 px-4 text-gray-500">Activities</div>
+      </div>
+
+      {"abcde".split("").map((item, index) => {
+        return <PostCard key={index} index={index} />;
+      })}
+    </div>
   );
 };
 
