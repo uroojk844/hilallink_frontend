@@ -87,7 +87,6 @@ const NavBar = () => {
             >
               <FaBars size={22} />
             </Link>
-            <SideBar />
           </div>
           <div className="flex items-center gap-4">
             <Link href="/notifications" className="sm:hidden">
@@ -99,6 +98,8 @@ const NavBar = () => {
             <Link href="/chats" className="max-sm:hidden">
               <FaBars size={22} className="text-gray-400" />
             </Link>
+
+            <SideBar />
           </div>
         </nav>
       </section>

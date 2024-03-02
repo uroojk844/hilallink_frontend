@@ -190,13 +190,20 @@ nav .wrapper:first-child{
   }
 }
 
-/* @media (width > 600px){
-  body {
-    background-image: url("/bg.png");
-  }
-} */
-
 /* search page input element */
 .search .wrapper:hover {
   box-shadow: none !important;
+}
+
+.scrollbar-h::-webkit-scrollbar{
+  display: none;
+}
+
+.scrollbar-h:hover::-webkit-scrollbar{
+  display: block;
+  height: 6px;
+}
+.scrollbar-h::-webkit-scrollbar-thumb {
+  background-color: lightgray;
+  border-radius: 3px;
 }
