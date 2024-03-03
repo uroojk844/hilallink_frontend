@@ -9,7 +9,9 @@ import { RiRepeat2Fill } from "react-icons/ri";
 const PostCard = ({ index }) => {
   const [actions, setActions] = useState(false);
   return (
-    <div className="p-4 bg-white border-b relative border-gray-300 grid grid-cols-[max-content,auto]">
+
+    <div className="p-4 bg-white dark:bg-[hsl(0deg_0%_5%)] border-b relative border-gray-300 grid grid-cols-[max-content,auto]">
+
       {actions && (
         <div className="absolute bg-white rounded right-0 top-10 shadow">
           <div className="px-2 py-1 pr-14">Share</div>
@@ -26,6 +28,7 @@ const PostCard = ({ index }) => {
           <div>
             <div className="font-medium">Mohd Belal Naim</div>
             <div className="text-xs text-gray-500">@belalnaim9</div>
+
           </div>
           <div className="flex gap-2">
             <span className="text-xs text-gray-500">42 mins ago</span>
@@ -34,6 +37,7 @@ const PostCard = ({ index }) => {
               onClick={() => setActions(!actions)}
             />
           </div>
+
         </section>
         <div className="text-sm mt-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
@@ -59,6 +63,7 @@ const PostCard = ({ index }) => {
             <RiRepeat2Fill size={20} className="text-gray-500" />
           </section>
           <GoShare size={24} className="text-gray-500" />
+
         </div>
       </div>
     </div>

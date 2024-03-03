@@ -4,7 +4,7 @@ import PeopleCard from "./PeopleCard";
 
 const PeoplePreview = () => {
   return (
-    <section className="bg-white sm:rounded-md mt-2 overflow-hidden">
+    <section className="bg-white dark:bg-[hsl(0deg_0%_5%)] sm:rounded-md mt-2 overflow-hidden">
       <div className="text-lg font-bold px-3 py-2">People</div>
       <section>
         {"abc".split("").map((index, item) => {

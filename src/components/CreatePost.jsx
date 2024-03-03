@@ -54,6 +54,7 @@ const CreatePost = () => {
       className="fixed inset-0 glass z-50 grid place-items-center"
     >
       <div ref={createPostRef} className="rounded-xl bg-white w-[min(550px,95%)]">
+
         <div className="p-4 grid grid-cols-[max-content,auto] gap-4 items-center">
           <img
             src="http://picsum.photos/40.webp"
@@ -115,8 +116,8 @@ const CreatePost = () => {
               {!fileSrc && (
                 <>
                   <FaEdit />
-                  <BiPoll />
-                  <FaRegSmile />
+                  {/* <BiPoll />
+                  <FaRegSmile /> */}
                 </>
               )}
             </div>
@@ -135,6 +136,7 @@ const CreatePost = () => {
           <q>
             The Momin is the one from whom the people&apos;s lives and wealth are
             safe
+
           </q>{" "}
           - Prophet Mohammed PBUH.
         </div>
