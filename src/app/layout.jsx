@@ -2,18 +2,12 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import NextTopLoader from "nextjs-toploader";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import { store } from "@/redux/store";
-import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({ children }) {
-  useEffect(() => {
-    localStorage.getItem("dark-theme") && document.body.classList.add("dark");
-    // setDarkTheme(localStorage.getItem("dark-theme") ?? false);
-  }, []);
-
   return (
     <html lang="en">
       <body

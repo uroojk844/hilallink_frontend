@@ -63,7 +63,7 @@ const CreatePost = () => {
           <div>
             {/* textarea */}
             <div
-              className="flex-1 grid content-center border-b outline-none py-2 text-black max-h-[300px] overflow-auto"
+              className="flex-1 grid content-center border-b outline-none py-2  max-h-[300px] overflow-auto"
               onFocus={() => setPlaceHolder(false)}
               onBlur={() => setPlaceHolder(true && !text.length)}
               contentEditable={true}
@@ -131,7 +131,7 @@ const CreatePost = () => {
             Post
           </button>
         </div>
-        <div className="border-t text-center py-3 text-[10px]">
+        <div className="border-t text-center p-3 text-[10px]">
           <q>
             The Momin is the one from whom the people&apos;s lives and wealth
             are safe

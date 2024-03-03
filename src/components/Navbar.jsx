@@ -8,14 +8,15 @@ import {
   BsSearch,
 } from "react-icons/bs";
 import Link from "next/link";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import dynamic from "next/dynamic";
 import { FaBars, FaMosque } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { dispatch } from "@/redux/store";
-import { hideProfile, showProfile } from "@/redux/togglesSlice";
+import { hideProfile, setDarkTheme, showProfile } from "@/redux/togglesSlice";
+import { useCallback, useEffect } from "react";
 const SideBar = dynamic(() => import("./SideBar"));
 const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
 
@@ -23,9 +24,20 @@ const NavBar = () => {
   const editProfile = useSelector((state) => state.togglesSlice.editProfile);
   const activeTab = usePathname();
   const sidebar = useSelector((state) => state.togglesSlice.userProfile);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    localStorage.getItem("dark-theme") && document.body.classList.add("dark");
+    localStorage.getItem("dark-theme") && dispatch(setDarkTheme());
+  }, []);
+
+  const toggleSiderbar = useCallback(() => {
+    sidebar ? dispatch(hideProfile()) : dispatch(showProfile());
+  });
+
   return (
     <div className={"bg-white dark:bg-[hsl(200,6%,10%)] sticky top-0 z-40"}>
-      <section className="container mx-auto  max-sm:border-b">
+      <section className="sm:container mx-auto  max-sm:border-b">
         <nav className="relative mx-auto flex items-center justify-between px-4 h-12">
           <div className="font-bold">HilalLink</div>
           <div
@@ -84,7 +96,10 @@ const NavBar = () => {
             >
               <BsBellFill size={22} />
             </Link>
-            <div className="sm:hidden dark:text-[#afa99e] text-black">
+            <div
+              onClick={toggleSiderbar}
+              className="sm:hidden dark:text-[#afa99e] text-black"
+            >
               <FaBars size={22} />
             </div>
           </div>
@@ -93,7 +108,7 @@ const NavBar = () => {
               href="/notifications"
               className={twMerge(
                 "sm:hidden dark:text-[#afa99e]",
-                activeTab == "/" && "text-black dark:text-white/95"
+                activeTab == "/notifications" && "text-black dark:text-white/95"
               )}
             >
               <BsBellFill size={22} />
@@ -107,23 +122,8 @@ const NavBar = () => {
             >
               <BsChatDots size={22} />
             </Link>
-            <div className="max-sm:hidden text-black dark:text-[#afa99e]">
-              <FaBars size={22} />
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link href="/notifications" className="sm:hidden">
-              <BsBellFill size={22} className="text-gray-400" />
-            </Link>
-            <Link href="/chats" className="sm:hidden">
-              <BsChatDots size={22} className="text-gray-400" />
-            </Link>
             <div
-              onClick={
-                !sidebar
-                  ? () => dispatch(showProfile())
-                  : () => dispatch(hideProfile())
-              }
+              onClick={toggleSiderbar}
               className="max-sm:hidden cursor-pointer"
             >
               <FaBars size={22} className="text-gray-400" />
