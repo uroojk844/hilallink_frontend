@@ -19,7 +19,7 @@ const Details = () => {
   const [reply, setReply] = useState("");
   return (
     <div className="small bg-white px-4">
-      <section className="py-4 border-b relative border-gray-300 grid grid-cols-[max-content,auto]">
+      <section className="py-4 border-b relative border-gray-300 dark:border-[hsl(197,6%,25%)] grid grid-cols-[max-content,auto]">
         <div>
           <img src="/avtar.jpg" className="h-8 w-8 rounded-full" alt="" />
         </div>
@@ -27,10 +27,14 @@ const Details = () => {
           <section className="flex justify-between">
             <div>
               <div className="font-medium">Mohd Belal Naim</div>
-              <div className="text-xs text-gray-500">@belalnaim9</div>
+              <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                @belalnaim9
+              </div>
             </div>
             <div className="flex gap-2">
-              <span className="text-xs text-gray-500">42 mins ago</span>
+              <span className="text-xs text-gray-500 dark:text-[#afa99e]">
+                42 mins ago
+              </span>
               <BsThreeDotsVertical className="cursor-pointer" />
             </div>
           </section>
@@ -45,18 +49,25 @@ const Details = () => {
           />
           <div className="flex gap-5 mt-4 items-center">
             <div className="flex items-center gap-2">
-              <BsHeart size={22} className="text-gray-500" />{" "}
-              <span className="text-sm text-gray-500">129</span>{" "}
+              <BsHeart
+                size={22}
+                className="text-gray-500 dark:text-[#afa99e]"
+              />{" "}
+              <span className="text-sm text-gray-500 dark:text-[#afa99e]">
+                129
+              </span>{" "}
             </div>
             <div className="flex items-center gap-2">
-              <BsChat size={22} className="text-gray-500" />{" "}
-              <span className="text-sm text-gray-500">32</span>{" "}
+              <BsChat size={22} className="text-gray-500 dark:text-[#afa99e]" />{" "}
+              <span className="text-sm text-gray-500 dark:text-[#afa99e]">
+                32
+              </span>{" "}
             </div>
-            <BsRepeat size={20} className="text-gray-500" />
+            <BsRepeat size={20} className="text-gray-500 dark:text-[#afa99e]" />
             <GoShare
               onClick={() => window.Navigator.share("https://localhost:5000")}
               size={24}
-              className="text-gray-500 absolute right-2"
+              className="text-gray-500 dark:text-[#afa99e] absolute right-2"
             />
           </div>
           <div className="flex items-center justify-between mt-4">
@@ -76,7 +87,7 @@ const Details = () => {
             </button>
           </div>
           {options && (
-            <div className="flex gap-3 relative text-gray-500 mt-2 animate__animated animate__fadeInDown">
+            <div className="flex gap-3 relative text-gray-500 dark:text-[#afa99e] mt-2 animate__animated animate__fadeInDown">
               <BsImage size={22} />
               {/* <BsEmojiSmile size={22} onClick={() => setEmoji(!emoji)} /> */}
               {/* <EmojiPicker

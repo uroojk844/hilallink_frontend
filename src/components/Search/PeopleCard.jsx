@@ -1,6 +1,6 @@
 const PeopleCard = ({ index }) => {
   return (
-    <div className="bg-white dark:bg-[hsl(0deg_0%_5%)] p-4 border-b">
+    <div className="bg-white dark:bg-[hsl(200,6%,10%)] p-4 border-b">
       <div className="flex gap-2 items-center">
         <img
           src={`https://picsum.photos/400?${index}`}
@@ -9,7 +9,9 @@ const PeopleCard = ({ index }) => {
         />
         <div>
           <div className="font-medium">Mohd Belal Naim</div>
-          <div className="text-sm text-gray-500">@BelalNaim9</div>
+          <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+            @BelalNaim9
+          </div>
         </div>
         <button className="ml-auto py-1 px-5 bg-black text-white rounded-full">
           Follow

@@ -10,7 +10,7 @@ const CommentCard = ({ index, data }) => {
       <div className="max-sm:text-left">
         <div className="text-sm font-medium capitalize">
           {data.user.username}
-          <span className="font-normal text-gray-500 ml-2 text-xs">
+          <span className="font-normal text-gray-500 dark:text-[#afa99e] ml-2 text-xs">
             @{data.user.username}
           </span>
         </div>

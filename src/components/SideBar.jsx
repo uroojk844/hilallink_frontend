@@ -15,7 +15,7 @@ import { VscColorMode } from "react-icons/vsc";
 import UserCard from "./UserCard";
 import Link from "next/link";
 import { MdFeedback } from "react-icons/md";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useState } from "react";
 
 const SideBar = () => {
   const [darkTheme, setDarkTheme] = useState(false);
@@ -49,24 +49,17 @@ const SideBar = () => {
     setDarkTheme((cur) => !cur);
   }, [setDarkTheme]);
 
-  useEffect(() => {
-    localStorage.getItem("dark-theme") && document.body.classList.add("dark");
-    setDarkTheme(localStorage.getItem("dark-theme") ?? false);
-  }, []);
-
   return (
-    <section className="bg-white dark:bg-[hsl(0deg_0%_5%)] w-80 absolute right-0 top-14 p-4 sm:rounded-[32px] border border-gray-200">
+    <section className="bg-white dark:bg-[hsl(200,6%,10%)] w-80 absolute right-0 top-14 p-4 sm:rounded-[32px] border border-gray-200  dark:border-[#363b3d]">
       <div className="border p-2 rounded-full">
         <UserCard />
       </div>
-      <section className="pb-4 pt-3.5 my-4 border-y border-gray-200">
-        <div className="peer leading-4 flex items-center justify-between text-[16px]">
+      <section className="pb-4 pt-3.5 my-4 border-y border-gray-200 dark:border-[#363b3d]">
+        <label className="peer leading-4 flex items-center justify-between text-[16px]">
           Show existing Account
-          <label className="cursor-pointer">
-            <FaChevronCircleDown />
-            <input type="checkbox" className="cb hidden" />
-          </label>
-        </div>
+          <FaChevronCircleDown />
+          <input type="checkbox" className="cb hidden" />
+        </label>
 
         <div className="peer-has-[.cb:checked]:h-auto peer-has-[.cb:checked]:mt-3 transition-all duration-300 h-0 grid gap-2 overflow-x-auto scrollbar-h">
           {"djl".split("").map((index) => (
@@ -84,10 +77,12 @@ const SideBar = () => {
         </div>
       </section>
       <div className="grid gap-4">
-
-        {sideBarMenu.map((sideBarMenuItem,index) => (
-          <Link key={index} href={sideBarMenuItem.path} className="flex items-center gap-4">
-
+        {sideBarMenu.map((sideBarMenuItem, index) => (
+          <Link
+            key={index}
+            href={sideBarMenuItem.path}
+            className="flex items-center gap-4"
+          >
             {sideBarMenuItem.icon} {sideBarMenuItem.name}
             {sideBarMenuItem.name == "Dark theme" && (
               <div onClick={toggleTheme} className="ml-auto">

@@ -97,7 +97,9 @@ const EditProfile = () => {
 
             <div className="mt-8 h-[280px] overflow-scroll">
               <div className="mb-4">
-                <div className="text-xs text-gray-500">Full Name</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  Full Name
+                </div>
                 <input
                   type="text"
                   {...register("name")}
@@ -105,7 +107,9 @@ const EditProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <div className="text-xs text-gray-500">Username</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  Username
+                </div>
                 <input
                   type="text"
                   {...register("username")}
@@ -113,7 +117,9 @@ const EditProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <div className="text-xs text-gray-500">Bio</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  Bio
+                </div>
                 <textarea
                   type="text"
                   {...register("bio")}
@@ -121,7 +127,9 @@ const EditProfile = () => {
                 ></textarea>
               </div>
               <div className="mb-4">
-                <div className="text-xs text-gray-500">Category</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  Category
+                </div>
                 <select
                   defaultValue={userData.category}
                   {...register("category")}
@@ -137,7 +145,9 @@ const EditProfile = () => {
                 </select>
               </div>
               <div className="mb-4">
-                <div className="text-xs text-gray-500">Website</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  Website
+                </div>
                 <input
                   type="text"
                   className="text-sm border-b w-full border-black py-2"
@@ -145,7 +155,9 @@ const EditProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <div className="text-xs text-gray-500">Location</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  Location
+                </div>
                 <input
                   type="text"
                   className="text-sm border-b w-full border-black py-2"
@@ -153,7 +165,9 @@ const EditProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <div className="text-xs text-gray-500">Birth Date</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  Birth Date
+                </div>
                 <input
                   type="date"
                   className="text-sm border-b w-full border-black py-2"
@@ -161,7 +175,9 @@ const EditProfile = () => {
                 />
               </div>
               <div className="mb-4">
-                <div className="text-xs text-gray-500">Account Privacy</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  Account Privacy
+                </div>
                 <select
                   defaultValue={userData.accountType}
                   {...register("privacy")}
@@ -171,7 +187,9 @@ const EditProfile = () => {
                   <option value="Private">Private</option>
                 </select>
               </div>
-              <div className="text-xs text-gray-500">Gender</div>
+              <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                Gender
+              </div>
               <div className="mb-4">
                 <select
                   {...register("gender")}
@@ -204,7 +222,6 @@ const EditProfile = () => {
                 Update
               </button>
             )}
-        
           </div>
         </div>
       </section>

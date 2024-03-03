@@ -22,7 +22,7 @@ const Chat = () => {
   }, [chatContainer.current?.scrollHeight]);
 
   return (
-    <section className="chat-grid max-w-lg mx-auto bg-white dark:bg-[hsl(0deg_0%_5%)]">
+    <section className="chat-grid max-w-lg mx-auto bg-white dark:bg-[hsl(200,6%,10%)]">
       <div className="flex items-center justify-between p-3 border-b">
         <div className="flex gap-3 items-center">
           <Link href="/chats">
@@ -33,7 +33,7 @@ const Chat = () => {
         </div>
         <div className="relative">
           {options && (
-            <div className="absolute -left-2 -translate-x-full bg-white dark:bg-[hsl(0deg_0%_5%)] rounded shadow  overflow-hidden">
+            <div className="absolute -left-2 -translate-x-full bg-white dark:bg-[hsl(200,6%,10%)] rounded shadow  overflow-hidden">
               <div
                 onClick={() => setOptions(false)}
                 className="flex gap-2 items-center px-4 py-2 w-32 cursor-pointer hover:bg-gray-200 dark:hover:bg-black transition-colors"

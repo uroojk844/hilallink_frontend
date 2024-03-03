@@ -3,7 +3,7 @@
 }
 
 .dark .wrapper:first-child {
-  @apply  bg-[hsl(0deg_0%_5%)] text-white;
+  @apply  bg-[hsl(200,6%,10%)] text-white;
 }
 
 .dark .wrapper input {

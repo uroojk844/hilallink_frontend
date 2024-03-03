@@ -4,7 +4,7 @@ import { BsArrowLeft } from "react-icons/bs";
 
 const page = () => {
   return (
-    <div className="bg-white p-4 rounded-md small">
+    <div className="bg-white dark:bg-[hsl(200,6%,10%)] p-4 rounded-md small">
       <div className="text-xl font-bold mb-4 flex items-center gap-4">
         <Link href="/notifications">
           <BsArrowLeft />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState,useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import Photos from "@/components/Search/Photos";
 import Clips from "@/components/Search/Clips";
 import People from "@/components/Search/People";
@@ -22,14 +22,12 @@ const SearchResult = () => {
 
   const [lastPos, setLastPos] = useState(0);
   useEffect(() => {
-    window.onscrollend = (
-      
-    ) => {};
+    window.onscrollend = () => {};
   }, []);
 
   return (
     <section className="small">
-      <section className="shadow-lg z-20 bg-white mt-2 rounded-md overflow-hidden">
+      <section className="shadow-lg z-20 bg-white dark:bg-[hsl(200,6%,10%)] mt-2 rounded-md overflow-hidden">
         <section className="text-lg font-bold p-3 flex items-center gap-4">
           <Link href="/search">
             <BsArrowLeft />

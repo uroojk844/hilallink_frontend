@@ -39,7 +39,7 @@ const Profile = () => {
   const dispatch = useDispatch();
 
   return (
-    <div className="small bg-white">
+    <div className="small bg-white dark:bg-[hsl(200,6%,10%)]">
       <div className="relative">
         <div className="absolute top-2 left-2 text-white bg-gray-100 bg-opacity-10 backdrop-brightness-50 p-1 rounded-full">
           <BsArrowLeft />
@@ -76,7 +76,9 @@ const Profile = () => {
           return (
             <div className="text-center" key={index}>
               <div className="font-bold">{data.value}</div>
-              <div className="text-sm text-gray-500">{data.title}</div>
+              <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+                {data.title}
+              </div>
             </div>
           );
         })}
@@ -90,12 +92,14 @@ const Profile = () => {
           />
           <div>
             <div className="font-bold">{userData?.name}</div>
-            <div className="text-xs text-gray-500">@{userData?.username}</div>
+            <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+              @{userData?.username}
+            </div>
           </div>
         </section>
         <button
           onClick={() => dispatch(showEdit())}
-          className="bg-black flex items-center gap-2 text-white text-sm py-1 px-3 rounded-full"
+          className="bg-black flex items-center gap-2 text-white text-sm py-2 px-4 rounded-full"
         >
           <BsPen />
           Edit Profile
@@ -109,7 +113,7 @@ const Profile = () => {
         esse. Dignissimos. doloremque itaque libero iure asperiores possimus
       </div>
 
-      <div className="px-8 flex justify-between text-xs pb-5 text-gray-500">
+      <div className="px-8 flex justify-between text-xs pb-5 text-gray-500 dark:text-[#afa99e]">
         <div className="flex items-center gap-2 justify-center">
           {" "}
           <IoGrid /> Religious Institutuon
@@ -125,13 +129,19 @@ const Profile = () => {
       </div>
       <div className="flex border-t text-sm border-b">
         <div className="py-3 px-4 font-medium">All Posts</div>
-        <div className="py-3 px-4 text-gray-500">Media</div>
-        <div className="py-3 px-4 text-gray-500">Replies</div>
-        <div className="py-3 px-4 text-gray-500">Activities</div>
+        <div className="py-3 px-4 text-gray-500 dark:text-[#afa99e]">Media</div>
+        <div className="py-3 px-4 text-gray-500 dark:text-[#afa99e]">
+          Replies
+        </div>
+        <div className="py-3 px-4 text-gray-500 dark:text-[#afa99e]">
+          Activities
+        </div>
       </div>
       <div className="grid place-items-center text-gray-600 py-16">
-        <BsPersonLock size={65}/>
-        <div className="text-lg mt-4">{userData?.name}&apos;s profile is locked</div>
+        <BsPersonLock size={65} />
+        <div className="text-lg mt-4">
+          {userData?.name}&apos;s profile is locked
+        </div>
       </div>
       {"abcde".split("").map((item, index) => {
         return <PostCard key={index} index={index} />;

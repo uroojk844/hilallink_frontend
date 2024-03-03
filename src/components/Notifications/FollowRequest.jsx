@@ -1,5 +1,4 @@
-
-const FollowRequest = ({index}) => {
+const FollowRequest = ({ index }) => {
   return (
     <div className="flex justify-between items-center">
       <div className="flex gap-2">
@@ -10,7 +9,9 @@ const FollowRequest = ({index}) => {
         />
         <div>
           <div className="text-sm font-medium">Mohd Belal Naim</div>
-          <div className="text-xs text-gray-500 mt-1">@BelalNaim9</div>
+          <div className="text-xs text-gray-500 dark:text-[#afa99e] mt-1">
+            @BelalNaim9
+          </div>
         </div>
       </div>
       <div className="flex gap-2">
@@ -23,6 +24,6 @@ const FollowRequest = ({index}) => {
       </div>
     </div>
   );
-}
+};
 
-export default FollowRequest
+export default FollowRequest;

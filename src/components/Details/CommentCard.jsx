@@ -7,12 +7,14 @@ const CommentCard = () => {
       <div>
         <div className="font-medium flex justify-between">
           <div>Sajad Khaki</div>
-          <div className="font-normal gap-4 text-sm flex items-center text-gray-500">
+          <div className="font-normal gap-4 text-sm flex items-center text-gray-500 dark:text-[#afa99e]">
             <span>4h</span>
             <BsThreeDots />
           </div>
         </div>
-        <div className="text-sm text-gray-500">@sajadkhaki09</div>
+        <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+          @sajadkhaki09
+        </div>
         <div className="text-sm mt-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
           consequatur nemo veritatis nihil nisi, ab et eaque dolores aspernatur,
@@ -25,6 +27,6 @@ const CommentCard = () => {
       </div>
     </div>
   );
-}
+};
 
-export default CommentCard
+export default CommentCard;

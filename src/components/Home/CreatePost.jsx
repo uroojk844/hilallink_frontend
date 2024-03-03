@@ -1,5 +1,13 @@
 import React from "react";
-import { BsAt, BsFilm, BsImage, BsPersonAdd, BsPersonCheck, BsXCircle, BsXCircleFill } from "react-icons/bs";
+import {
+  BsAt,
+  BsFilm,
+  BsImage,
+  BsPersonAdd,
+  BsPersonCheck,
+  BsXCircle,
+  BsXCircleFill,
+} from "react-icons/bs";
 import { useState } from "react";
 import {
   Select,
@@ -17,14 +25,13 @@ import AddClip from "../CreatePost/AddClip";
 import { useRouter } from "next/navigation";
 
 export const CreatePost = ({ controller }) => {
-
   const menu = {
-    "text": <AddTextPost />,
-    "photo": <AddPhoto />,
-    "clips": <AddClip/>
-  }
-  const [current, setCurrent] = useState("text")
-  const router = useRouter()
+    text: <AddTextPost />,
+    photo: <AddPhoto />,
+    clips: <AddClip />,
+  };
+  const [current, setCurrent] = useState("text");
+  const router = useRouter();
   return (
     <section className="inset-0 glass fixed z-50 grid place-items-center">
       <div className="w-[min(500px,95%)] bg-white rounded-md overflow-hidden">
@@ -62,7 +69,7 @@ export const CreatePost = ({ controller }) => {
           </Select>
         </div>
         <div className="py-2 border-t px-3 flex justify-between">
-          <div className="flex items-center gap-5 text-gray-500">
+          <div className="flex items-center gap-5 text-gray-500 dark:text-[#afa99e]">
             <BsImage
               onClick={() => setCurrent("photo")}
               className="cursor-pointer text-2xl"
@@ -75,7 +82,7 @@ export const CreatePost = ({ controller }) => {
               onClick={() => router.push("/create-article")}
               className="cursor-pointer text-2xl"
             />
-            <div onClick={()=>setCurrent("text")}>
+            <div onClick={() => setCurrent("text")}>
               <GradientIcon />
             </div>
           </div>

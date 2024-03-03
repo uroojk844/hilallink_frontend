@@ -3,22 +3,30 @@ const ChangePassword = () => {
     <div className="small bg-white sm:rounded-md">
       <div className="font-bold border-b text-lg p-3">Change password</div>
       <div className="p-3">
-        <div className="text-sm">
-        </div>
+        <div className="text-sm"></div>
         <div className="mt-1">
-          <label htmlFor="" className="text-xs mt-4 text-gray-500">
-           Old Password
+          <label
+            htmlFor=""
+            className="text-xs mt-4 text-gray-500 dark:text-[#afa99e]"
+          >
+            Old Password
           </label>
           <input type="text" className="border-b border-black w-full" />
         </div>
         <div className="mt-4">
-          <label htmlFor="" className="text-xs mt-4 text-gray-500">
+          <label
+            htmlFor=""
+            className="text-xs mt-4 text-gray-500 dark:text-[#afa99e]"
+          >
             New Password
           </label>
           <input type="text" className="border-b border-black w-full" />
         </div>
         <div className="mt-4">
-          <label htmlFor="" className="text-xs mt-4 text-gray-500">
+          <label
+            htmlFor=""
+            className="text-xs mt-4 text-gray-500 dark:text-[#afa99e]"
+          >
             Confirm New Password
           </label>
           <input type="text" className="border-b border-black w-full" />

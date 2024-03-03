@@ -41,7 +41,7 @@ const ShortsPage = () => {
       <ReactSearchAutocomplete
         formatResult={(item) => {
           return (
-            <div className="dark:bg-[hsl(0deg_0%_5%)]">
+            <div className="dark:bg-[hsl(200,6%,10%)]">
               <div className="font-[600]">{item?.name}</div>
               <div className="text-xs">{item?.username}</div>
             </div>
@@ -57,7 +57,7 @@ const ShortsPage = () => {
         inputDebounce={100}
       />
 
-      <section className="z-20 flex bg-white dark:bg-[hsl(0deg_0%_5%)] sm:rounded-md overflow-hidden">
+      <section className="z-20 flex bg-white dark:bg-[hsl(200,6%,10%)] sm:rounded-md overflow-hidden">
         {Object.keys(menu).map((item, index) => {
           return (
             <div

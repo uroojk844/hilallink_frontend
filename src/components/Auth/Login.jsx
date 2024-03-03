@@ -17,7 +17,6 @@ const Login = ({ controller }) => {
   const [notVerified, setNotVerified] = useState(false);
 
   const login = (data) => {
-
     setLoading(true);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, data.email, data.password)
@@ -55,16 +54,19 @@ const Login = ({ controller }) => {
               <input
                 type="email"
                 placeholder="Email address"
-                className="w-full border border-gray-300 rounded-md py-2 px-4"
+                className="w-full border border-gray-300 dark:border-[hsl(197,6%,25%)] rounded-md py-2 px-4"
                 {...register("email")}
               />
               <input
                 type="password"
                 placeholder="Password"
-                className="w-full border border-gray-300 rounded-md py-2 px-4"
+                className="w-full border border-gray-300 dark:border-[hsl(197,6%,25%)] rounded-md py-2 px-4"
                 {...register("password")}
               />
-              <div onClick={()=>controller("forgot")} className="flex justify-end text-xs cursor-pointer">
+              <div
+                onClick={() => controller("forgot")}
+                className="flex justify-end text-xs cursor-pointer"
+              >
                 Forgot your password
               </div>
               {loading ? (
