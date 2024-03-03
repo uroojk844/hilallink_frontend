@@ -4,6 +4,7 @@ const initialState = {
   editProfile: false,
   createPost: false,
   userProfile: false,
+  darkTheme: false,
 };
 
 const editProfileSlice = createSlice({
@@ -29,6 +30,10 @@ const editProfileSlice = createSlice({
     hideProfile: (state) => {
       state.userProfile = false;
     },
+    toggleDarkTheme:(state) =>{
+      state.darkTheme = !state.darkTheme
+    },
+   
   },
 });
 
@@ -39,6 +44,7 @@ export const {
   hideCreate,
   showProfile,
   hideProfile,
+  toggleDarkTheme
 } = editProfileSlice.actions;
 
 export default editProfileSlice.reducer;
