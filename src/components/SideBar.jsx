@@ -58,6 +58,7 @@ const SideBar = () => {
       <div className="grid gap-4">
         {sideBarMenu.map((sideBarMenuItem,key) => (
           <Link key={key} href={sideBarMenuItem.path} className="flex items-center gap-4">
+
             {sideBarMenuItem.icon} {sideBarMenuItem.name}
           </Link>
         ))}

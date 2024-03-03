@@ -10,12 +10,12 @@ import {
   FaTimes,
 } from "react-icons/fa";
 import { useDispatch } from "react-redux";
-
 const CreatePost = () => {
   const [text, setText] = useState("");
   const [fileSrc, setFileSrc] = useState("");
   const [fileType, setFileType] = useState("");
   const [placeHolder, setPlaceHolder] = useState(true);
+
   const dispatch = useDispatch()
 
   let file = "";
@@ -35,6 +35,7 @@ const CreatePost = () => {
     setFileType("");
     setFileSrc("");
   }
+
 
   const createPostRef  = useRef(null)
   useEffect(()=>{

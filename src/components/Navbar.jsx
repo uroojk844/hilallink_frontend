@@ -9,9 +9,10 @@ import {
 } from "react-icons/bs";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
+
 import dynamic from "next/dynamic";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ForgotPassword from "./Auth/ForgotPassword";
 import { fetchUsers } from "@/redux/userSlice";
 import { FaBars, FaMosque } from "react-icons/fa";
@@ -27,32 +28,6 @@ const NavBar = () => {
   const switchAccount = useSelector(
     (state) => state.togglesSlice.switchProfile
   );
-
-  const dispatch = useDispatch();
-  const auth = useSelector((state) => state.togglesSlice.auth);
-  const [current, setCurrent] = useState("login");
-  const [menuToggle, setMenu] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      dispatch(fetchUsers());
-    }
-  }, []);
-
-  const menu = {
-    login: <Login controller={setCurrent} />,
-    signup: <Signup controller={setCurrent} />,
-    forgot: <ForgotPassword controller={setCurrent} />,
-  };
-
-  const activeTab = usePathname();
-
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      dispatch(fetchUsers());
-    }
-  }, []);
-
   return (
     <div>
       <section className="sticky top-0 bg-white z-40 max-sm:border-b">
@@ -104,14 +79,18 @@ const NavBar = () => {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-        
+
+            <Link href="/notifications" className="sm:hidden">
+              <BsBellFill size={22} className="text-gray-400" />
+            </Link>
             <Link href="/chats" className="sm:hidden">
               <BsChatDots size={22} className="text-gray-400" />
             </Link>
-            <div onClick={()=>setMenu(!menuToggle)} className="max-sm:hidden">
+            <Link href="/chats" className="max-sm:hidden">
               <FaBars size={22} className="text-gray-400" />
-            </div>
-            {menuToggle && <SideBar />}
+            </Link>
+
+            <SideBar />
           </div>
         </nav>
       </section>

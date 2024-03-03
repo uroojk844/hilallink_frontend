@@ -7,12 +7,13 @@ import { showCreate } from "@/redux/togglesSlice";
 
 const HomePage = () => {
   const create = useSelector((state) => state.togglesSlice.createPost);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   return (
     <>
       <NavBar />
 
       {create && <CreatePost />}
+
 
       <div className="small">
         <section
