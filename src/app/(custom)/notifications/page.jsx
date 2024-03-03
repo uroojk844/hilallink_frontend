@@ -5,7 +5,7 @@ import { PiUserCirclePlusLight } from "react-icons/pi";
 
 const ShortsPage = () => {
   return (
-    <div className="bg-white p-4 rounded-md w-full small">
+    <div className="bg-white dark:bg-[hsl(0deg_0%_5%)] p-4 rounded-md w-full small">
       <div className="text-xl font-bold">Notifications</div>
       <Link href={"/follow-requests"}>
         <section className="flex items-center gap-2 mt-4 mb-2 relative cursor-pointer">

@@ -22,7 +22,7 @@ const Chat = () => {
   }, [chatContainer.current?.scrollHeight]);
 
   return (
-    <section className="chat-grid max-w-lg mx-auto bg-white">
+    <section className="chat-grid max-w-lg mx-auto bg-white dark:bg-[hsl(0deg_0%_5%)]">
       <div className="flex items-center justify-between p-3 border-b">
         <div className="flex gap-3 items-center">
           <Link href="/chats">
@@ -33,11 +33,17 @@ const Chat = () => {
         </div>
         <div className="relative">
           {options && (
-            <div className="absolute -left-2 -translate-x-full bg-white rounded shadow">
-              <div onClick={() => setOptions(false)} className="flex gap-2 items-center px-4 py-2 w-32 cursor-pointer hover:bg-gray-200 transition-colors">
+            <div className="absolute -left-2 -translate-x-full bg-white dark:bg-[hsl(0deg_0%_5%)] rounded shadow  overflow-hidden">
+              <div
+                onClick={() => setOptions(false)}
+                className="flex gap-2 items-center px-4 py-2 w-32 cursor-pointer hover:bg-gray-200 dark:hover:bg-black transition-colors"
+              >
                 <MdBlock /> Block
               </div>
-              <div onClick={() => setOptions(false)} className="flex gap-2 items-center px-4 py-2 w-32 cursor-pointer hover:bg-gray-200 transition-colors">
+              <div
+                onClick={() => setOptions(false)}
+                className="flex gap-2 items-center px-4 py-2 w-32 cursor-pointer hover:bg-gray-200 dark:hover:bg-black transition-colors"
+              >
                 <MdReportGmailerrorred /> Report
               </div>
             </div>
@@ -58,8 +64,8 @@ const Chat = () => {
               key={chat.message_id}
               className={`text-sm grid py-1 px-3 rounded-xl max-w-[16rem] ${
                 chat.side == "right"
-                  ? "bg-primary place-self-end"
-                  : "place-self-start bg-gray-200"
+                  ? "bg-blue-600 text-white place-self-end"
+                  : "place-self-start bg-gray-200 dark:bg-black/95"
               }`}
             >
               {chat.text}
@@ -75,8 +81,8 @@ const Chat = () => {
               key={index}
               className={`text-sm grid py-2 px-3 rounded-2xl max-w-[16rem] ${
                 "right" == "right"
-                  ? "bg-primary place-self-end"
-                  : "place-self-start bg-gray-200"
+                  ? "bg-blue-600 text-white place-self-end"
+                  : "place-self-start bg-gray-200 dark:bg-black/95"
               }`}
             >
               Yes, I have recieved the package.
@@ -88,10 +94,10 @@ const Chat = () => {
       <form className="flex items-center gap-3 p-3 border-t">
         <input
           type="text"
-          className="border py-2 px-4 rounded-full flex-1 outline-none"
+          className="border py-2 px-4 rounded-full flex-1 outline-none dark:bg-black/95"
           placeholder="Messege"
         />
-        <button className="w-10 aspect-square bg-primary rounded-full grid place-items-center">
+        <button className="w-10 aspect-square bg-blue-600 text-white rounded-full grid place-items-center">
           <FaPaperPlane size="15px" />
         </button>
       </form>

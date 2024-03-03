@@ -99,8 +99,8 @@ const CreatePost = () => {
               {!fileSrc && (
                 <>
                   <FaEdit />
-                  <BiPoll />
-                  <FaRegSmile />
+                  {/* <BiPoll />
+                  <FaRegSmile /> */}
                 </>
               )}
             </div>

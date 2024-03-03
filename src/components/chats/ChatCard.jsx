@@ -4,7 +4,7 @@ const ChatCard = ({ user }) => {
   return (
     <Link
       href={`chats/${user.id}`}
-      className="hover:bg-gray-200 cursor-pointer flex items-center gap-3 p-3 border-b "
+      className="hover:bg-gray-200 dark:hover:bg-[hsl(0deg_0%_5%)] cursor-pointer flex items-center gap-3 p-3 border-b "
     >
       <img
         className="h-12 w-12 rounded-full object-contain"
