@@ -16,8 +16,6 @@ import ForgotPassword from "./Auth/ForgotPassword";
 import { fetchUsers } from "@/redux/userSlice";
 import { FaBars, FaMosque } from "react-icons/fa";
 import { usePathname } from "next/navigation";
-
-import { fetchUsers } from "@/redux/userSlice";
 const SideBar = dynamic(() => import("./SideBar"));
 const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
 const SwicthProfile = dynamic(() => import("./Navbar/SwicthProfile"));
@@ -106,19 +104,7 @@ const NavBar = () => {
             </Link>
           </div>
           <div className="flex items-center gap-4">
-            {/* <div className="w-56 pt-2.5">
-              <ReactSearchAutocomplete
-                formatResult={() => {}}
-                placeholder="Search"
-                items={[]}
-                className="max-sm:hidden search z-30"
-                onSelect={() => {}}
-              />
-            </div> */}
-            <NotificationsButton />
-            <div className="max-sm:hidden">
-              <ProfileButton />
-            </div>
+        
             <Link href="/chats" className="sm:hidden">
               <BsChatDots size={22} className="text-gray-400" />
             </Link>
