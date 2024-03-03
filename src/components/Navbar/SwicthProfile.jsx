@@ -10,7 +10,11 @@ const SwicthProfile = () => {
     <div className="glass fixed inset-0 grid place-items-center z-50">
       <div className="animate__animated animate__bounceIn bg-white w-[min(400px,95%)] rounded-md shadow-lg overflow-hidden">
         <div className="font-bold text-lg p-4 border-b flex items-center gap-3">
-          <BsX className="cursor-pointer text-2xl" onClick={()=>dispatch(hideSwitch())}/> Switch account
+          <BsX
+            className="cursor-pointer text-2xl"
+            onClick={() => dispatch(hideSwitch())}
+          />{" "}
+          Switch account
         </div>
         <section className="py-3">
           <div className="flex items-center gap-3 hover:bg-gray-100 pointer-cursor cursor-pointer p-3">
@@ -21,7 +25,9 @@ const SwicthProfile = () => {
             />
             <div>
               <div className="font-medium">Sajad Khaki</div>
-              <div className="text-sm text-gray-500">sajadkhaki91</div>
+              <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+                sajadkhaki91
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-3 hover:bg-gray-100 pointer-cursor cursor-pointer p-3">
@@ -32,7 +38,9 @@ const SwicthProfile = () => {
             />
             <div>
               <div className="font-medium">Mohd Belal Naim</div>
-              <div className="text-sm text-gray-500">belalnaim9</div>
+              <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+                belalnaim9
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-3 hover:bg-gray-100 pointer-cursor cursor-pointer p-3">
@@ -43,7 +51,9 @@ const SwicthProfile = () => {
             />
             <div>
               <div className="font-medium">Urooj Khan</div>
-              <div className="text-sm text-gray-500">uroojk844</div>
+              <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+                uroojk844
+              </div>
             </div>
           </div>
         </section>

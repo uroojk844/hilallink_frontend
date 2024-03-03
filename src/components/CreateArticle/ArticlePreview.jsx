@@ -1,9 +1,9 @@
-"use client"
+"use client";
 import { BsArrowLeft } from "react-icons/bs";
-const ArticlePreview = ({controller}) => {
+const ArticlePreview = ({ controller }) => {
   return (
     <div className="glass inset-0 fixed z-50 grid place-items-center">
-      <div className="w-[min(100%,520px)] bg-white dark:bg-[hsl(0deg_0%_5%)] rounded-md overflow-hidden">
+      <div className="w-[min(100%,520px)] bg-white dark:bg-[hsl(200,6%,10%)] rounded-md overflow-hidden">
         <section className="flex items-center gap-3 p-2 border-b">
           <img
             src="https://picsum.photos/400"

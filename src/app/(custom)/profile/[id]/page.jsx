@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import PostCard from "@/components/Home/PostCard";
 import React, { useState } from "react";
 import {
@@ -30,14 +30,17 @@ const Profile = () => {
       value: "348K",
     },
   ];
-  const[actions,setActions] = useState(false)
+  const [actions, setActions] = useState(false);
   return (
     <div className="small bg-white">
       <div className="relative">
         <div className="absolute top-2 left-2 text-white bg-gray-100 bg-opacity-10 backdrop-brightness-50 p-1 rounded-full">
           <BsArrowLeft />
         </div>
-        <div onClick={()=>setActions(!actions)} className="cursor-pointer absolute top-2 right-2 text-white bg-gray-100 bg-opacity-10 backdrop-brightness-50 p-1 rounded-full">
+        <div
+          onClick={() => setActions(!actions)}
+          className="cursor-pointer absolute top-2 right-2 text-white bg-gray-100 bg-opacity-10 backdrop-brightness-50 p-1 rounded-full"
+        >
           <BsThreeDotsVertical />
         </div>
 
@@ -66,7 +69,9 @@ const Profile = () => {
           return (
             <div className="text-center" key={index}>
               <div className="font-bold">{data.value}</div>
-              <div className="text-sm text-gray-500">{data.title}</div>
+              <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+                {data.title}
+              </div>
             </div>
           );
         })}
@@ -76,7 +81,9 @@ const Profile = () => {
           <img src="/avtar.jpg" className="h-12 w-12 rounded-full" alt="" />
           <div>
             <div className="font-bold">Dr. Mehvish Hayat Khan</div>
-            <div className="text-xs text-gray-500">@DrMehvishHayat</div>
+            <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+              @DrMehvishHayat
+            </div>
           </div>
         </section>
         <button className="bg-black text-white text-sm py-1 px-3 rounded-full">
@@ -91,7 +98,7 @@ const Profile = () => {
         esse. Dignissimos. doloremque itaque libero iure asperiores possimus
       </div>
 
-      <div className="px-8 flex justify-between text-xs pb-5 text-gray-500">
+      <div className="px-8 flex justify-between text-xs pb-5 text-gray-500 dark:text-[#afa99e]">
         <div className="flex items-center gap-2 justify-center">
           {" "}
           <IoGrid /> Religious Institutuon
@@ -107,9 +114,13 @@ const Profile = () => {
       </div>
       <div className="flex border-t text-sm border-b">
         <div className="py-3 px-4 font-medium">All Posts</div>
-        <div className="py-3 px-4 text-gray-500">Media</div>
-        <div className="py-3 px-4 text-gray-500">Replies</div>
-        <div className="py-3 px-4 text-gray-500">Activities</div>
+        <div className="py-3 px-4 text-gray-500 dark:text-[#afa99e]">Media</div>
+        <div className="py-3 px-4 text-gray-500 dark:text-[#afa99e]">
+          Replies
+        </div>
+        <div className="py-3 px-4 text-gray-500 dark:text-[#afa99e]">
+          Activities
+        </div>
       </div>
 
       {"abcde".split("").map((item, index) => {

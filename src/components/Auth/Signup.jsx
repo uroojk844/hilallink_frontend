@@ -36,7 +36,7 @@ const Signup = ({ controller }) => {
         const userData = {
           name: data.name,
           email: data.email,
-          username: generateFromEmail(data.email,4),
+          username: generateFromEmail(data.email, 4),
           uid: user.uid,
           profile_url: user.photoURL,
         };
@@ -71,25 +71,25 @@ const Signup = ({ controller }) => {
               <input
                 type="text"
                 placeholder="Full name"
-                className="w-full border border-gray-300 rounded-md py-2 px-4"
+                className="w-full border border-gray-300 dark:border-[hsl(197,6%,25%)] rounded-md py-2 px-4"
                 {...register("name")}
               />
               <input
                 type="email"
                 placeholder="Email address"
-                className="w-full border border-gray-300 rounded-md py-2 px-4"
+                className="w-full border border-gray-300 dark:border-[hsl(197,6%,25%)] rounded-md py-2 px-4"
                 {...register("email")}
               />
               <input
                 type="password"
                 placeholder="Create password"
-                className="w-full border border-gray-300 rounded-md py-2 px-4"
+                className="w-full border border-gray-300 dark:border-[hsl(197,6%,25%)] rounded-md py-2 px-4"
                 {...register("password")}
               />
               <input
                 type="password"
                 placeholder="Confirm password"
-                className="w-full border border-gray-300 rounded-md py-2 px-4"
+                className="w-full border border-gray-300 dark:border-[hsl(197,6%,25%)] rounded-md py-2 px-4"
               />
               {loading ? (
                 <button

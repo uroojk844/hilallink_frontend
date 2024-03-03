@@ -16,7 +16,7 @@ const CreatePost = () => {
   const [fileType, setFileType] = useState("");
   const [placeHolder, setPlaceHolder] = useState(true);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   let file = "";
 
@@ -36,25 +36,24 @@ const CreatePost = () => {
     setFileSrc("");
   }
 
-
-  const createPostRef  = useRef(null)
-  useEffect(()=>{
-    document.addEventListener("click",handleClickOutside)
-    return ()=>{
-      document.removeEventListener("click",handleClickOutside)
-    }
-  },[])
-  function handleClickOutside(e){
-    if(createPostRef && !createPostRef.current.contains(e.target)){
-      dispatch(hideCreate())
+  const createPostRef = useRef(null);
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+  function handleClickOutside(e) {
+    if (createPostRef && !createPostRef.current.contains(e.target)) {
+      dispatch(hideCreate());
     }
   }
   return (
-    <section
-      className="fixed inset-0 glass z-50 grid place-items-center"
-    >
-      <div ref={createPostRef} className="rounded-xl bg-white dark:bg-[hsl(0deg_0%_5%)] w-[min(550px,95%)]">
-
+    <section className="fixed inset-0 glass z-50 grid place-items-center">
+      <div
+        ref={createPostRef}
+        className="rounded-xl bg-white dark:bg-[hsl(200,6%,10%)] w-[min(550px,95%)]"
+      >
         <div className="p-4 grid grid-cols-[max-content,auto] gap-4 items-center">
           <img
             src="http://picsum.photos/40.webp"
@@ -134,9 +133,8 @@ const CreatePost = () => {
         </div>
         <div className="border-t text-center py-3 text-[10px]">
           <q>
-            The Momin is the one from whom the people&apos;s lives and wealth are
-            safe
-
+            The Momin is the one from whom the people&apos;s lives and wealth
+            are safe
           </q>{" "}
           - Prophet Mohammed PBUH.
         </div>

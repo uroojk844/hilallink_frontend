@@ -54,7 +54,7 @@ const NotificationsButton = () => {
             <PiUserCirclePlusLight className="text-[48px]" />
             <div>
               <div className="text-sm mb-1 font-bold">Follow Requests</div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-gray-500 dark:text-[#afa99e]">
                 uroojk844, belalnaim9 + 5 others
               </div>
             </div>

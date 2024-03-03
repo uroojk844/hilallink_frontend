@@ -13,7 +13,9 @@ const UserCard = () => {
           />
           <div>
             <div className="text-sm">{userData?.name}</div>
-            <div className="text-xs text-gray-500">@{userData?.username}</div>
+            <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+              @{userData?.username}
+            </div>
           </div>
         </div>
       </div>

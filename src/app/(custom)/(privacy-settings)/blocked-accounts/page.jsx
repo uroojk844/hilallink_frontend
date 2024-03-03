@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const BlockedAccounts = () => {
   return (
@@ -11,7 +11,9 @@ const BlockedAccounts = () => {
               <img src="/avtar.jpg" className="h-10 w-10 rounded-full" alt="" />
               <div>
                 <div className="text-sm">Mohd Belal Naim</div>
-                <div className="text-xs text-gray-500">@belalnaim9</div>
+                <div className="text-xs text-gray-500 dark:text-[#afa99e]">
+                  @belalnaim9
+                </div>
               </div>
             </div>
 
@@ -23,6 +25,6 @@ const BlockedAccounts = () => {
       })}
     </div>
   );
-}
+};
 
-export default BlockedAccounts
+export default BlockedAccounts;
