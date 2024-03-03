@@ -30,10 +30,12 @@ const editProfileSlice = createSlice({
     hideProfile: (state) => {
       state.userProfile = false;
     },
-    toggleDarkTheme:(state) =>{
-      state.darkTheme = !state.darkTheme
+    setDarkTheme: (state) => {
+      state.darkTheme = true;
     },
-   
+    toggleDarkTheme: (state) => {
+      state.darkTheme = !state.darkTheme;
+    },
   },
 });
 
@@ -44,7 +46,8 @@ export const {
   hideCreate,
   showProfile,
   hideProfile,
-  toggleDarkTheme
+  setDarkTheme,
+  toggleDarkTheme,
 } = editProfileSlice.actions;
 
 export default editProfileSlice.reducer;
