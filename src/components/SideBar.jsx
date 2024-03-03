@@ -69,7 +69,7 @@ const SideBar = () => {
         </div>
         <div className="peer-has-[.cb:checked]:h-auto peer-has-[.cb:checked]:mt-3 transition-all duration-300 h-0 grid gap-2 overflow-x-auto scrollbar-h">
           {"djl".split("").map((index) => (
-            <div className="border p-2 rounded-full">
+            <div key={index} className="border p-2 rounded-full">
               <UserCard />
             </div>
           ))}
@@ -83,8 +83,8 @@ const SideBar = () => {
         </div>
       </section>
       <div className="grid gap-4">
-        {sideBarMenu.map((sideBarMenuItem) => (
-          <Link href={sideBarMenuItem.path} className="flex items-center gap-4">
+        {sideBarMenu.map((sideBarMenuItem,index) => (
+          <Link key={index} href={sideBarMenuItem.path} className="flex items-center gap-4">
             {sideBarMenuItem.icon} {sideBarMenuItem.name}
             {sideBarMenuItem.name == "Dark theme" && (
               <div onClick={toggleTheme} className="ml-auto">
