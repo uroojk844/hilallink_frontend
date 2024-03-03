@@ -1,3 +1,11 @@
 .wrapper:first-child {
   border-radius: 8px !important;
 }
+
+.dark .wrapper:first-child {
+  @apply  bg-[hsl(0deg_0%_5%)] text-white;
+}
+
+.dark .wrapper input {
+  @apply text-white;
+}

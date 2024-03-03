@@ -1,6 +1,6 @@
 const PeopleCard = ({ index }) => {
   return (
-    <div className="bg-white p-4 border-b">
+    <div className="bg-white dark:bg-[hsl(0deg_0%_5%)] p-4 border-b">
       <div className="flex gap-2 items-center">
         <img
           src={`https://picsum.photos/400?${index}`}

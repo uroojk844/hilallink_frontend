@@ -33,10 +33,7 @@ const CreatePost = () => {
   }
 
   return (
-    <section
-
-      className="fixed inset-0 glass z-50 grid place-items-center"
-    >
+    <section className="fixed inset-0 glass z-50 grid place-items-center">
       <div className="rounded-xl bg-white w-[min(550px,95%)]">
         <div className="p-4 grid grid-cols-[max-content,auto] gap-4 items-center">
           <img
@@ -99,8 +96,8 @@ const CreatePost = () => {
               {!fileSrc && (
                 <>
                   <FaEdit />
-                  <BiPoll />
-                  <FaRegSmile />
+                  {/* <BiPoll />
+                  <FaRegSmile /> */}
                 </>
               )}
             </div>
@@ -117,8 +114,8 @@ const CreatePost = () => {
         </div>
         <div className="border-t text-center py-3 text-[10px]">
           <q>
-            The Momin is the one from whom the people's lives and wealth are
-            safe
+            The Momin is the one from whom the people&apos;s lives and wealth
+            are safe
           </q>{" "}
           - Prophet Mohammed PBUH.
         </div>
