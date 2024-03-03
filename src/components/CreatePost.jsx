@@ -53,7 +53,7 @@ const CreatePost = () => {
     <section
       className="fixed inset-0 glass z-50 grid place-items-center"
     >
-      <div ref={createPostRef} className="rounded-xl bg-white w-[min(550px,95%)]">
+      <div ref={createPostRef} className="rounded-xl bg-white dark:bg-[hsl(0deg_0%_5%)] w-[min(550px,95%)]">
 
         <div className="p-4 grid grid-cols-[max-content,auto] gap-4 items-center">
           <img
