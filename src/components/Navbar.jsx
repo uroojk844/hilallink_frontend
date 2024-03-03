@@ -8,13 +8,9 @@ import {
   BsSearch,
 } from "react-icons/bs";
 import Link from "next/link";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 
 import dynamic from "next/dynamic";
-
-import { useState } from "react";
-import ForgotPassword from "./Auth/ForgotPassword";
-import { fetchUsers } from "@/redux/userSlice";
 import { FaBars, FaMosque } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 const SideBar = dynamic(() => import("./SideBar"));
@@ -28,6 +24,7 @@ const NavBar = () => {
   const switchAccount = useSelector(
     (state) => state.togglesSlice.switchProfile
   );
+  const activeTab = usePathname()
   return (
     <div>
       <section className="sticky top-0 bg-white z-40 max-sm:border-b">
@@ -96,11 +93,6 @@ const NavBar = () => {
       </section>
       {switchAccount && <SwicthProfile />}
       {editProfile && <EditProfile />}
-      {auth && (
-        <div className="inset-0 fixed glass z-50 grid place-items-center">
-          {menu[current]}
-        </div>
-      )}
     </div>
   );
 };
