@@ -1,48 +1,53 @@
 import Link from "next/link";
 import React from "react";
-import { BsEye, BsGoogle, BsPersonCircle } from "react-icons/bs";
-import { RiLockPasswordLine } from "react-icons/ri";
+import { BsArrowRight } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
   return (
-    <div className="grid place-items-center h-[100dvh]">
-      <div className="w-[400px]">
-        <div className="flex text-2xl font-bold items-center justify-center gap-4">
-          <img src="logo.png" className="h-8 w-8" alt="logo image" /> HilalLink
-        </div>
-        <section className="grid gap-y-4 mt-10">
-          <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3">
-            <BsPersonCircle className="text-3xl text-gray-500" />
-            <input
-              type="text"
-              className="w-full py-3 focus:outline-none"
-              placeholder="Email address"
-            />
+    <div
+      className="h-[100dvh] grid place-items-center"
+      style={{
+        background:
+          "linear-gradient(rgba(0 0 0/0.6),rgba(0 0 0/0.6)),url('/profile.avif')",
+      }}
+    >
+      <div className="bg-white px-6 py-8 rounded-md w-[400px]">
+        <div className="text-2xl font-bold">Welcome to HilalLink!</div>
+        <div className="mt-3">
+          <label htmlFor="" className="font-medium text-sm">
+            Email or Phone number
+          </label>
+          <input
+            type="text"
+            placeholder="Your email or phone number here"
+            className="w-full border p-2 rounded-md mb-4"
+          />
+
+          <label htmlFor="" className="font-medium text-sm ">
+            Password
+          </label>
+          <input
+            type="text"
+            placeholder="Your password here"
+            className="w-full border p-2 rounded-md"
+          />
+          <div className="text-sm mt-1 font-medium flex justify-end">
+            Forgot Password?
           </div>
-          <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3">
-            <RiLockPasswordLine className="text-3xl text-gray-500" />
-            <input
-              type="text"
-              className="w-full py-3 focus:outline-none"
-              placeholder="Password"
-            />
-            <BsEye className="text-lg" />
-          </div>
-          <div>Forgot password</div>
-          <button className="bg-black text-white py-3 rounded-full">
-            Login
+
+          <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
+            Sign in
           </button>
-          <div className="text-center font-bold">Or</div>
-          <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3 py-3 justify-center">
-            <BsGoogle className="text-xl" />
-            Continue with Google
-          </div>
+          <button className="w-full bg-transparent border border-gray-400 rounded-md py-2 mt-4 text-sm flex items-center justify-center gap-2">
+            <FcGoogle size={18} /> Continue with google
+          </button>
           <Link href="/signup">
-            <div className="flex items-center font-bold gap-3 rounded-full overflow-hidden px-3 py-3 justify-center">
-              Create new account
+            <div className="justify-center items-center mt-4 flex gap-2 text-sm">
+              Create a new HilalLink Account <BsArrowRight />
             </div>
           </Link>
-        </section>
+        </div>
       </div>
     </div>
   );

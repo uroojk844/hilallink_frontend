@@ -1,59 +1,70 @@
 import Link from "next/link";
 import React from "react";
-import { BsEnvelope, BsEye, BsGoogle, BsPersonCircle, BsShieldCheck } from "react-icons/bs";
-import { RiLockPasswordLine } from "react-icons/ri";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { FcGoogle } from "react-icons/fc";
 
 const Signup = () => {
   return (
-    <div className="small flex flex-col justify-center h-full">
-      <div className="text-center text-2xl font-bold">Create a new account</div>
-      <section className="grid gap-y-4 mt-10">
-        <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3">
-          <BsPersonCircle className="text-3xl text-gray-500" />
+    <div
+      className="h-[100dvh] grid place-items-center"
+      style={{
+        background:
+          "linear-gradient(rgba(0 0 0/0.6),rgba(0 0 0/0.6)),url('/profile.avif')",
+      }}
+    >
+      <div className="bg-white px-6 py-8 rounded-md w-[400px]">
+        <div className="text-2xl font-bold">Create a new account</div>
+        <div className="mt-3">
+          <label htmlFor="" className="font-medium text-sm">
+            Full name
+          </label>
           <input
             type="text"
-            className="w-full py-3 focus:outline-none"
-            placeholder="Full name"
+            placeholder="Your name here"
+            className="w-full border p-2 rounded-md mb-3"
           />
-        </div>
-        <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3">
-          <BsEnvelope className="text-3xl text-gray-500" />
+          <label htmlFor="" className="font-medium text-sm">
+            Email address
+          </label>
           <input
             type="text"
-            className="w-full py-3 focus:outline-none"
-            placeholder="Email address"
+            placeholder="Your email address here"
+            className="w-full border p-2 rounded-md"
           />
-        </div>
-        <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3">
-          <RiLockPasswordLine className="text-3xl text-gray-500" />
-          <input
-            type="text"
-            className="w-full py-3 focus:outline-none"
-            placeholder="Create a new password"
-          />
-          <BsEye className="text-lg" />
-        </div>
-        <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3">
-          <BsShieldCheck className="text-3xl text-gray-500" />
-          <input
-            type="text"
-            className="w-full py-3 focus:outline-none"
-            placeholder="Confirm Password"
-          />
-          <BsEye className="text-lg" />
-        </div>
-        <button className="bg-black text-white py-3 rounded-full">Login</button>
-        <div className="text-center font-bold">Or</div>
-        <div className="flex items-center bg-white gap-3 rounded-full overflow-hidden px-3 py-3 justify-center">
-          <BsGoogle className="text-xl" />
-          Continue with Google
-        </div>
-        <Link href="/login">
-          <div className="flex items-center font-bold gap-3 rounded-full overflow-hidden px-3 py-3 justify-center">
-            Login to existing account
+          <div className="text-sm font-medium flex justify-end mt-1">
+            Use phone number instead
           </div>
-        </Link>
-      </section>
+
+          <label htmlFor="" className="font-medium text-sm ">
+            Create a password
+          </label>
+          <input
+            type="text"
+            placeholder="Create your password"
+            className="w-full border p-2 rounded-md mb-4"
+          />
+          <label htmlFor="" className="font-medium text-sm ">
+            Confirm your paassword
+          </label>
+          <input
+            type="text"
+            placeholder="Re-enter your password"
+            className="w-full border p-2 rounded-md"
+          />
+
+          <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
+            Sign up
+          </button>
+          <button className="w-full bg-transparent border border-gray-400 rounded-md py-2 mt-4 text-sm flex items-center justify-center gap-2">
+            <FcGoogle size={18} /> Continue with google
+          </button>
+          <Link href="/login">
+            <div className="justify-center items-center mt-4 flex gap-2 text-sm">
+              <BsArrowLeft /> Login to an existing account
+            </div>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };

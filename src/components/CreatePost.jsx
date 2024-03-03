@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { hideCreate } from "@/redux/togglesSlice";
+import { useEffect, useRef, useState } from "react";
 import { BiPoll } from "react-icons/bi";
 import {
   FaEdit,
@@ -8,12 +9,15 @@ import {
   FaRegSmile,
   FaTimes,
 } from "react-icons/fa";
-
+import { useDispatch } from "react-redux";
 const CreatePost = () => {
   const [text, setText] = useState("");
   const [fileSrc, setFileSrc] = useState("");
   const [fileType, setFileType] = useState("");
   const [placeHolder, setPlaceHolder] = useState(true);
+
+  const dispatch = useDispatch()
+
   let file = "";
 
   function selectFile(e) {
@@ -32,9 +36,25 @@ const CreatePost = () => {
     setFileSrc("");
   }
 
+
+  const createPostRef  = useRef(null)
+  useEffect(()=>{
+    document.addEventListener("click",handleClickOutside)
+    return ()=>{
+      document.removeEventListener("click",handleClickOutside)
+    }
+  },[])
+  function handleClickOutside(e){
+    if(createPostRef && !createPostRef.current.contains(e.target)){
+      dispatch(hideCreate())
+    }
+  }
   return (
-    <section className="fixed inset-0 glass z-50 grid place-items-center">
-      <div className="rounded-xl bg-white w-[min(550px,95%)]">
+    <section
+      className="fixed inset-0 glass z-50 grid place-items-center"
+    >
+      <div ref={createPostRef} className="rounded-xl bg-white w-[min(550px,95%)]">
+
         <div className="p-4 grid grid-cols-[max-content,auto] gap-4 items-center">
           <img
             src="http://picsum.photos/40.webp"
@@ -114,8 +134,9 @@ const CreatePost = () => {
         </div>
         <div className="border-t text-center py-3 text-[10px]">
           <q>
-            The Momin is the one from whom the people&apos;s lives and wealth
-            are safe
+            The Momin is the one from whom the people&apos;s lives and wealth are
+            safe
+
           </q>{" "}
           - Prophet Mohammed PBUH.
         </div>

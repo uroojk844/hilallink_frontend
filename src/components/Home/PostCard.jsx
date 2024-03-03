@@ -3,14 +3,15 @@
 import React, { useState } from "react";
 import { BsChat, BsHeart, BsThreeDotsVertical, BsX } from "react-icons/bs";
 import { GoShare } from "react-icons/go";
-import { BsRepeat } from "react-icons/bs";
 import Link from "next/link";
 import { RiRepeat2Fill } from "react-icons/ri";
 
 const PostCard = ({ index }) => {
   const [actions, setActions] = useState(false);
   return (
+
     <div className="p-4 bg-white dark:bg-[hsl(0deg_0%_5%)] border-b relative border-gray-300 grid grid-cols-[max-content,auto]">
+
       {actions && (
         <div className="absolute bg-white rounded right-0 top-10 shadow">
           <div className="px-2 py-1 pr-14">Share</div>
@@ -27,6 +28,7 @@ const PostCard = ({ index }) => {
           <div>
             <div className="font-medium">Mohd Belal Naim</div>
             <div className="text-xs text-gray-500">@belalnaim9</div>
+
           </div>
           <div className="flex gap-2">
             <span className="text-xs text-gray-500">42 mins ago</span>
@@ -35,6 +37,7 @@ const PostCard = ({ index }) => {
               onClick={() => setActions(!actions)}
             />
           </div>
+
         </section>
         <div className="text-sm mt-2">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus
@@ -47,17 +50,20 @@ const PostCard = ({ index }) => {
             alt=""
           />
         </Link>
-        <div className="flex gap-5 mt-4 items-center">
-          <div className="flex items-center gap-2">
-            <BsHeart size={22} className="text-gray-500" />{" "}
-            <span className="text-sm text-gray-500">129</span>{" "}
-          </div>
-          <div className="flex items-center gap-2">
-            <BsChat size={22} className="text-gray-500" />{" "}
-            <span className="text-sm text-gray-500">32</span>{" "}
-          </div>
-          <RiRepeat2Fill size={20} className="text-gray-500" />
-          <GoShare size={24} className="text-gray-500 absolute right-2" />
+        <div className="flex mt-4 items-center justify-between">
+          <section className="flex gap-5 items-center">
+            <div className="flex items-center gap-2">
+              <BsHeart size={22} className="text-gray-500" />{" "}
+              <span className="text-sm text-gray-500">129</span>{" "}
+            </div>
+            <div className="flex items-center gap-2">
+              <BsChat size={22} className="text-gray-500" />{" "}
+              <span className="text-sm text-gray-500">32</span>{" "}
+            </div>
+            <RiRepeat2Fill size={20} className="text-gray-500" />
+          </section>
+          <GoShare size={24} className="text-gray-500" />
+
         </div>
       </div>
     </div>

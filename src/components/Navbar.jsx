@@ -8,11 +8,9 @@ import {
   BsSearch,
 } from "react-icons/bs";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import dynamic from "next/dynamic";
+import {useSelector } from "react-redux";
 
-import { useState } from "react";
-import ForgotPassword from "./Auth/ForgotPassword";
+import dynamic from "next/dynamic";
 import { FaBars, FaMosque } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
@@ -27,19 +25,9 @@ const NavBar = () => {
   const switchAccount = useSelector(
     (state) => state.togglesSlice.switchProfile
   );
-
-  const auth = useSelector((state) => state.togglesSlice.auth);
-  const [current, setCurrent] = useState("login");
-
-  const menu = {
-    login: <Login controller={setCurrent} />,
-    signup: <Signup controller={setCurrent} />,
-    forgot: <ForgotPassword controller={setCurrent} />,
-  };
-
-  const activeTab = usePathname();
-
+  const activeTab = usePathname()
   return (
+
     <div className={"bg-white dark:bg-[hsl(0deg_0%_5%)] sticky top-0 z-40"}>
       <section className="container mx-auto  max-sm:border-b">
         <nav className="relative mx-auto flex items-center justify-between px-4 h-12">
@@ -104,6 +92,7 @@ const NavBar = () => {
             </Link>
           </div>
           <div className="flex items-center gap-4">
+
             <Link href="/notifications" className="sm:hidden">
               <BsBellFill size={22} className="text-gray-400" />
             </Link>
@@ -120,11 +109,6 @@ const NavBar = () => {
       </section>
       {switchAccount && <SwicthProfile />}
       {editProfile && <EditProfile />}
-      {auth && (
-        <div className="inset-0 fixed glass z-50 grid place-items-center">
-          {menu[current]}
-        </div>
-      )}
     </div>
   );
 };

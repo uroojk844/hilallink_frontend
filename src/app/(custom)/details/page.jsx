@@ -18,7 +18,7 @@ const Details = () => {
   const [emoji, setEmoji] = useState(false);
   const [reply, setReply] = useState("");
   return (
-    <div className="small">
+    <div className="small bg-white px-4">
       <section className="py-4 border-b relative border-gray-300 grid grid-cols-[max-content,auto]">
         <div>
           <img src="/avtar.jpg" className="h-8 w-8 rounded-full" alt="" />
