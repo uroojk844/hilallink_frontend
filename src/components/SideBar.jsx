@@ -42,8 +42,9 @@ const SideBar = () => {
           </label>
         </div>
         <div className="peer-has-[.cb:checked]:h-12 peer-has-[.cb:checked]:mt-3 transition-all duration-300 h-0 flex gap-2 overflow-x-auto scrollbar-h">
-          {"djl".split("").map((index) => (
+          {"djl".split("").map((data,index) => (
             <img
+              key={index}
               src={`http://picsum.photos/40.webp?${index}`}
               className="rounded-full size-12 cursor-pointer"
             />
@@ -55,8 +56,8 @@ const SideBar = () => {
         </div>
       </section>
       <div className="grid gap-4">
-        {sideBarMenu.map((sideBarMenuItem) => (
-          <Link href={sideBarMenuItem.path} className="flex items-center gap-4">
+        {sideBarMenu.map((sideBarMenuItem,key) => (
+          <Link key={key} href={sideBarMenuItem.path} className="flex items-center gap-4">
             {sideBarMenuItem.icon} {sideBarMenuItem.name}
           </Link>
         ))}

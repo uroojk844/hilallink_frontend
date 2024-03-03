@@ -3,7 +3,7 @@ import PostCard from "../../components/Home/PostCard";
 import CreatePost from "@/components/CreatePost";
 import NavBar from "@/components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
-import { showAuth, showCreate } from "@/redux/togglesSlice";
+import { showCreate } from "@/redux/togglesSlice";
 
 const HomePage = () => {
   const create = useSelector((state) => state.togglesSlice.createPost);
@@ -15,7 +15,6 @@ const HomePage = () => {
       {create && <CreatePost />}
 
       <div className="small">
-        <button onClick={()=>dispatch(showAuth())}>Login</button>
         <section
           onClick={() => dispatch(showCreate())}
           className="flex items-center gap-4 bg-white px-4 py-2"

@@ -33,6 +33,7 @@ const NavBar = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.togglesSlice.auth);
   const [current, setCurrent] = useState("login");
+  const [menuToggle, setMenu] = useState(false);
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -121,11 +122,10 @@ const NavBar = () => {
             <Link href="/chats" className="sm:hidden">
               <BsChatDots size={22} className="text-gray-400" />
             </Link>
-            <Link href="/chats" className="max-sm:hidden">
+            <div onClick={()=>setMenu(!menuToggle)} className="max-sm:hidden">
               <FaBars size={22} className="text-gray-400" />
-            </Link>
-
-            <SideBar />
+            </div>
+            {menuToggle && <SideBar />}
           </div>
         </nav>
       </section>
