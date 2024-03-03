@@ -91,6 +91,7 @@ const SideBar = () => {
             </Link>
           ) : (
             <div
+              key={index}
               onClick={toggleTheme}
               className="flex items-center gap-4 cursor-pointer"
             >
