@@ -131,7 +131,7 @@ const Profile = () => {
       </div>
       <div className="grid place-items-center text-gray-600 py-16">
         <BsPersonLock size={65}/>
-        <div className="text-lg mt-4">{userData?.name}'s profile is locked</div>
+        <div className="text-lg mt-4">{userData?.name}&apos;s profile is locked</div>
       </div>
       {"abcde".split("").map((item, index) => {
         return <PostCard key={index} index={index} />;

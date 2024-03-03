@@ -133,7 +133,7 @@ const CreatePost = () => {
         </div>
         <div className="border-t text-center py-3 text-[10px]">
           <q>
-            The Momin is the one from whom the people's lives and wealth are
+            The Momin is the one from whom the people&apos;s lives and wealth are
             safe
           </q>{" "}
           - Prophet Mohammed PBUH.
