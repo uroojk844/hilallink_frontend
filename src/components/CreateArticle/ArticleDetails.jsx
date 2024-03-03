@@ -63,7 +63,7 @@ const ArticleDetails = ({controller}) => {
       <input
         type="text"
         placeholder="Title"
-        className="text-3xl font-bold mt-5 w-full outline-none"
+        className="text-3xl dark:bg-[hsl(0deg_0%_5%)] font-bold mt-5 w-full outline-none"
       />
       <div className={`${Styles.head} mt-4  h-72`}>
         <ForwardRefEditor/>
