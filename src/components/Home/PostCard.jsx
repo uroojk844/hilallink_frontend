@@ -11,7 +11,7 @@ const PostCard = ({ index }) => {
   return (
     <div className="p-4 bg-white dark:bg-[hsl(200,6%,10%)] border-b relative border-gray-300 dark:border-[hsl(197,6%,25%)] grid grid-cols-[max-content,auto]">
       {actions && (
-        <div className="absolute bg-white rounded right-0 top-10 shadow">
+        <div className="absolute bg-white rounded right-0 top-10 shadow dark:bg-[hsl(200,6%,10%)]">
           <div className="px-2 py-1 pr-14">Share</div>
           <div className="px-2 py-1 pr-14">Save</div>
           <div className="px-2 py-1 pr-14">Report</div>
@@ -54,25 +54,30 @@ const PostCard = ({ index }) => {
           <section className="flex gap-5 items-center">
             <div className="flex items-center gap-2">
               <BsHeart
-                size={22}
+                size={16}
                 className="text-gray-500 dark:text-[#afa99e]"
               />{" "}
-              <span className="text-sm text-gray-500 dark:text-[#afa99e]">
+              <span className="text-xs text-gray-500 dark:text-[#afa99e]">
                 129
               </span>{" "}
             </div>
             <div className="flex items-center gap-2">
-              <BsChat size={22} className="text-gray-500 dark:text-[#afa99e]" />{" "}
-              <span className="text-sm text-gray-500 dark:text-[#afa99e]">
+              <BsChat size={16} className="text-gray-500 dark:text-[#afa99e]" />{" "}
+              <span className="text-xs text-gray-500 dark:text-[#afa99e]">
                 32
               </span>{" "}
             </div>
-            <RiRepeat2Fill
-              size={20}
-              className="text-gray-500 dark:text-[#afa99e]"
-            />
+            <div className="flex items-center gap-2">
+              <RiRepeat2Fill
+                size={16}
+                className="text-gray-500 dark:text-[#afa99e]"
+              />{" "}
+              <span className="text-xs text-gray-500 dark:text-[#afa99e]">
+                129
+              </span>{" "}
+            </div>
           </section>
-          <GoShare size={24} className="text-gray-500 dark:text-[#afa99e]" />
+          <GoShare size={18} className="text-gray-500 dark:text-[#afa99e]" />
         </div>
       </div>
     </div>
