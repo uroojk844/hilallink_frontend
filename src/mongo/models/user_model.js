@@ -13,7 +13,6 @@ const userSchema = mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
       unique: true,
       lowercase: true,
     },
@@ -23,14 +22,7 @@ const userSchema = mongoose.Schema(
     },
     phone: {
       type: String,
-      unique: true,
-      default: "",
-    },
-    uid: {
-      type: String,
-      required: true,
-      unique: true,
-      default: "",
+      unique:true
     },
     profile_url: {
       type: String,
@@ -72,6 +64,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    isVerified:{
+      type:Boolean,
+      default:false
+    },
     followers: {
       type: Array,
       default: [],
@@ -80,11 +76,10 @@ const userSchema = mongoose.Schema(
       type: Array,
       default: [],
     },
-    // notifications: [],
-    // requests: {
-    //   type: mongoose.Types.Array,
-    //   default: [],
-    // },
+    password:{
+      type:String,
+      required:true
+    },
     blocked: {
       type: Array,
       default: [],
