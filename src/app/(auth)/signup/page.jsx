@@ -1,8 +1,8 @@
+"use client";
+import { GoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
 import React from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
-
 const Signup = () => {
   return (
     <div
@@ -55,9 +55,18 @@ const Signup = () => {
           <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
             Sign up
           </button>
-          <button className="w-full bg-transparent border border-gray-400 rounded-md py-2 mt-4 text-sm flex items-center justify-center gap-2">
-            <FcGoogle size={18} /> Continue with google
-          </button>
+          <div className="mt-2">
+            <GoogleLogin
+              text={"continue_with"}
+              width="350px"
+              onSuccess={(res) => {
+                console.log(jwtDecode(res.credential));
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </div>
           <Link href="/login">
             <div className="justify-center items-center mt-4 flex gap-2 text-sm">
               <BsArrowLeft /> Login to an existing account

@@ -1,9 +1,18 @@
+"use client";
+import { GoogleLogin } from "@react-oauth/google";
+import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 import { BsArrowRight } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
+  const router = useRouter();
+  function googleLogin(data) {
+    console.log(jwtDecode(data.credential));
+    router.push("/");
+  }
+
   return (
     <div
       className="h-[100dvh] grid place-items-center"
@@ -23,7 +32,6 @@ const Login = () => {
             placeholder="Your email or phone number here"
             className="w-full border p-2 rounded-md mb-4"
           />
-
           <label htmlFor="" className="font-medium text-sm ">
             Password
           </label>
@@ -35,13 +43,21 @@ const Login = () => {
           <div className="text-sm mt-1 font-medium flex justify-end">
             Forgot Password?
           </div>
-
           <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
             Sign in
           </button>
-          <button className="w-full bg-transparent border border-gray-400 rounded-md py-2 mt-4 text-sm flex items-center justify-center gap-2">
-            <FcGoogle size={18} /> Continue with google
-          </button>
+          <div className="flex mt-2">
+            <GoogleLogin
+              text={"continue_with"}
+              width="350px"
+              onSuccess={(res) => {
+                googleLogin(res);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </div>
           <Link href="/signup">
             <div className="justify-center items-center mt-4 flex gap-2 text-sm">
               Create a new HilalLink Account <BsArrowRight />
