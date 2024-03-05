@@ -1,9 +1,15 @@
 "use client";
 import { GoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 const Signup = () => {
+  const [btnWidth, setBtnWidth] = useState(200);
+  useEffect(() => {
+    const btn = document.querySelector(".custom_btn");
+    const form = document.querySelector("#form");
+    setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
+  }, []);
   return (
     <div
       className="h-[100dvh] grid place-items-center"
@@ -12,7 +18,10 @@ const Signup = () => {
           "linear-gradient(rgba(0 0 0/0.6),rgba(0 0 0/0.6)),url('/profile.avif')",
       }}
     >
-      <div className="bg-white px-6 py-8 rounded-md w-[400px]">
+      <div
+        id="form"
+        className="bg-white px-6 py-8 rounded-md w-[min(400px,96%)]"
+      >
         <div className="text-2xl font-bold">Create a new account</div>
         <div className="mt-3">
           <label htmlFor="" className="font-medium text-sm">
@@ -56,16 +65,18 @@ const Signup = () => {
             Sign up
           </button>
           <div className="mt-2">
-            <GoogleLogin
-              text={"continue_with"}
-              width="350px"
-              onSuccess={(res) => {
-                console.log(jwtDecode(res.credential));
-              }}
-              onError={() => {
-                console.log("Login Failed");
-              }}
-            />
+            <div className="flex mt-2 justify-center">
+              <GoogleLogin
+                width={btnWidth}
+                text={"continue_with"}
+                onSuccess={(res) => {
+                  googleLogin(res);
+                }}
+                onError={() => {
+                  console.log("Login Failed");
+                }}
+              />
+            </div>
           </div>
           <Link href="/login">
             <div className="justify-center items-center mt-4 flex gap-2 text-sm">
