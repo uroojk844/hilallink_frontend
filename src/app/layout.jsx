@@ -16,7 +16,9 @@ export default function RootLayout({ children }) {
       >
         <NextTopLoader showSpinner={false} color="dodgerblue" height={5} />
         <main>
-          <GoogleOAuthProvider clientId="521701366257-hqmmimm9u8i70c4s88nnevc4holkkq5p.apps.googleusercontent.com">
+          <GoogleOAuthProvider
+            clientId="521701366257-hqmmimm9u8i70c4s88nnevc4holkkq5p.apps.googleusercontent.com"
+          >
             <Provider store={store}>{children}</Provider>
           </GoogleOAuthProvider>
         </main>
