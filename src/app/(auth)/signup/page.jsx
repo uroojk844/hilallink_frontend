@@ -3,6 +3,8 @@ import { GoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+
+
 const Signup = () => {
   const [btnWidth, setBtnWidth] = useState(200);
   useEffect(() => {
@@ -68,6 +70,7 @@ const Signup = () => {
             <div className="flex mt-2 justify-center">
               <GoogleLogin
                 width={btnWidth}
+                theme="filled_black"
                 text={"continue_with"}
                 onSuccess={(res) => {
                   googleLogin(res);

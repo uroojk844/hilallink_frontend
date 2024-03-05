@@ -42,7 +42,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Your email or phone number here"
-            className="w-full border p-2 rounded-md mb-4"
+            className="w-full border p-2 rounded-md mb-4 max-sm:text-sm"
           />
           <label htmlFor="" className="font-medium text-sm ">
             Password
@@ -50,7 +50,7 @@ const Login = () => {
           <input
             type="text"
             placeholder="Your password here"
-            className="w-full border p-2 rounded-md"
+            className="w-full border p-2 rounded-md max-sm:text-sm"
           />
           <div className="text-sm mt-1 font-medium flex justify-end">
             Forgot Password?
@@ -60,6 +60,7 @@ const Login = () => {
           </button>
           <div className="flex mt-2 justify-center">
             <GoogleLogin
+              theme="filled_black"
               width={btnWidth}
               text={"continue_with"}
               onSuccess={(res) => {
