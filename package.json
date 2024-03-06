@@ -23,6 +23,7 @@
     "emoji-picker-react": "^4.8.0",
     "firebase": "^10.8.0",
     "hijri-date": "^0.2.2",
+    "jose": "^5.2.2",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.320.0",
     "moment": "^2.30.1",

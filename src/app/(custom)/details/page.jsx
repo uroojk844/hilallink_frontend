@@ -11,7 +11,6 @@ import {
 } from "react-icons/bs";
 import { GoShare } from "react-icons/go";
 import "animate.css";
-import EmojiPicker from "emoji-picker-react";
 
 const Details = () => {
   const [options, setOptions] = useState(false);
