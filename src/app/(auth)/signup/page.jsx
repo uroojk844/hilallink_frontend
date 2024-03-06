@@ -1,9 +1,16 @@
+"use client";
+import { GoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import { FcGoogle } from "react-icons/fc";
 
 const Signup = () => {
+  const [btnWidth, setBtnWidth] = useState(200);
+  useEffect(() => {
+    const btn = document.querySelector(".custom_btn");
+    const form = document.querySelector("#form");
+    setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
+  }, []);
   return (
     <div
       className="h-[100dvh] grid place-items-center"
@@ -12,7 +19,10 @@ const Signup = () => {
           "linear-gradient(rgba(0 0 0/0.6),rgba(0 0 0/0.6)),url('/profile.avif')",
       }}
     >
-      <div className="bg-white px-6 py-8 rounded-md w-[400px]">
+      <div
+        id="form"
+        className="bg-white px-6 py-8 rounded-md w-[min(400px,96%)]"
+      >
         <div className="text-2xl font-bold">Create a new account</div>
         <div className="mt-3">
           <label htmlFor="" className="font-medium text-sm">
@@ -21,7 +31,7 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Your name here"
-            className="w-full border p-2 rounded-md mb-3"
+            className="w-full border p-2 rounded-md mb-3 text-sm"
           />
           <label htmlFor="" className="font-medium text-sm">
             Email address
@@ -29,9 +39,9 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Your email address here"
-            className="w-full border p-2 rounded-md"
+            className="w-full border p-2 rounded-md text-sm"
           />
-          <div className="text-sm font-medium flex justify-end mt-1">
+          <div className="text-xs text-gray-400 flex justify-end mt-1">
             Use phone number instead
           </div>
 
@@ -41,7 +51,7 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Create your password"
-            className="w-full border p-2 rounded-md mb-4"
+            className="w-full border p-2 rounded-md mb-4 text-sm"
           />
           <label htmlFor="" className="font-medium text-sm ">
             Confirm your paassword
@@ -49,15 +59,31 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Re-enter your password"
-            className="w-full border p-2 rounded-md"
+            className="w-full border p-2 rounded-md text-sm"
           />
 
           <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
             Sign up
           </button>
-          <button className="w-full bg-transparent border border-gray-400 rounded-md py-2 mt-4 text-sm flex items-center justify-center gap-2">
-            <FcGoogle size={18} /> Continue with google
-          </button>
+          <div className="flex items-center gap-2 my-2">
+            <div className="h-[1px] w-full bg-gray-200"></div>
+            <div className="leading-4 text-xs">OR</div>
+            <div className="h-[1px] w-full bg-gray-200"></div>
+          </div>
+
+          <div className="flex mt-2 justify-center">
+            <GoogleLogin
+              width={btnWidth}
+              theme="filled_black"
+              text={"continue_with"}
+              onSuccess={(res) => {
+                googleLogin(res);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
+          </div>
           <Link href="/login">
             <div className="justify-center items-center mt-4 flex gap-2 text-sm">
               <BsArrowLeft /> Login to an existing account

@@ -3,7 +3,6 @@ import CommentCard from "@/components/Details/CommentCard";
 import { useState } from "react";
 import {
   BsChat,
-  BsEmojiSmile,
   BsHeart,
   BsImage,
   BsRepeat,
@@ -14,10 +13,9 @@ import "animate.css";
 
 const Details = () => {
   const [options, setOptions] = useState(false);
-  const [emoji, setEmoji] = useState(false);
   const [reply, setReply] = useState("");
   return (
-    <div className="small bg-white px-4">
+    <div className="small bg-white px-4 dark:bg-[hsl(200,6%,10%)]">
       <section className="py-4 border-b relative border-gray-300 dark:border-[hsl(197,6%,25%)] grid grid-cols-[max-content,auto]">
         <div>
           <img src="/avtar.jpg" className="h-8 w-8 rounded-full" alt="" />

@@ -1,11 +1,14 @@
 import { connectDB } from "@/mongo/database";
 import { userModel } from "@/mongo/models/user_model";
 import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
 
 connectDB();
 // add user
 export async function POST(req) {
   const data = await req.json();
+  const hashedPassword = await bcrypt.hash(data.password, 10);
+  data.password = hashedPassword;
   return userModel
     .findOne({ email: data.email })
     .then((found) => {
@@ -16,10 +19,10 @@ export async function POST(req) {
         return user
           .save()
           .then((saved) => {
-            return NextResponse.json("User added");
+            return NextResponse.json({success:"User added"});
           })
-          .catch((err) => NextResponse.json(err));
+          .catch((err) => NextResponse.json({ error: err }));
       }
     })
-    .catch((err) => NextResponse.json(err));
+    .catch((err) => NextResponse.json({ error: err }));
 }

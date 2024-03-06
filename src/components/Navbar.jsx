@@ -15,7 +15,7 @@ import { FaBars, FaMosque } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { dispatch } from "@/redux/store";
-import { hideProfile, setDarkTheme, showProfile } from "@/redux/togglesSlice";
+import { hideProfile, setDarkTheme, showCreate, showProfile } from "@/redux/togglesSlice";
 import { useCallback, useEffect } from "react";
 const SideBar = dynamic(() => import("./SideBar"));
 const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
@@ -63,12 +63,12 @@ const NavBar = () => {
             >
               <BsSearch />
             </Link>
-            <Link
-              href=""
+            <div
+              onClick={() => dispatch(showCreate())}
               className={twMerge("sm:hidden text-black dark:text-[#afa99e]")}
             >
               <BsPlusCircle size={30} />
-            </Link>
+            </div>
             <Link
               href="/ibadat"
               className={twMerge(

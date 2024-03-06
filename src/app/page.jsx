@@ -1,10 +1,10 @@
-import { Toaster } from "react-hot-toast";
+import { Toaster } from "sonner";
 import HomePage from "./home/page";
 
 export default function Home() {
   return (
     <>
-      <Toaster/>
+      <Toaster richColors />
       <HomePage />
     </>
   );
