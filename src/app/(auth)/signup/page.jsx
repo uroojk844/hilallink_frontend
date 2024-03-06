@@ -4,7 +4,6 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 
-
 const Signup = () => {
   const [btnWidth, setBtnWidth] = useState(200);
   useEffect(() => {
@@ -32,7 +31,7 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Your name here"
-            className="w-full border p-2 rounded-md mb-3"
+            className="w-full border p-2 rounded-md mb-3 text-sm"
           />
           <label htmlFor="" className="font-medium text-sm">
             Email address
@@ -40,9 +39,9 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Your email address here"
-            className="w-full border p-2 rounded-md"
+            className="w-full border p-2 rounded-md text-sm"
           />
-          <div className="text-sm font-medium flex justify-end mt-1">
+          <div className="text-xs text-gray-400 flex justify-end mt-1">
             Use phone number instead
           </div>
 
@@ -52,7 +51,7 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Create your password"
-            className="w-full border p-2 rounded-md mb-4"
+            className="w-full border p-2 rounded-md mb-4 text-sm"
           />
           <label htmlFor="" className="font-medium text-sm ">
             Confirm your paassword
@@ -60,26 +59,30 @@ const Signup = () => {
           <input
             type="text"
             placeholder="Re-enter your password"
-            className="w-full border p-2 rounded-md"
+            className="w-full border p-2 rounded-md text-sm"
           />
 
           <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
             Sign up
           </button>
-          <div className="mt-2">
-            <div className="flex mt-2 justify-center">
-              <GoogleLogin
-                width={btnWidth}
-                theme="filled_black"
-                text={"continue_with"}
-                onSuccess={(res) => {
-                  googleLogin(res);
-                }}
-                onError={() => {
-                  console.log("Login Failed");
-                }}
-              />
-            </div>
+          <div className="flex items-center gap-2 my-2">
+            <div className="h-[1px] w-full bg-gray-200"></div>
+            <div className="leading-4 text-xs">OR</div>
+            <div className="h-[1px] w-full bg-gray-200"></div>
+          </div>
+
+          <div className="flex mt-2 justify-center">
+            <GoogleLogin
+              width={btnWidth}
+              theme="filled_black"
+              text={"continue_with"}
+              onSuccess={(res) => {
+                googleLogin(res);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
           </div>
           <Link href="/login">
             <div className="justify-center items-center mt-4 flex gap-2 text-sm">

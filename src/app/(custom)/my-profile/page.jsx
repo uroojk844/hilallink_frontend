@@ -99,7 +99,7 @@ const Profile = () => {
         </section>
         <button
           onClick={() => dispatch(showEdit())}
-          className="bg-black flex items-center gap-2 text-white text-sm py-2 px-4 rounded-full"
+          className="bg-black dark:bg-[hsl(180,40%,5%)] flex items-center gap-2 text-white text-sm py-2 px-4 rounded-full"
         >
           <BsPen />
           Edit Profile
