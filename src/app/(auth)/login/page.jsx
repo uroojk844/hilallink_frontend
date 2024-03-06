@@ -72,6 +72,7 @@ const Login = () => {
           <form  onSubmit={handleSubmit(signin)}
             id="form"
             className="bg-white px-6 py-8 rounded-md w-[min(400px,96%)]"
+          
           >
             <div className="text-2xl font-bold">Welcome to HilalLink!</div>
             <div className="mt-3">
