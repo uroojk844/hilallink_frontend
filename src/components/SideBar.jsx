@@ -58,14 +58,17 @@ const SideBar = () => {
         <UserCard />
       </div>
       <section className="pb-4 pt-3.5 my-4 border-y border-gray-200 dark:border-[#363b3d]">
-        <label className="peer cursor-pointer leading-4 flex items-center justify-between text-[16px]">
-          Show existing Account
-          <FaChevronCircleDown />
+        <label className="group peer  cursor-pointer leading-4 flex items-center justify-between text-[16px]">
+          <div className="group-has-[.cb:checked]:before:content-['Hide'] before:content-['Show']">
+            {" "}
+            existing account
+          </div>
+          <FaChevronCircleDown className="group-has-[.cb:checked]:rotate-180 duration-300" />
           <input type="checkbox" className="cb hidden" />
         </label>
 
-        <div className="peer-has-[.cb:checked]:h-auto peer-has-[.cb:checked]:mt-3 transition-all duration-300 h-0 grid gap-2 overflow-y-auto max-h-52">
-          {"djl".split("").map((index) => (
+        <div className="peer-has-[.cb:checked]:h-auto peer-has-[.cb:checked]:mt-3 transition-all duration-300 h-0 grid gap-2 overflow-y-auto max-h-52 scrollbar-v">
+          {"dl".split("").map((index) => (
             <div key={index} className="border p-2 rounded-full">
               <UserCard />
             </div>
