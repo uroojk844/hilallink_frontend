@@ -22,7 +22,7 @@ const userSchema = mongoose.Schema(
     },
     phone: {
       type: String,
-      unique:true
+      unique: true,
     },
     profile_url: {
       type: String,
@@ -64,9 +64,9 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    isVerified:{
-      type:Boolean,
-      default:false
+    isVerified: {
+      type: Boolean,
+      default: false,
     },
     followers: {
       type: Array,
@@ -76,9 +76,9 @@ const userSchema = mongoose.Schema(
       type: Array,
       default: [],
     },
-    password:{
-      type:String,
-      required:true
+    password: {
+      type: String,
+      required: true,
     },
     blocked: {
       type: Array,
