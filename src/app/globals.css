@@ -173,3 +173,16 @@ body {
   background-color: lightgray;
   border-radius: 3px;
 }
+
+.scrollbar-v::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-v:hover::-webkit-scrollbar {
+  display: block;
+  width: 6px;
+}
+.scrollbar-v::-webkit-scrollbar-thumb {
+  background-color: lightgray;
+  border-radius: 3px;
+}
