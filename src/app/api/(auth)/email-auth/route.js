@@ -7,7 +7,7 @@ import { connectDB } from "@/mongo/database";
 export async function POST(req) {
   connectDB()
   const data = await req.json();
-  const userData = await userModel.findOne({ email: data.email });
+  const userData = await userModel.findOne({ "$or":[{email:data.identity},{phone:data.identity}] });
   if (userData != null) {
     const isValid = await bcrypt
       .compare(data.password, userData.password)
@@ -18,6 +18,6 @@ export async function POST(req) {
     } else return NextResponse.json({ error: "Invalid credentials" });
   }
   else{
-    return NextResponse.json({error:"This email is not registered with HilalLink"})
+    return NextResponse.json({error:"This account is not registered with HilalLink"})
   }
 }

@@ -1,7 +1,6 @@
 "use client";
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
-import { Loader } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -38,8 +37,8 @@ const Login = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        email: data?.email,
-        password: data?.password,
+        identity:data?.identity,
+        password:data?.password,
       }),
     })
       .then((res) => res.json())
@@ -80,8 +79,8 @@ const Login = () => {
               Email or Phone number
             </label>
             <input
-              {...register("email")}
-              type="email"
+              {...register("identity")}
+              type="text"
               placeholder="Your email or phone number here"
               className="w-full border p-2 rounded-md mb-4 max-sm:text-sm"
               required
