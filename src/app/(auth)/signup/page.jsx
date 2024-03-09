@@ -6,10 +6,12 @@ import { useForm } from "react-hook-form";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Toaster, toast } from "sonner";
 
+
 const Signup = () => {
   const [btnWidth, setBtnWidth] = useState(200);
+  const [isEmail, setIsEmail] = useState(true);
+
   useEffect(() => {
-    const btn = document.querySelector(".custom_btn");
     const form = document.querySelector("#form");
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
@@ -93,6 +95,7 @@ const Signup = () => {
                 className="w-full border p-2 rounded-md text-sm"
               />
 
+
               <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
                 Sign up
               </button>
@@ -125,6 +128,7 @@ const Signup = () => {
         </div>
       </div>
     </>
+
   );
 };
 

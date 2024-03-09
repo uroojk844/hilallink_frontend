@@ -28,8 +28,7 @@ export default function RootLayout({ children }) {
           )}
         </>
       )}
-
-      {children}
+      <main id="customLayout">{children}</main>
     </>
   );
 }
