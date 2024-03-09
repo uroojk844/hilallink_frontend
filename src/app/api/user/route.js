@@ -7,10 +7,10 @@ connectDB();
 // add user
 export async function POST(req) {
   const data = await req.json();
-  const hashedPassword = await bcrypt.hash(data.password, 10);
+  const hashedPassword = await bcrypt.hash(data.password.toString(), 10);
   data.password = hashedPassword;
   return userModel
-    .findOne({ email: data.email })
+    .findOne({ phone: data.phone })
     .then((found) => {
       if (found != null)
         return NextResponse.json({ error: "User already exists" });

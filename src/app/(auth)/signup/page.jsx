@@ -4,32 +4,26 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsArrowLeft } from "react-icons/bs";
-import { generateFromEmail } from "unique-username-generator";
+import { generateUsername } from "unique-username-generator";
 import bcrypt from "bcryptjs";
-import axios from "axios";
+import { TailSpin } from "react-loader-spinner";
+import { NextResponse } from "next/server";
 
 const Signup = () => {
   const [btnWidth, setBtnWidth] = useState(200);
-  const [isEmail, setIsEmail] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const btn = document.querySelector(".custom_btn");
     const form = document.querySelector("#form");
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
 
-  const { handleSubmit, register } = useForm();
+  const { watch, handleSubmit, register } = useForm();
 
-  async function getFormData(data) {
-    data.username = generateFromEmail(data.email, 4);
-    data.password = await bcrypt.hash(data.password, 10);
-    axios
-      .post("/api/user", data)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((err) => console.log(err));
-  }
+  async function getFormData(data) {}
+
+  const [matching, setMatching] = useState(false);
+
   return (
     <div
       className="h-[100dvh] grid place-items-center"
@@ -45,63 +39,60 @@ const Signup = () => {
       >
         <div className="text-2xl font-bold">Create a new account</div>
         <div className="mt-3">
-          <label className="font-medium text-sm">
+          <label className="font-medium text-sm grid mb-3 ">
             Full name
             <input
               type="text"
               {...register("name", { required: true })}
               placeholder="Your name here"
-              className="w-full border p-2 rounded-md mb-3 text-sm"
+              className="w-full border p-2 rounded-md text-sm"
             />
           </label>
-          {isEmail ? (
-            <label className="font-medium text-sm">
-              Email address
-              <input
-                type="email"
-                {...register("email", { required: true })}
-                placeholder="Your email address here"
-                className="w-full border p-2 rounded-md text-sm"
-              />
-            </label>
-          ) : (
-            <label className="font-medium text-sm">
-              Phone number
-              <input
-                type="tel"
-                {...register("phone", { required: true })}
-                placeholder="Your phone number here"
-                className="w-full border p-2 rounded-md text-sm"
-              />
-            </label>
-          )}
-          <div
-            onClick={() => setIsEmail((cur) => !cur)}
-            className="text-xs text-gray-400 flex justify-end mt-1 hover:text-gray-500 duration-150 cursor-pointer"
-          >
-            Use {!isEmail ? "email address" : "phone number"} instead
-          </div>
 
-          <label className="font-medium text-sm ">
+          <label className="font-medium text-sm grid mb-3 ">
+            Phone number
+            <input
+              type="tel"
+              {...register("phone", { required: true })}
+              placeholder="Your phone number here"
+              className="w-full border p-2 rounded-md text-sm"
+            />
+          </label>
+
+          <label className="font-medium text-sm grid mb-3 ">
             Create a password
             <input
               type="password"
+              onKeyUp={() =>
+                setMatching(watch("password") == watch("confirmPassword"))
+              }
               {...register("password", { required: true })}
               placeholder="Create your password"
-              className="w-full border p-2 rounded-md mb-4 text-sm"
+              className="w-full border p-2 rounded-md text-sm"
             />
           </label>
           <label className="font-medium text-sm ">
             Confirm your paassword
             <input
+              {...register("confirmPassword", { required: true })}
+              onKeyUp={() =>
+                setMatching(watch("password") == watch("confirmPassword"))
+              }
               type="password"
               placeholder="Re-enter your password"
               className="w-full border p-2 rounded-md text-sm"
             />
           </label>
 
-          <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
-            Sign up
+          <button
+            className="w-full flex justify-center bg-black text-white rounded-md py-2.5 mt-4 text-sm disabled:cursor-not-allowed disabled:opacity-80"
+            disabled={!matching}
+          >
+            {!isLoading ? (
+              "Sign up"
+            ) : (
+              <TailSpin height={20} width={20} color="white" />
+            )}
           </button>
           <div className="flex items-center gap-2 my-2">
             <div className="h-[1px] w-full bg-gray-200"></div>
