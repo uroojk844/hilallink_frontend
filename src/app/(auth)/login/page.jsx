@@ -52,7 +52,8 @@ const Login = () => {
         } else {
           if (!data.verified) {
             setUserNotVerfied(true);
-          } else {
+          } 
+          else {
             toast.success("Logged in!", {
               position: "top-center",
             });
