@@ -186,3 +186,14 @@ body {
   background-color: lightgray;
   border-radius: 3px;
 }
+
+.hide-spin::-webkit-outer-spin-button,
+.hide-spin::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
