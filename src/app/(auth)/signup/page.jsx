@@ -2,15 +2,34 @@
 import { GoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { useForm } from "react-hook-form";
+import { BsArrowLeft } from "react-icons/bs";
+import { generateFromEmail } from "unique-username-generator";
+import bcrypt from "bcryptjs";
+import axios from "axios";
 
 const Signup = () => {
   const [btnWidth, setBtnWidth] = useState(200);
+  const [isEmail, setIsEmail] = useState(true);
+
   useEffect(() => {
     const btn = document.querySelector(".custom_btn");
     const form = document.querySelector("#form");
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
+
+  const { handleSubmit, register } = useForm();
+
+  async function getFormData(data) {
+    data.username = generateFromEmail(data.email, 4);
+    data.password = await bcrypt.hash(data.password, 10);
+    axios
+      .post("/api/user", data)
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err));
+  }
   return (
     <div
       className="h-[100dvh] grid place-items-center"
@@ -19,48 +38,67 @@ const Signup = () => {
           "linear-gradient(rgba(0 0 0/0.6),rgba(0 0 0/0.6)),url('/profile.avif')",
       }}
     >
-      <div
+      <form
+        onSubmit={handleSubmit(getFormData)}
         id="form"
         className="bg-white px-6 py-8 rounded-md w-[min(400px,96%)]"
       >
         <div className="text-2xl font-bold">Create a new account</div>
         <div className="mt-3">
-          <label htmlFor="" className="font-medium text-sm">
+          <label className="font-medium text-sm">
             Full name
+            <input
+              type="text"
+              {...register("name", { required: true })}
+              placeholder="Your name here"
+              className="w-full border p-2 rounded-md mb-3 text-sm"
+            />
           </label>
-          <input
-            type="text"
-            placeholder="Your name here"
-            className="w-full border p-2 rounded-md mb-3 text-sm"
-          />
-          <label htmlFor="" className="font-medium text-sm">
-            Email address
-          </label>
-          <input
-            type="text"
-            placeholder="Your email address here"
-            className="w-full border p-2 rounded-md text-sm"
-          />
-          <div className="text-xs text-gray-400 flex justify-end mt-1">
-            Use phone number instead
+          {isEmail ? (
+            <label className="font-medium text-sm">
+              Email address
+              <input
+                type="email"
+                {...register("email", { required: true })}
+                placeholder="Your email address here"
+                className="w-full border p-2 rounded-md text-sm"
+              />
+            </label>
+          ) : (
+            <label className="font-medium text-sm">
+              Phone number
+              <input
+                type="tel"
+                {...register("phone", { required: true })}
+                placeholder="Your phone number here"
+                className="w-full border p-2 rounded-md text-sm"
+              />
+            </label>
+          )}
+          <div
+            onClick={() => setIsEmail((cur) => !cur)}
+            className="text-xs text-gray-400 flex justify-end mt-1 hover:text-gray-500 duration-150 cursor-pointer"
+          >
+            Use {!isEmail ? "email address" : "phone number"} instead
           </div>
 
-          <label htmlFor="" className="font-medium text-sm ">
+          <label className="font-medium text-sm ">
             Create a password
+            <input
+              type="password"
+              {...register("password", { required: true })}
+              placeholder="Create your password"
+              className="w-full border p-2 rounded-md mb-4 text-sm"
+            />
           </label>
-          <input
-            type="text"
-            placeholder="Create your password"
-            className="w-full border p-2 rounded-md mb-4 text-sm"
-          />
-          <label htmlFor="" className="font-medium text-sm ">
+          <label className="font-medium text-sm ">
             Confirm your paassword
+            <input
+              type="password"
+              placeholder="Re-enter your password"
+              className="w-full border p-2 rounded-md text-sm"
+            />
           </label>
-          <input
-            type="text"
-            placeholder="Re-enter your password"
-            className="w-full border p-2 rounded-md text-sm"
-          />
 
           <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
             Sign up
@@ -77,7 +115,7 @@ const Signup = () => {
               theme="filled_black"
               text={"continue_with"}
               onSuccess={(res) => {
-                googleLogin(res);
+                // googleLogin(res);
               }}
               onError={() => {
                 console.log("Login Failed");
@@ -90,7 +128,7 @@ const Signup = () => {
             </div>
           </Link>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
