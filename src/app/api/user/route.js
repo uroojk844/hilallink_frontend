@@ -7,7 +7,7 @@ connectDB();
 // add user
 export async function POST(req) {
   const data = await req.json();
-  const hashedPassword = await bcrypt.hash(data.password, 10);
+  const hashedPassword = await bcrypt.hash(data.password.toString(), 10);
   data.password = hashedPassword;
   return userModel
     .findOne( {phone: data.phone})

@@ -20,36 +20,19 @@ const userSchema = mongoose.Schema(
       default: "not specified",
     },
     phone: {
+      required: true,
       type: String,
       unique: true,
     },
-    profile_url: {
-      type: String,
-      default: "",
-    },
-    cover_url: {
-      type: String,
-      default: "",
-    },
-    category: {
-      type: String,
-      default: "",
-    },
-    dob: {
-      type: Date,
-      default: "",
-    },
-    website: {
-      type: String,
-      default: "",
-    },
-    location: {
-      type: String,
-      default: "",
-    },
+    profile_url: String,
+    cover_url: String,
+    category: String,
+    dob: Date,
+    website: String,
+    location: String,
     bio: {
       type: String,
-      default: "",
+      max: 160,
     },
     joining_date: {
       type: Date,
@@ -67,22 +50,28 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    followers: {
-      type: Array,
-      default: [],
-    },
-    following: {
-      type: Array,
-      default: [],
-    },
+    followers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    ],
+    following: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    ],
     password: {
       type: String,
       required: true,
     },
-    blocked: {
-      type: Array,
-      default: [],
-    },
+    blocked: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users",
+      },
+    ],
   },
   { timestamps: true }
 );

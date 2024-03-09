@@ -19,12 +19,9 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
 
   const [btnWidth, setBtnWidth] = useState(200);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const btn = document.querySelector(".custom_btn");
     const form = document.querySelector("#form");
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
