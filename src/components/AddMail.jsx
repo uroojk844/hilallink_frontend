@@ -17,7 +17,7 @@ const AddMail = () => {
           Conitnue
         </button>
         <div className="text-sm text-center font-bold mt-4">
-          I'll do this later
+          I&apos;ll do this later
         </div>
       </div>
     </div>

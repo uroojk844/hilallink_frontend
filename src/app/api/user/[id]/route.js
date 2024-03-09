@@ -6,5 +6,5 @@ connectDB();
 
 export async function POST(req, res) {
   const user = await userModel.find({"_id":res.params.id});
-  return NextResponse.json(user);
+  return NextResponse.json({user});
 }
