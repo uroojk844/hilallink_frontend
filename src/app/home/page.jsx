@@ -4,14 +4,20 @@ import CreatePost from "@/components/CreatePost";
 import NavBar from "@/components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { showCreate } from "@/redux/togglesSlice";
+import "animate.css";
+import { useState } from "react";
+import AddMail from "@/components/AddMail";
 
 const HomePage = () => {
   const create = useSelector((state) => state.togglesSlice.createPost);
+  const [addMail, setAddMail] = useState(false);
+
   const dispatch = useDispatch();
   return (
     <>
       <NavBar />
 
+      {addMail && <AddMail />}
       {create && <CreatePost />}
 
       <div className="small">
