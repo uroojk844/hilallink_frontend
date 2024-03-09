@@ -33,9 +33,9 @@ const Login = () => {
     setLoading(true);
     fetch(
       "/api/email-auth",
-      { cache: "no-store" },
       {
         method: "POST",
+        cache:"no-cache",
         headers: {
           "content-type": "application/json",
         },

@@ -10,9 +10,12 @@ export async function POST(req) {
   if (!data.password || !data.phone)
     return Response.json({ error: "All feilds are required" });
   const userData = await userModel.findOne({ phone: data.phone });
-  const isValid = await bcrypt.compare(data.password, userData.password);
-  if (isValid) {
-    const token = jwt.sign({ user: userData._id }, process.env.JWT_SECRET);
-    return NextResponse.json({ token: token, verified: userData.isVerified });
-  } else return NextResponse.json({ error: "Invalid credentials" });
+  if (userData) {
+    const isValid = await bcrypt.compare(data.password, userData.password);
+    if (isValid) {
+      const token = jwt.sign({ user: userData._id }, process.env.JWT_SECRET);
+      return NextResponse.json({ token: token, verified: userData.isVerified });
+    } else return NextResponse.json({ error: "Invalid credentials" });
+  }
+  else return NextResponse.json({error:"This phone number is not registered with HilalLink!"})
 }
