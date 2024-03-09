@@ -10,16 +10,15 @@ export async function POST(req) {
   const hashedPassword = await bcrypt.hash(data.password, 10);
   data.password = hashedPassword;
   return userModel
-    .findOne({ email: data.email })
+    .findOne( {phone: data.phone})
     .then((found) => {
-      if (found != null)
-        return NextResponse.json({ error: "User already exists" });
+      if (found) return Response.json({ error: "User already exists" });
       else {
         const user = new userModel(data);
         return user
           .save()
           .then((saved) => {
-            return NextResponse.json({success:"User added"});
+            return NextResponse.json({ success: "User added" });
           })
           .catch((err) => NextResponse.json({ error1: err }));
       }
