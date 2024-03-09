@@ -1,6 +1,6 @@
 import bcrypt from "bcryptjs";
 const accountSid = "ACc523dbe3d3b17faa08d77314ec82790e";
-const authToken = "curhwgv4u8vy6o3789npry1";
+const authToken = "1614e4e3e095e48118961223b4d61054";
 const client = require("twilio")(accountSid, authToken);
 
 export async function POST(req) {
@@ -13,9 +13,9 @@ export async function POST(req) {
     .then((hashed) => hashed);
   return client.messages
     .create({
-      body: "Enjioy",
+      body: otp+" is your One Time Password to verify your HilalLink account",
       from: "+16509357253",
-      to: data.phone,
+      to: "+91"+data.phone,
     })
     .then((message) =>
       Response.json({
