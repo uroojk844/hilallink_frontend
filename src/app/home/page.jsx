@@ -5,14 +5,18 @@ import NavBar from "@/components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { showCreate } from "@/redux/togglesSlice";
 import "animate.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddMail from "@/components/AddMail";
+import { fetchUsers } from "@/redux/userSlice";
 
 const HomePage = () => {
   const create = useSelector((state) => state.togglesSlice.createPost);
   const [addMail, setAddMail] = useState(false);
-
+  
   const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(fetchUsers())
+  },[])
   return (
     <>
       <NavBar />

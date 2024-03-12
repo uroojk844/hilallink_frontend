@@ -1,17 +1,27 @@
-import { NextResponse } from "next/server";
+import { useParams } from "next/navigation";
+import { NextRequest, NextResponse } from "next/server";
 import * as jose from "jose";
-export async function middleware(req) {
-  // const token = req.headers.get("authorization").split(" ")[1];
-  // const signature = new TextEncoder().encode(process.env.JWT_SECRET);
-  // try {
-  //   const data = await jose.jwtVerify(token, signature);
-  //   return NextResponse.next();
-  //   //  NextResponse.json({ success: data.payload.user });
-  // } catch (error) {
-  //   return NextResponse.json({ error: "Please sign in to continue" });
-  // }
-}
+import bcrypt from "bcryptjs"
 
+
+const jwtConfig = {
+  secret: new TextEncoder().encode(process.env.JWT_SECRET),
+};
+
+export async function middleware(req) {
+  const token = req.cookies.get("token")?.value;
+  return jose
+    .jwtVerify(token, jwtConfig.secret)
+    .then((verified) => {
+      console.log("Token verified");
+      const uid = verified.payload.user
+      console.log(uid)
+      return NextResponse.next();
+    })
+    .catch((err) => {
+      return NextResponse.redirect(new URL("/auth/login", req.nextUrl));
+    });
+}
 export const config = {
-  matcher: ["/api/:path*"],
+  matcher: ["/((?!api|_next|favicon.ico|profile.avif|auth/.).*)"],
 };

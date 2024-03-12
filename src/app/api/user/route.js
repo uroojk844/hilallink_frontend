@@ -19,9 +19,9 @@ export async function POST(req) {
           .save()
           .then((saved) => {
             return NextResponse.json({ success: "User added" });
-          })
-          .catch((err) => NextResponse.json({ error1: err }));
+          }) 
+          .catch((err) => NextResponse.json({ error: "Something went wrong" }));
       }
     })
-    .catch((err) => NextResponse.json({ error2: err }));
+    .catch((err) => NextResponse.json({ error: "Something went wrong" }));
 }

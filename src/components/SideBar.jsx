@@ -15,7 +15,7 @@ import { VscColorMode } from "react-icons/vsc";
 import UserCard from "./UserCard";
 import Link from "next/link";
 import { MdFeedback } from "react-icons/md";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkTheme } from "@/redux/togglesSlice";
 
@@ -36,7 +36,7 @@ const SideBar = () => {
       path: "/",
     },
     { icon: <FaFileAlt size={20} />, name: "Resources", path: "/" },
-    { icon: <FaPowerOff size={20} />, name: "Logout", path: "/" },
+    { icon: <FaPowerOff size={20} />, name: "Logout", path: "/logout" },
   ];
 
   const darkTheme = useSelector((state) => state.togglesSlice.darkTheme);
@@ -51,11 +51,12 @@ const SideBar = () => {
     dispatch(toggleDarkTheme());
     document.body.classList.toggle("dark");
   }, []);
+  const [user, setUser] = useState({});
 
   return (
     <section className="bg-white dark:bg-[hsl(200,6%,10%)] w-80 absolute right-0 max-sm:translate-x-1/2 max-sm:right-1/2 top-14 p-4 rounded-[32px] border border-gray-200  dark:border-[#363b3d]">
       <div className="border p-2 rounded-full">
-        <UserCard />
+        <UserCard data={user.user} />
       </div>
       <section className="pb-4 pt-3.5 my-4 border-y border-gray-200 dark:border-[#363b3d]">
         <label className="group peer  cursor-pointer leading-4 flex items-center justify-between text-[16px]">

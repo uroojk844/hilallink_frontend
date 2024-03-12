@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Toaster, toast } from "sonner";
 
-
 const Signup = () => {
   const [btnWidth, setBtnWidth] = useState(200);
   const [isEmail, setIsEmail] = useState(true);
@@ -15,6 +14,7 @@ const Signup = () => {
     const form = document.querySelector("#form");
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
+  const { handleSubmit, register } = useForm();
 
   function phoneSignup(data) {
     data.username = data.phone;
@@ -22,6 +22,7 @@ const Signup = () => {
       method: "POST",
       cache: "no-store",
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
@@ -32,18 +33,16 @@ const Signup = () => {
           toast.error(data.error, {
             position: "top-center",
           });
-        }
-        else{
+        } else {
           toast.success("Account created", {
             position: "top-center",
           });
         }
       });
   }
-  const { handleSubmit, register } = useForm();
   return (
     <>
-    <Toaster richColors />
+      <Toaster richColors />
       <div
         className="h-[100dvh] grid place-items-center"
         style={{
@@ -95,7 +94,6 @@ const Signup = () => {
                 className="w-full border p-2 rounded-md text-sm"
               />
 
-
               <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
                 Sign up
               </button>
@@ -104,21 +102,7 @@ const Signup = () => {
                 <div className="leading-4 text-xs">OR</div>
                 <div className="h-[1px] w-full bg-gray-200"></div>
               </div>
-
-              <div className="flex mt-2 justify-center">
-                <GoogleLogin
-                  width={btnWidth}
-                  theme="filled_black"
-                  text={"continue_with"}
-                  onSuccess={(res) => {
-                    googleLogin(res);
-                  }}
-                  onError={() => {
-                    console.log("Login Failed");
-                  }}
-                />
-              </div>
-              <Link href="/login">
+              <Link href="/auth/login">
                 <div className="justify-center items-center mt-4 flex gap-2 text-sm">
                   <BsArrowLeft /> Login to an existing account
                 </div>
@@ -128,7 +112,6 @@ const Signup = () => {
         </div>
       </div>
     </>
-
   );
 };
 

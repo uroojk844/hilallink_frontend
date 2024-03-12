@@ -1,6 +1,4 @@
 "use client";
-import { GoogleLogin } from "@react-oauth/google";
-import { jwtDecode } from "jwt-decode";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -8,60 +6,33 @@ import { BsArrowRight, BsShieldCheck } from "react-icons/bs";
 import { Toaster, toast } from "sonner";
 import { TailSpin } from "react-loader-spinner";
 import { useForm } from "react-hook-form";
+import { login } from "../utils/helpers";
+import { useDispatch } from "react-redux";
+import { fetchUsers } from "@/redux/userSlice";
 
 const Login = () => {
   const router = useRouter();
-  function googleLogin(data) {
-    console.log(jwtDecode(data.credential));
-    router.push("/");
-  }
-
   const { register, handleSubmit } = useForm();
-
-  const [btnWidth, setBtnWidth] = useState(200);
   const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const form = document.querySelector("#form");
-    setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
-  }, []);
   const [userNotVerified, setUserNotVerfied] = useState(false);
-  function signin(data) {
+  const dispatch = useDispatch()
+
+  async function signin(data) {
     setLoading(true);
-    fetch(
-      "/api/email-auth",
-      {
-        method: "POST",
-        cache:"no-cache",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          phone: data?.phone,
-          password: data?.password,
-        }),
-      }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.error) {
-          toast.error(data.error, {
-            position: "top-center",
-          });
-          setLoading(false);
-        } else {
-          if (!data.verified) {
-            setUserNotVerfied(true);
-          } 
-          else {
-            toast.success("Logged in!", {
-              position: "top-center",
-            });
-            router.push("/");
-            localStorage.setItem("token", data.token);
-          }
-        }
+    const status = await login(data);
+    if (status.error) {
+      toast.error(status.error, {
+        position: "top-center",
       });
+    } else {
+      localStorage.setItem("user",status.uid)
+      dispatch(fetchUsers())
+      toast.success("Logged in successfully!", {
+        position: "top-center",
+      });
+      router.push("/");
+    }
+    setLoading(false);
   }
 
   return (
@@ -137,20 +108,6 @@ const Login = () => {
                   </button>
                 )}
 
-                <div className="flex mt-2 justify-center">
-                  <GoogleLogin
-                    theme="filled_black"
-                    width={btnWidth}
-                    text={"continue_with"}
-                    onSuccess={(res) => {
-                      googleLogin(res);
-                    }}
-                    onError={() => {
-                      console.log("Login Failed");
-                    }}
-                  />
-                </div>
-
                 <Link href="/signup">
                   <div className="justify-center items-center mt-4 flex gap-2 text-sm">
                     Create a new HilalLink Account <BsArrowRight />
@@ -159,7 +116,6 @@ const Login = () => {
               </div>
             </>
           )}
-
         </form>
       </div>
     </>
