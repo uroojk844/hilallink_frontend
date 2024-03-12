@@ -10,7 +10,7 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-  const response = await fetch(`api/user/${localStorage.getItem("user")}`, {
+  const response = await fetch(`/api/user/${localStorage.getItem("user")}`, {
     method: "POST",
     cache:"no-store"
   });
