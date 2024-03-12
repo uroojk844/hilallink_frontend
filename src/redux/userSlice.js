@@ -10,16 +10,12 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk("user/fetchUsers", async () => {
-  const response = await fetch("/api/my", {
+  const response = await fetch(`api/user/${localStorage.getItem("user")}`, {
     method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({ uid: localStorage.getItem("user") }),
+    cache:"no-store"
   });
   const data = await response.json()
-  return data
-
+  return data.user
 });
 
 const userSlice = createSlice({

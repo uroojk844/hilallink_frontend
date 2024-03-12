@@ -5,6 +5,8 @@ import {
   BsArrowLeft,
   BsBoxArrowUpRight,
   BsGeoAlt,
+  BsImage,
+  BsImageAlt,
   BsPen,
   BsPersonLock,
   BsShare,
@@ -16,24 +18,6 @@ import { MdBlock } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { showEdit } from "@/redux/togglesSlice";
 const Profile = () => {
-  const data = [
-    {
-      title: "Following",
-      value: 348,
-    },
-    {
-      title: "Followers",
-      value: "348K",
-    },
-    {
-      title: "Posts",
-      value: 468,
-    },
-    {
-      title: "Like",
-      value: "348K",
-    },
-  ];
   const [actions, setActions] = useState(false);
   const userData = useSelector((state) => state.userSlice.user);
   const dispatch = useDispatch();
@@ -71,17 +55,25 @@ const Profile = () => {
           alt=""
         />
       </div>
-      <div className="grid grid-cols-4 pt-3">
-        {data.map((data, index) => {
-          return (
-            <div className="text-center" key={index}>
-              <div className="font-bold">{data.value}</div>
-              <div className="text-sm text-gray-500 dark:text-[#afa99e]">
-                {data.title}
-              </div>
-            </div>
-          );
-        })}
+      <div className="grid grid-cols-3 pt-3">
+        <div className="text-center">
+          <div className="font-bold">{userData?.followers?.length}</div>
+          <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+            Followers
+          </div>
+        </div>
+        <div className="text-center">
+          <div className="font-bold">{userData?.following?.length}</div>
+          <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+            Following
+          </div>
+        </div>
+        <div className="text-center">
+          <div className="font-bold">{userData?.following?.length}</div>
+          <div className="text-sm text-gray-500 dark:text-[#afa99e]">
+            Posts
+          </div>
+        </div>
       </div>
       <div className="px-8 py-4 flex  justify-between items-center mt-2">
         <section className="flex gap-3 items-center">
@@ -106,26 +98,35 @@ const Profile = () => {
         </button>
       </div>
 
-      <div className="px-8 text-sm pb-4">
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores quasi
-        deserunt earum ex ducimus doloremque itaque libero iure asperiores
-        possimus quia voluptatum consequuntur dignissimos similique eos, eum nam
-        esse. Dignissimos. doloremque itaque libero iure asperiores possimus
-      </div>
+      {userData?.bio && (
+        <div className="px-8 text-sm pb-4">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
+          quasi deserunt earum ex ducimus doloremque itaque libero iure
+          asperiores possimus quia voluptatum consequuntur dignissimos similique
+          eos, eum nam esse. Dignissimos. doloremque itaque libero iure
+          asperiores possimus
+        </div>
+      )}
 
       <div className="px-8 flex justify-between text-xs pb-5 text-gray-500 dark:text-[#afa99e]">
-        <div className="flex items-center gap-2 justify-center">
-          {" "}
-          <IoGrid /> Religious Institutuon
-        </div>
-        <div className="flex items-center gap-2 justify-center">
-          {" "}
-          <BsGeoAlt /> Lucknow, India
-        </div>
-        <div className="flex items-center gap-2 justify-center">
-          {" "}
-          <BsBoxArrowUpRight /> Visit Website
-        </div>
+        {userData?.category && (
+          <div className="flex items-center gap-2 justify-center">
+            {" "}
+            <IoGrid /> {userData.category}
+          </div>
+        )}
+        {userData?.location && (
+          <div className="flex items-center gap-2 justify-center">
+            {" "}
+            <BsGeoAlt /> {userData?.location}
+          </div>
+        )}
+        {userData?.website && (
+          <div className="flex items-center gap-2 justify-center">
+            {" "}
+            <BsBoxArrowUpRight /> {userData?.website}
+          </div>
+        )}
       </div>
       <div className="flex border-t text-sm border-b">
         <div className="py-3 px-4 font-medium">All Posts</div>
@@ -137,12 +138,12 @@ const Profile = () => {
           Activities
         </div>
       </div>
-      <div className="grid place-items-center text-gray-600 py-16">
-        <BsPersonLock size={65} />
+      {/* <div className="grid place-items-center text-gray-600 py-16">
+        <BsImage size={65} />
         <div className="text-lg mt-4">
-          {userData?.name}&apos;s profile is locked
+          No Posts Found
         </div>
-      </div>
+      </div> */}
       {"abcde".split("").map((item, index) => {
         return <PostCard key={index} index={index} />;
       })}

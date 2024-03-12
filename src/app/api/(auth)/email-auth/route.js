@@ -14,7 +14,9 @@ export async function POST(req) {
     const isValid = await bcrypt.compare(data.password, userData.password);
     if (isValid) {
       const token = jwt.sign({ user: userData._id }, process.env.JWT_SECRET);
-      return NextResponse.json({ token: token, verified: userData.isVerified });
+      const response = NextResponse.json({ token: token, verified: userData.isVerified, uid:userData._id });
+      response.cookies.set("token",token);
+      return response;
     } else return NextResponse.json({ error: "Invalid credentials" });
   }
   else return NextResponse.json({error:"This phone number is not registered with HilalLink!"})

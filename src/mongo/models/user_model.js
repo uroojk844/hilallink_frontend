@@ -50,6 +50,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: true,
     },
+    isPublic:{
+      type:Boolean,
+      default:true
+    },
     followers: [
       {
         type: mongoose.Schema.Types.ObjectId,
