@@ -69,7 +69,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="text-center">
-          <div className="font-bold">{userData?.following?.length}</div>
+          <div className="font-bold">0</div>
           <div className="text-sm text-gray-500 dark:text-[#afa99e]">
             Posts
           </div>
