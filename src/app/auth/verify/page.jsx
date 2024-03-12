@@ -40,7 +40,7 @@ const Signup = () => {
         className="bg-white px-6 py-8 rounded-md w-[min(400px,96%)]"
       >
         <div className="text-2xl font-bold">Making sure it&apos; you</div>
-        <div className="text-sm mt-1">We've sent you a one time password on your provided contact details, Please type it below and hit continue.</div>
+        <div className="text-sm mt-1">We&apos;ve sent you a one time password on your provided contact details, Please type it below and hit continue.</div>
 
         <div className="flex justify-between gap-8 mt-6 mb-8">
           <input
