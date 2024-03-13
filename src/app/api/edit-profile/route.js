@@ -3,7 +3,11 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   const data = await req.json();
-  const checkUsername = await userModel.exists({ username: data.username });
+
+  const checkUsername = await userModel
+    .findOne({ username: data.username })
+    .where("_id")
+    .ne(data.user);
   if (checkUsername != null) {
     return NextResponse.json({ error: "This username already in use" });
   } else {
