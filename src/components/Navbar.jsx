@@ -23,20 +23,18 @@ import {
 } from "@/redux/togglesSlice";
 import { useCallback, useEffect, useState } from "react";
 import { fetchUsers } from "@/redux/userSlice";
-import EditProfile from "./Navbar/EditProfile";
 const SideBar = dynamic(() => import("./SideBar"));
-
 
 const NavBar = () => {
   const editProfile = useSelector((state) => state.togglesSlice.editProfile);
   const activeTab = usePathname();
   const sidebar = useSelector((state) => state.togglesSlice.userProfile);
   const dispatch = useDispatch();
- 
+
   useEffect(() => {
     localStorage.getItem("dark-theme") && document.body.classList.add("dark");
     localStorage.getItem("dark-theme") && dispatch(setDarkTheme());
-    dispatch(fetchUsers())
+    dispatch(fetchUsers());
   }, []);
 
   const toggleSiderbar = useCallback(() => {
@@ -141,7 +139,6 @@ const NavBar = () => {
           </div>
         </nav>
       </section>
-      {editProfile && <EditProfile />}
     </div>
   );
 };
