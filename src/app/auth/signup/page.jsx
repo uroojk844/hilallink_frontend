@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { TailSpin } from "react-loader-spinner";
 import { Toaster, toast } from "sonner";
 
 const Signup = () => {
@@ -15,17 +16,22 @@ const Signup = () => {
     const form = document.querySelector("#form");
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
-  const { handleSubmit, register } = useForm();
-  const router = useRouter()
+  const { handleSubmit, watch, register } = useForm();
+  const router = useRouter();
+
+  const [matching, setMatching] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   function phoneSignup(data) {
+    setIsLoading(true);
     data.username = data.phone;
     fetch("/api/user", {
       method: "POST",
       cache: "no-store",
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        "accept": "application/json",
+        "content-type": "application/json",
       },
       body: JSON.stringify(data),
     })
@@ -39,9 +45,16 @@ const Signup = () => {
           toast.success("Account created", {
             position: "top-center",
           });
-          router.push("/auth/login")
+          router.push("/auth/login");
         }
-      });
+      })
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-center",
+        });
+        console.log(err);
+      })
+      .finally(() => setIsLoading(true));
   }
   return (
     <>
@@ -83,8 +96,11 @@ const Signup = () => {
                 Create a password
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Create your password"
+                onKeyUp={() =>
+                  setMatching(watch("password") == watch("confPassword"))
+                }
                 className="w-full border p-2 rounded-md mb-4 text-sm"
                 {...register("password")}
               />
@@ -92,13 +108,24 @@ const Signup = () => {
                 Confirm your paassword
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Re-enter your password"
+                onKeyUp={() =>
+                  setMatching(watch("password") == watch("confPassword"))
+                }
                 className="w-full border p-2 rounded-md text-sm"
+                {...register("confPassword")}
               />
 
-              <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
-                Sign up
+              <button
+                className="flex justify-center w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm disabled:brightness-50 disabled:cursor-not-allowed"
+                disabled={!matching}
+              >
+                {isLoading ? (
+                  <TailSpin width={24} height={24} color="white" />
+                ) : (
+                  "Sign up"
+                )}
               </button>
               <div className="flex items-center gap-2 my-2">
                 <div className="h-[1px] w-full bg-gray-200"></div>
