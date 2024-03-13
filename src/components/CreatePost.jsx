@@ -64,7 +64,7 @@ const CreatePost = () => {
           <div>
             {/* textarea */}
             <div
-              className="flex-1 grid content-center border-b outline-none py-2  max-h-[300px] overflow-auto cursor-pointer"
+              className="break-all flex-1 grid content-center border-b outline-none py-2  max-h-[300px] overflow-auto cursor-pointer"
               onFocus={() => setPlaceHolder(false)}
               onBlur={() => setPlaceHolder(true && !text.length)}
               contentEditable={true}
