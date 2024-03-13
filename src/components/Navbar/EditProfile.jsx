@@ -56,7 +56,7 @@ const EditProfile = () => {
   return (
     <form>
       <section className="fixed inset-0 glass z-50 grid place-items-center">
-        <div className="animate__animated animate__bounceIn w-[min(520px,96%)] bg-white rounded-md overflow-hidden">
+        <div className="animate__animated animate__bounceIn w-[min(520px,96%)] bg-white dark:bg-[hsl(200,6%,10%)] rounded-md overflow-hidden">
           <div className="p-3 text-lg font-bold flex items-center gap-3">
             <BsX
               className="text-xl cursor-pointer"
@@ -77,7 +77,7 @@ const EditProfile = () => {
               <div className="absolute -top-20 left-4">
                 <div className="relative">
                   <div className="absolute grid place-items-center h-full w-full rounded-full">
-                    <BsCamera className="text-white z-40 text-2xl cursor-pointer" />
+                    <BsCamera className="text-white  z-40 text-2xl cursor-pointer" />
                   </div>
                   <img
                     src={profileImage || "https://picsum.photos/400?1"}
@@ -95,7 +95,7 @@ const EditProfile = () => {
               hidden
             />
 
-            <div className="mt-8 h-[280px] overflow-scroll">
+            <div className="mt-8 h-[280px] overflow-y-scroll scrollbar-v">
               <div className="mb-4">
                 <div className="text-xs text-gray-500 dark:text-[#afa99e]">
                   Full Name
@@ -103,7 +103,7 @@ const EditProfile = () => {
                 <input
                   type="text"
                   {...register("name")}
-                  className="text-sm border-b w-full border-black py-2"
+                  className="text-sm border-b w-full border-black py-2 dark:bg-[hsl(200,6%,10%)]"
                 />
               </div>
               <div className="mb-4">
@@ -113,7 +113,7 @@ const EditProfile = () => {
                 <input
                   type="text"
                   {...register("username")}
-                  className="text-sm border-b w-full border-black py-2"
+                  className="text-sm border-b w-full border-black py-2 dark:bg-[hsl(200,6%,10%)]"
                 />
               </div>
               <div className="mb-4">
@@ -123,7 +123,7 @@ const EditProfile = () => {
                 <textarea
                   type="text"
                   {...register("bio")}
-                  className="text-sm border-b w-full border-black py-2"
+                  className="text-sm border-b w-full border-black py-2 dark:bg-[hsl(200,6%,10%)]"
                 ></textarea>
               </div>
               <div className="mb-4">
@@ -133,7 +133,7 @@ const EditProfile = () => {
                 <select
                   defaultValue={userData.category}
                   {...register("category")}
-                  className="text-sm border-b w-full border-black py-2"
+                  className="text-sm border-b w-full border-black py-2 dark:bg-[hsl(200,6%,10%)]"
                 >
                   {categories.map((item, index) => {
                     return (
@@ -150,7 +150,7 @@ const EditProfile = () => {
                 </div>
                 <input
                   type="text"
-                  className="text-sm border-b w-full border-black py-2"
+                  className="text-sm border-b w-full border-black py-2 dark:bg-[hsl(200,6%,10%)]"
                   {...register("website")}
                 />
               </div>
@@ -160,7 +160,7 @@ const EditProfile = () => {
                 </div>
                 <input
                   type="text"
-                  className="text-sm border-b w-full border-black py-2"
+                  className="text-sm border-b w-full border-black py-2 dark:bg-[hsl(200,6%,10%)]"
                   {...register("location")}
                 />
               </div>
@@ -170,7 +170,7 @@ const EditProfile = () => {
                 </div>
                 <input
                   type="date"
-                  className="text-sm border-b w-full border-black py-2"
+                  className="text-sm border-b w-full border-black py-2 dark:bg-[hsl(200,6%,10%)]"
                   {...register("dob")}
                 />
               </div>
@@ -181,7 +181,7 @@ const EditProfile = () => {
                 <select
                   defaultValue={userData.accountType}
                   {...register("privacy")}
-                  className="text-sm border-b w-full border-black py-2"
+                  className="text-sm border-b w-full border-black py-2 dark:bg-[hsl(200,6%,10%)]"
                 >
                   <option value="Public">Public</option>
                   <option value="Private">Private</option>
@@ -193,7 +193,7 @@ const EditProfile = () => {
               <div className="mb-4">
                 <select
                   {...register("gender")}
-                  className="py-2 w-full border-b border-black"
+                  className="py-2 w-full border-b border-black dark:bg-[hsl(200,6%,10%)]"
                 >
                   <option value="male">Male</option>
                   <option value="female">Female</option>
