@@ -1,6 +1,7 @@
 "use client";
 import { GoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
@@ -15,6 +16,7 @@ const Signup = () => {
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
   const { handleSubmit, register } = useForm();
+  const router = useRouter()
 
   function phoneSignup(data) {
     data.username = data.phone;
@@ -37,6 +39,7 @@ const Signup = () => {
           toast.success("Account created", {
             position: "top-center",
           });
+          router.push("/auth/login")
         }
       });
   }

@@ -108,7 +108,7 @@ const Login = () => {
                   </button>
                 )}
 
-                <Link href="/signup">
+                <Link href="/auth/signup">
                   <div className="justify-center items-center mt-4 flex gap-2 text-sm">
                     Create a new HilalLink Account <BsArrowRight />
                   </div>
