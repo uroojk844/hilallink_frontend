@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import { Toaster, toast } from "sonner";
 
-
 const Signup = () => {
   const [btnWidth, setBtnWidth] = useState(200);
   const [isEmail, setIsEmail] = useState(true);
@@ -15,6 +14,8 @@ const Signup = () => {
     const form = document.querySelector("#form");
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
+
+  const [matching, setMatching] = useState(false);
 
   function phoneSignup(data) {
     data.username = data.phone;
@@ -32,8 +33,7 @@ const Signup = () => {
           toast.error(data.error, {
             position: "top-center",
           });
-        }
-        else{
+        } else {
           toast.success("Account created", {
             position: "top-center",
           });
@@ -41,9 +41,10 @@ const Signup = () => {
       });
   }
   const { handleSubmit, register } = useForm();
+
   return (
     <>
-    <Toaster richColors />
+      <Toaster richColors />
       <div
         className="h-[100dvh] grid place-items-center"
         style={{
@@ -83,6 +84,9 @@ const Signup = () => {
               <input
                 type="text"
                 placeholder="Create your password"
+                onKeyUp={() =>
+                  setMatching(watch("password") == watch("confPassword"))
+                }
                 className="w-full border p-2 rounded-md mb-4 text-sm"
                 {...register("password")}
               />
@@ -92,11 +96,17 @@ const Signup = () => {
               <input
                 type="text"
                 placeholder="Re-enter your password"
+                onKeyUp={() =>
+                  setMatching(watch("password") == watch("confPassword"))
+                }
                 className="w-full border p-2 rounded-md text-sm"
+                {...register("confPassword")}
               />
 
-
-              <button className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm">
+              <button
+                className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm disabled:brightness-50 disabled:cursor-not-allowed"
+                disabled={matching}
+              >
                 Sign up
               </button>
               <div className="flex items-center gap-2 my-2">
@@ -128,7 +138,6 @@ const Signup = () => {
         </div>
       </div>
     </>
-
   );
 };
 
