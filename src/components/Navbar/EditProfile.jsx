@@ -4,9 +4,6 @@ import { BsCamera, BsShieldCheck, BsX } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
 import { hideEdit } from "@/redux/togglesSlice";
 import { useForm } from "react-hook-form";
-import { doc, updateDoc } from "firebase/firestore";
-import { database } from "@/utils/firebase";
-import { fetchUsers } from "@/redux/userSlice";
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import categories from "@/utils/userCategories";
@@ -34,27 +31,32 @@ const EditProfile = () => {
   }, []);
 
   const updateUser = (d) => {
-    d.user = localStorage.getItem("user")
-    fetch("/api/edit-profile",{
-      method:"POST",
-      cache:"no-store",
-      headers:{
-        "content-type":"application/json"
+    d.user = localStorage.getItem("user");
+    fetch("/api/edit-profile", {
+      method: "POST",
+      cache: "no-store",
+      headers: {
+        "content-type": "application/json",
       },
-      body:JSON.stringify(d)
+      body: JSON.stringify(d),
     })
-    .then(res=>res.json())
-    .then(data=>{
-      console.log(data)
-      // toast.success("Details updated",{
-      //   position:"top-center"
-      // })
-      // dispatch(hideEdit())
-      // dispatch(fetchUsers())
-    })
-    .catch(err=>{
-      console.log(err)
-    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          toast.error(data.error, {
+            position: "top-center",
+          });
+        } else {
+          toast.success("Details updated", {
+            position: "top-center",
+          });
+          dispatch(hideEdit());
+          dispatch(fetchUsers());
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
