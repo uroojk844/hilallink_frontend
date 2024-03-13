@@ -1,12 +1,13 @@
-
 import { useParams } from "next/navigation";
 import { NextRequest, NextResponse } from "next/server";
 import * as jose from "jose";
 import bcrypt from "bcryptjs"; // Not directly used in this middleware
 
 const jwtConfig = {
-  secret: process.env.JWT_SECRET
-    ? new TextEncoder().encode(process.env.JWT_SECRET)
+  secret: "q8o7ehqri76bc3qiwyecgitgdb178236dot3822yk29m8xzp"
+    ? new TextEncoder().encode(
+        "q8o7ehqri76bc3qiwyecgitgdb178236dot3822yk29m8xzp"
+      )
     : undefined,
 };
 
@@ -38,12 +39,10 @@ export const config = {
   matcher: ["/((?!api|_next|favicon.ico|profile.avif|auth/.).*)"],
 };
 
-
 // import { useParams } from "next/navigation";
 // import { NextRequest, NextResponse } from "next/server";
 // import * as jose from "jose";
 // import bcrypt from "bcryptjs"
-
 
 // const jwtConfig = {
 //   secret: new TextEncoder().encode(process.env.JWT_SECRET),
