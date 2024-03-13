@@ -9,7 +9,7 @@ const jwtConfig = {
 };
 
 export async function middleware(req) {
-  const token = req.cookies.get("token")?.value;
+  const token = await req.cookies.get("token")?.value;
   return jose
     .jwtVerify(token, jwtConfig.secret)
     .then((verified) => {
