@@ -10,6 +10,7 @@ import { fetchUsers } from "@/redux/userSlice";
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import categories from "@/utils/userCategories";
+import { toast } from "sonner";
 const EditProfile = () => {
   const userData = useSelector((state) => state.userSlice.user);
   const { register, handleSubmit, setValue } = useForm();
@@ -33,24 +34,27 @@ const EditProfile = () => {
   }, []);
 
   const updateUser = (d) => {
-    setLoading(true);
-    const userRef = doc(database, "users", localStorage.getItem("user"));
-
-    updateDoc(userRef, {
-      name: d.name,
-      username: d.username,
-      bio: d.bio,
-      category: d.category,
-      location: d.location,
-      dob: d.dob,
-      gender: d.gender,
-      website: d.website,
-      accountType: d.privacy,
-    }).then(() => {
-      setLoading(false);
-      dispatch(hideEdit());
-      dispatch(fetchUsers());
-    });
+    d.user = localStorage.getItem("user")
+    fetch("/api/edit-profile",{
+      method:"POST",
+      cache:"no-store",
+      headers:{
+        "content-type":"application/json"
+      },
+      body:JSON.stringify(d)
+    })
+    .then(res=>res.json())
+    .then(data=>{
+      console.log(data)
+      // toast.success("Details updated",{
+      //   position:"top-center"
+      // })
+      // dispatch(hideEdit())
+      // dispatch(fetchUsers())
+    })
+    .catch(err=>{
+      console.log(err)
+    })
   };
 
   return (

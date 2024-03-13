@@ -70,9 +70,7 @@ const Profile = () => {
         </div>
         <div className="text-center">
           <div className="font-bold">0</div>
-          <div className="text-sm text-gray-500 dark:text-[#afa99e]">
-            Posts
-          </div>
+          <div className="text-sm text-gray-500 dark:text-[#afa99e]">Posts</div>
         </div>
       </div>
       <div className="px-8 py-4 flex  justify-between items-center mt-2">
@@ -99,13 +97,7 @@ const Profile = () => {
       </div>
 
       {userData?.bio && (
-        <div className="px-8 text-sm pb-4">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores
-          quasi deserunt earum ex ducimus doloremque itaque libero iure
-          asperiores possimus quia voluptatum consequuntur dignissimos similique
-          eos, eum nam esse. Dignissimos. doloremque itaque libero iure
-          asperiores possimus
-        </div>
+        <div className="px-8 text-sm pb-4">{userData?.bio}</div>
       )}
 
       <div className="px-8 flex justify-between text-xs pb-5 text-gray-500 dark:text-[#afa99e]">

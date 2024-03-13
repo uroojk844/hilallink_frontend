@@ -23,8 +23,9 @@ import {
 } from "@/redux/togglesSlice";
 import { useCallback, useEffect, useState } from "react";
 import { fetchUsers } from "@/redux/userSlice";
+import EditProfile from "./Navbar/EditProfile";
 const SideBar = dynamic(() => import("./SideBar"));
-const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
+
 
 const NavBar = () => {
   const editProfile = useSelector((state) => state.togglesSlice.editProfile);
