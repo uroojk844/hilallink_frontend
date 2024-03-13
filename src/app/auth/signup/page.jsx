@@ -1,9 +1,11 @@
 "use client";
 import { GoogleLogin } from "@react-oauth/google";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { TailSpin } from "react-loader-spinner";
 import { Toaster, toast } from "sonner";
 
 const Signup = () => {
@@ -14,16 +16,22 @@ const Signup = () => {
     const form = document.querySelector("#form");
     setBtnWidth(getComputedStyle(form).width.split("px")[0] - 48);
   }, []);
+  const { handleSubmit, watch, register } = useForm();
+  const router = useRouter();
 
   const [matching, setMatching] = useState(false);
 
+  const [isLoading, setIsLoading] = useState(false);
+
   function phoneSignup(data) {
+    setIsLoading(true);
     data.username = data.phone;
     fetch("/api/user", {
       method: "POST",
       cache: "no-store",
       headers: {
-        "Content-Type": "application/json",
+        "accept": "application/json",
+        "content-type": "application/json",
       },
       body: JSON.stringify(data),
     })
@@ -37,11 +45,17 @@ const Signup = () => {
           toast.success("Account created", {
             position: "top-center",
           });
+          router.push("/auth/login");
         }
-      });
+      })
+      .catch((err) => {
+        toast.error(err, {
+          position: "top-center",
+        });
+        console.log(err);
+      })
+      .finally(() => setIsLoading(true));
   }
-  const { handleSubmit, register } = useForm();
-
   return (
     <>
       <Toaster richColors />
@@ -82,7 +96,7 @@ const Signup = () => {
                 Create a password
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Create your password"
                 onKeyUp={() =>
                   setMatching(watch("password") == watch("confPassword"))
@@ -94,7 +108,7 @@ const Signup = () => {
                 Confirm your paassword
               </label>
               <input
-                type="text"
+                type="password"
                 placeholder="Re-enter your password"
                 onKeyUp={() =>
                   setMatching(watch("password") == watch("confPassword"))
@@ -104,31 +118,21 @@ const Signup = () => {
               />
 
               <button
-                className="w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm disabled:brightness-50 disabled:cursor-not-allowed"
-                disabled={matching}
+                className="flex justify-center w-full bg-black text-white rounded-md py-2.5 mt-4 text-sm disabled:brightness-50 disabled:cursor-not-allowed"
+                disabled={!matching}
               >
-                Sign up
+                {isLoading ? (
+                  <TailSpin width={24} height={24} color="white" />
+                ) : (
+                  "Sign up"
+                )}
               </button>
               <div className="flex items-center gap-2 my-2">
                 <div className="h-[1px] w-full bg-gray-200"></div>
                 <div className="leading-4 text-xs">OR</div>
                 <div className="h-[1px] w-full bg-gray-200"></div>
               </div>
-
-              <div className="flex mt-2 justify-center">
-                <GoogleLogin
-                  width={btnWidth}
-                  theme="filled_black"
-                  text={"continue_with"}
-                  onSuccess={(res) => {
-                    googleLogin(res);
-                  }}
-                  onError={() => {
-                    console.log("Login Failed");
-                  }}
-                />
-              </div>
-              <Link href="/login">
+              <Link href="/auth/login">
                 <div className="justify-center items-center mt-4 flex gap-2 text-sm">
                   <BsArrowLeft /> Login to an existing account
                 </div>

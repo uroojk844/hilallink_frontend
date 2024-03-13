@@ -15,8 +15,14 @@ import { FaBars, FaMosque } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import { dispatch } from "@/redux/store";
-import { hideProfile, setDarkTheme, showCreate, showProfile } from "@/redux/togglesSlice";
-import { useCallback, useEffect } from "react";
+import {
+  hideProfile,
+  setDarkTheme,
+  showCreate,
+  showProfile,
+} from "@/redux/togglesSlice";
+import { useCallback, useEffect, useState } from "react";
+import { fetchUsers } from "@/redux/userSlice";
 const SideBar = dynamic(() => import("./SideBar"));
 const EditProfile = dynamic(() => import("./Navbar/EditProfile"));
 
@@ -25,10 +31,11 @@ const NavBar = () => {
   const activeTab = usePathname();
   const sidebar = useSelector((state) => state.togglesSlice.userProfile);
   const dispatch = useDispatch();
-
+ 
   useEffect(() => {
     localStorage.getItem("dark-theme") && document.body.classList.add("dark");
     localStorage.getItem("dark-theme") && dispatch(setDarkTheme());
+    dispatch(fetchUsers())
   }, []);
 
   const toggleSiderbar = useCallback(() => {

@@ -48,7 +48,11 @@ const userSchema = mongoose.Schema(
     },
     isVerified: {
       type: Boolean,
-      default: false,
+      default: true,
+    },
+    isPublic:{
+      type:Boolean,
+      default:true
     },
     followers: [
       {
