@@ -58,8 +58,8 @@ const Profile = () => {
           )}
 
           <img
-            src="/profile.avif"
-            className="h-[280px] w-full object-cover"
+            src={userData.cover_url || "/profile.avif"}
+            className="h-[220px] w-full object-cover"
             alt=""
           />
         </div>
@@ -83,7 +83,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="px-8 py-4 flex  justify-between items-center mt-2">
+        <div className="max-sm:px-3 px-8 py-4 flex  justify-between items-center mt-2">
           <section className="flex gap-3 items-center">
             <img
               src={userData?.profile_url || "/avtar.jpg"}
@@ -99,18 +99,18 @@ const Profile = () => {
           </section>
           <button
             onClick={() => dispatch(showEdit())}
-            className="bg-black dark:bg-[hsl(180,40%,5%)] flex items-center gap-2 text-white text-sm py-2 px-4 rounded-full"
+            className="bg-black dark:bg-[hsl(180,40%,5%)] flex items-center gap-2 text-white text-sm py-2 px-4 rounded-full max-sm:text-xs"
           >
             <BsPen />
-            Edit Profile
+            Edit
           </button>
         </div>
 
         {userData?.bio && (
-          <div className="px-8 text-sm pb-4">{userData?.bio}</div>
+          <div className="max-sm:px-3 max-sm:text-xs px-8 text-sm pb-4">{userData?.bio}</div>
         )}
 
-        <div className="px-8 flex justify-between text-xs pb-5 text-gray-500 dark:text-[#afa99e]">
+        <div className="max-sm:px-3 px-8 flex justify-between text-xs pb-5 text-gray-500 dark:text-[#afa99e]">
           {userData?.category && (
             <div className="flex items-center gap-2 justify-center">
               {" "}
@@ -124,10 +124,13 @@ const Profile = () => {
             </div>
           )}
           {userData?.website && (
-            <div className="flex items-center gap-2 justify-center">
+            <a
+              href={userData?.website}
+              className="flex items-center gap-2 justify-center"
+            >
               {" "}
               <BsBoxArrowUpRight /> {userData?.website}
-            </div>
+            </a>
           )}
         </div>
         <div className="flex border-t text-sm border-b">

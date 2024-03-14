@@ -16,7 +16,9 @@ const EditProfile = () => {
 
   const [loading, setLoading] = useState(false);
   const [profileImage, setProfileImage] = useState(userData.profile_url);
+  const [coverImage, setCoverImage] = useState(userData.cover_url);
   const [newProfilePhoto, SetNewProfilePhoto] = useState("");
+  const [newCoverPhoto, SetNewCoverPhoto] = useState("");
 
   const handleProfileImage = (e) => {
     const image = e.target.files[0];
@@ -25,11 +27,37 @@ const EditProfile = () => {
     setProfileImage(uri);
   };
 
+  const handleCoverImage = (e) => {
+    const image = e.target.files[0];
+    const uri = URL.createObjectURL(image);
+    SetNewCoverPhoto(e.target.files[0]);
+    setCoverImage(uri);
+  };
+
   const uploadProfileImage = async () => {
     if (newProfilePhoto == "") return userData.profile_url;
     else {
       const data = new FormData();
       data.append("file", newProfilePhoto);
+      data.append("upload_preset", "hilal_link");
+      data.append("cloud_name", "myimagestorage");
+      const res = await fetch(
+        "https://api.cloudinary.com/v1_1/myimagestorage/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+      const resData = await res.json();
+      return resData.url;
+    }
+  };
+
+  const uploadCoverImage = async () => {
+    if (newCoverPhoto == "") return userData.cover_url;
+    else {
+      const data = new FormData();
+      data.append("file", newCoverPhoto);
       data.append("upload_preset", "hilal_link");
       data.append("cloud_name", "myimagestorage");
       const res = await fetch(
@@ -57,6 +85,7 @@ const EditProfile = () => {
     setLoading(true);
     d.user = localStorage.getItem("user");
     d.profile_url = await uploadProfileImage();
+    d.cover_url = await uploadCoverImage();
     const res = await fetch("/api/edit-profile", {
       method: "POST",
       cache: "no-store",
@@ -94,14 +123,16 @@ const EditProfile = () => {
               />{" "}
               Edit Profile
             </div>
-            <div className="relative">
-              <BsCamera className="absolute cursor-pointer z-40 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-white text-3xl" />
-              <img
-                src={userData.coverPhoto || "/bg.png"}
-                className="w-full h-[140px] object-cover brightness-50 "
-                alt=""
-              />
-            </div>
+            <label htmlFor="coverPhoto">
+              <div className="relative">
+                <BsCamera className="absolute cursor-pointer z-40 top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-white text-3xl" />
+                <img
+                  src={coverImage || "/bg.png"}
+                  className="w-full h-[140px] object-cover brightness-50 "
+                  alt=""
+                />
+              </div>
+            </label>
             <div className="p-3 pt-4 relative">
               <label htmlFor="profilePhoto">
                 <div className="absolute -top-20 left-4">
@@ -122,6 +153,14 @@ const EditProfile = () => {
                 type="file"
                 onChange={(e) => handleProfileImage(e)}
                 id="profilePhoto"
+                hidden
+              />
+
+              {/* input for cover photo */}
+              <input
+                type="file"
+                onChange={(e) => handleCoverImage(e)}
+                id="coverPhoto"
                 hidden
               />
 
