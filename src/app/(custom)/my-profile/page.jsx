@@ -17,7 +17,7 @@ import { CiWarning } from "react-icons/ci";
 import { MdBlock } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { showEdit } from "@/redux/togglesSlice";
-import EditProfile from "@/components/Navbar/EditProfile";
+import EditProfile from "@/components/EditProfile";
 import { fetchUsers } from "@/redux/userSlice";
 
 const Profile = () => {
