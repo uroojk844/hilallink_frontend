@@ -7,7 +7,8 @@ import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
 import categories from "@/utils/userCategories";
-import { toast } from "sonner";
+import { Toaster,toast } from "sonner";
+import { fetchUsers } from "@/redux/userSlice";
 const EditProfile = () => {
   const userData = useSelector((state) => state.userSlice.user);
   const { register, handleSubmit, setValue } = useForm();
@@ -42,16 +43,12 @@ const EditProfile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.error) {
-          toast.error(data.error, {
-            position: "top-center",
-          });
-        } else {
-          toast.success("Details updated", {
-            position: "top-center",
-          });
-          dispatch(hideEdit());
-          dispatch(fetchUsers());
+        if(data.error){
+          alert(data.error)
+        }
+        else{
+          dispatch(hideEdit())
+          dispatch(fetchUsers())
         }
       })
       .catch((err) => {
@@ -62,6 +59,7 @@ const EditProfile = () => {
   return (
     <form>
       <section className="fixed inset-0 glass z-50 grid place-items-center">
+        <Toaster richColors />
         <div className="animate__animated animate__bounceIn w-[min(520px,96%)] bg-white dark:bg-[hsl(200,6%,10%)] rounded-md overflow-hidden">
           <div className="p-3 text-lg font-bold flex items-center gap-3">
             <BsX
