@@ -1,6 +1,6 @@
 "use client";
 import PostCard from "@/components/Home/PostCard";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BsArrowLeft,
   BsBoxArrowUpRight,
@@ -17,14 +17,17 @@ import { CiWarning } from "react-icons/ci";
 import { MdBlock } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { showEdit } from "@/redux/togglesSlice";
-import EditProfile from "@/components/Navbar/EditProfile";
+import EditProfile from "@/components/EditProfile";
+import { fetchUsers } from "@/redux/userSlice";
 
 const Profile = () => {
   const [actions, setActions] = useState(false);
   const userData = useSelector((state) => state.userSlice.user);
   const edit = useSelector((state) => state.togglesSlice.editProfile);
   const dispatch = useDispatch();
-
+  useEffect(()=>{
+    dispatch(fetchUsers())
+  })
   return (
     <>
       {edit && <EditProfile />}

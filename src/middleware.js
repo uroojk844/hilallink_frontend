@@ -15,7 +15,7 @@ export async function middleware(req) {
   // Check if JWT_SECRET is set
   if (!jwtConfig.secret) {
     console.error("JWT_SECRET environment variable is not set or empty.");
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 }); // User-friendly error and status code
+    return NextResponse.redirect(new URL("/auth/login", req.url)); // User-friendly error and status code
   }
 
   const token = await req.cookies.get("token")?.value;
@@ -28,10 +28,7 @@ export async function middleware(req) {
     return NextResponse.next();
   } catch (err) {
     console.error("Error verifying token:", err);
-    return NextResponse.json(
-      { message: "Invalid or expired token" },
-      { status: 401 }
-    );
+    return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 }
 
